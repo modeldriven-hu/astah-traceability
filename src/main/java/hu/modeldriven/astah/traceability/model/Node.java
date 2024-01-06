@@ -1,9 +1,13 @@
 package hu.modeldriven.astah.traceability.model;
 
+import java.util.List;
+
 public interface Node {
 
     String name();
 
-    Type type();
+    List<Connection> connections();
+
+    NodeRenderer renderer();
 
 }

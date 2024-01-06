@@ -7,6 +7,6 @@ public interface Connection {
 
     String name();
 
-    Type type();
+    ConnectionRenderer renderer();
 
 }
