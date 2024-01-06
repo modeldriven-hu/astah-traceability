@@ -3,9 +3,11 @@ package hu.modeldriven.astah.traceability.model;
 public class DummyTraceabilityModel implements TraceabilityModel{
 
     private final Node rootNode;
+    private final LayoutAlgorithm layoutAlgorithm;
 
     public DummyTraceabilityModel(){
         rootNode = createRootNode();
+        this.layoutAlgorithm = new DummyLayoutAlgorithm();
     }
 
     private Node createRootNode() {
@@ -28,6 +30,11 @@ public class DummyTraceabilityModel implements TraceabilityModel{
         child2.addConnection(new DummyConnection("Child2 -> SubChild3",child2, subChild3));
 
         return rootNode;
+    }
+
+    @Override
+    public Layout layout() {
+        return layoutAlgorithm.layout(rootNode);
     }
 
     @Override

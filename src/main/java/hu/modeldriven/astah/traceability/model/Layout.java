@@ -8,6 +8,4 @@ public interface Layout {
 
     Path location(Connection connection);
 
-//    Map<ElementId, Rectangle> nodePositions,
-//    Map<ElementId, Path> connectionPositions
 }
