@@ -2,6 +2,10 @@ package hu.modeldriven.astah.traceability.model;
 
 public class DummyConnection implements Connection {
 
+    private static int INSTANCE_ID = 0;
+
+    private final String id;
+
     private final String name;
     private final Node source;
 
@@ -11,6 +15,12 @@ public class DummyConnection implements Connection {
         this.name = name;
         this.source = source;
         this.target = target;
+        this.id = String.valueOf(INSTANCE_ID++);
+    }
+
+    @Override
+    public String id(){
+        return this.id;
     }
 
     @Override

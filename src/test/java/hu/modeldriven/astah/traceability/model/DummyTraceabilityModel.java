@@ -1,8 +1,14 @@
 package hu.modeldriven.astah.traceability.model;
 
 public class DummyTraceabilityModel implements TraceabilityModel{
-    @Override
-    public Node rootNode() {
+
+    private final Node rootNode;
+
+    public DummyTraceabilityModel(){
+        rootNode = createRootNode();
+    }
+
+    private Node createRootNode() {
 
         DummyNode rootNode = new DummyNode("Root element");
 
@@ -23,4 +29,11 @@ public class DummyTraceabilityModel implements TraceabilityModel{
 
         return rootNode;
     }
+
+    @Override
+    public DiagramRenderer renderer() {
+        return new DummyDiagramRenderer(rootNode);
+    }
+
+
 }
