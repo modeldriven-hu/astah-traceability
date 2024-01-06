@@ -1,6 +1,6 @@
 package hu.modeldriven.astah.traceability.ui;
 
-import hu.modeldriven.astah.traceability.model.NodeRenderer;
+import hu.modeldriven.astah.traceability.model.Layout;
 import hu.modeldriven.astah.traceability.model.TraceabilityModel;
 
 import javax.swing.JPanel;
@@ -8,11 +8,17 @@ import java.awt.*;
 
 public class TraceabilityPanel extends JPanel {
 
-    private final TraceabilityModel model;
+    private TraceabilityModel model;
+    private Layout layout;
 
     public TraceabilityPanel(TraceabilityModel model){
         super();
         this.model = model;
+        calculateLayout();
+    }
+
+    private void calculateLayout() {
+        this.layout = model.layout();
     }
 
     @Override
@@ -21,7 +27,6 @@ public class TraceabilityPanel extends JPanel {
 
         Graphics2D g2 = (Graphics2D)g;
 
-        NodeRenderer renderer = model.rootNode().renderer();
-        renderer.render(g2, new Rectangle(100,100, 300,300));
+        model.renderer().render(g2, this.layout);
     }
 }

@@ -5,8 +5,6 @@ import java.util.Map;
 
 public interface DiagramRenderer {
 
-    void render(Graphics2D g,
-                Map<ElementId, Rectangle> nodePositions,
-                Map<ElementId, Path> connectionPositions);
+    void render(Graphics2D g, Layout layout);
 
 }

@@ -2,7 +2,6 @@ package hu.modeldriven.astah.traceability.model;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.util.Map;
 
 public class DummyDiagramRenderer implements DiagramRenderer {
 
@@ -13,30 +12,31 @@ public class DummyDiagramRenderer implements DiagramRenderer {
     }
 
     @Override
-    public void render(Graphics2D g,
-                       Map<ElementId, Rectangle> nodePositions,
-                       Map<ElementId, Path> connectionPositions) {
-        renderRecursively(rootNode, g, nodePositions, connectionPositions);
+    public void render(Graphics2D g, Layout layout) {
+        renderRecursively(rootNode, g, layout);
     }
 
     private void renderRecursively(Node currentNode,
                                    Graphics2D g,
-                                   Map<ElementId, Rectangle> nodePositions,
-                                   Map<ElementId, Path> connectionPositions) {
+                                   Layout layout) {
 
-        Rectangle nodePosition = nodePositions.get(currentNode.id());
+        Rectangle nodePosition = layout.location(currentNode);
         if (nodePosition != null) {
             currentNode.renderer().render(g, nodePosition);
+        } else {
+            System.err.println("No coordinate for node " + currentNode.id());
         }
 
         for (Connection connection : currentNode.connections()) {
 
-            Path connectionPosition = connectionPositions.get(connection.id());
+            Path connectionPosition = layout.location(connection);
             if (connectionPosition != null) {
                 connection.renderer().render(g, connectionPosition);
+            } else {
+                System.err.println("No coordinate for connection " + connection.id());
             }
 
-            renderRecursively(connection.target(), g, nodePositions, connectionPositions);
+            renderRecursively(connection.target(), g, layout);
         }
 
     }
