@@ -16,7 +16,7 @@ public class DummyConnectionRenderer implements ConnectionRenderer {
 
     @Override
     public void render(Graphics2D g, Path path) {
-        g.setColor(Color.PINK);
+        g.setColor(Color.BLUE);
         drawPolyLine(g, path.coordinates());
         Rectangle bounds = path.bounds();
         g.drawString(name, bounds.x + bounds.width / 2,bounds.y + bounds.height /2);

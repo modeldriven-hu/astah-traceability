@@ -1,6 +1,8 @@
 package hu.modeldriven.astah.traceability.model;
 
+import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.geom.Point2D;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -38,7 +40,7 @@ public class DummyLayoutAlgorithm implements LayoutAlgorithm {
         Coordinates coordinates = new Coordinates();
 
         int width = 100;
-        int height = 100;
+        int height = 50;
 
         int x = 0;
         int y = 0;
@@ -52,7 +54,11 @@ public class DummyLayoutAlgorithm implements LayoutAlgorithm {
         for (Connection connection : flattenedGraph.connections) {
             Rectangle sourceRect = coordinates.nodePositions.get(connection.source().id());
             Rectangle targetRect = coordinates.nodePositions.get(connection.target().id());
-            Path path = new DummyPath(sourceRect.getLocation(), targetRect.getLocation());
+
+            Point sourcePoint = new Point(sourceRect.x + sourceRect.width, sourceRect.y + sourceRect.height);
+            Point targetPoint = new Point(targetRect.x, targetRect.y);
+
+            Path path = new DummyPath(sourcePoint, targetPoint);
             coordinates.connectionPositions.put(connection.id(), path);
         }
 

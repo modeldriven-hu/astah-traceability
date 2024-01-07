@@ -22,7 +22,10 @@ public class DummyDiagramRenderer implements DiagramRenderer {
 
         Rectangle nodePosition = layout.location(currentNode);
         if (nodePosition != null) {
-            currentNode.renderer().render(g, nodePosition);
+            Graphics2D newGraphics = (Graphics2D) g.create();
+            currentNode.renderer().render(newGraphics, nodePosition);
+            newGraphics.dispose();
+
         } else {
             System.err.println("No coordinate for node " + currentNode.id());
         }
@@ -31,7 +34,9 @@ public class DummyDiagramRenderer implements DiagramRenderer {
 
             Path connectionPosition = layout.location(connection);
             if (connectionPosition != null) {
-                connection.renderer().render(g, connectionPosition);
+                Graphics2D newGraphics = (Graphics2D) g.create();
+                connection.renderer().render(newGraphics, connectionPosition);
+                newGraphics.dispose();
             } else {
                 System.err.println("No coordinate for connection " + connection.id());
             }

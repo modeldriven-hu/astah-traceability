@@ -14,7 +14,7 @@ public class DummyNodeRenderer implements NodeRenderer {
 
     @Override
     public void render(Graphics2D g, Rectangle bounds) {
-        g.setBackground(Color.BLUE);
+        g.setColor(Color.BLUE);
         g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
 
         g.setColor(Color.DARK_GRAY);
