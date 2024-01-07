@@ -2,7 +2,6 @@ package hu.modeldriven.astah.traceability.model;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
 public class DummyNodeRenderer implements NodeRenderer {
@@ -22,6 +21,6 @@ public class DummyNodeRenderer implements NodeRenderer {
         g.draw(bounds);
 
         g.setColor(Color.WHITE);
-        g.drawString(name, (float)bounds.getX(), (float)(bounds.getY() + bounds.getHeight() / 2));
+        g.drawString(name, (float) bounds.getX(), (float) (bounds.getY() + bounds.getHeight() / 2));
     }
 }

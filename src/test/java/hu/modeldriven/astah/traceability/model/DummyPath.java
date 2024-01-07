@@ -28,7 +28,7 @@ public class DummyPath implements Path {
     private static Rectangle calculateBounds(List<Point2D> points) {
 
         if (points == null || points.isEmpty()) {
-            return new Rectangle(0,0,0,0);
+            return new Rectangle(0, 0, 0, 0);
         }
 
         double minX = Double.MAX_VALUE;

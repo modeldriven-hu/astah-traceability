@@ -2,7 +2,6 @@ package hu.modeldriven.astah.traceability.model.impl;
 
 import hu.modeldriven.astah.traceability.model.Path;
 
-import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -37,7 +36,7 @@ public class PathImpl implements Path {
     private static Rectangle2D calculateBounds(List<Point2D> points) {
 
         if (points == null || points.isEmpty()) {
-            return new Rectangle(0,0,0,0);
+            return new Rectangle(0, 0, 0, 0);
         }
 
         double minX = Double.MAX_VALUE;
@@ -54,6 +53,6 @@ public class PathImpl implements Path {
         }
 
         // Create a Rectangle2D representing the bounds
-        return new Rectangle2D.Double(minX, minY,  (maxX - minX),  (maxY - minY));
+        return new Rectangle2D.Double(minX, minY, (maxX - minX), (maxY - minY));
     }
 }
