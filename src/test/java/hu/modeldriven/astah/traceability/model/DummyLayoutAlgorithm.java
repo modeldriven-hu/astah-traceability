@@ -50,8 +50,8 @@ public class DummyLayoutAlgorithm implements LayoutAlgorithm {
         }
 
         for (Connection connection : flattenedGraph.connections) {
-            Rectangle sourceRect = coordinates.nodePositions.get(connection.source());
-            Rectangle targetRect = coordinates.nodePositions.get(connection.target());
+            Rectangle sourceRect = coordinates.nodePositions.get(connection.source().id());
+            Rectangle targetRect = coordinates.nodePositions.get(connection.target().id());
             Path path = new DummyPath(sourceRect.getLocation(), targetRect.getLocation());
             coordinates.connectionPositions.put(connection.id(), path);
         }
