@@ -1,7 +1,7 @@
 package hu.modeldriven.astah.traceability.model;
 
-import java.util.List;
 import java.awt.geom.Point2D;
+import java.util.List;
 
 public interface Path {
 

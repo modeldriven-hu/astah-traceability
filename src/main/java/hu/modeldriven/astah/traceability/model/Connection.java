@@ -5,6 +5,7 @@ public interface Connection {
     ElementId id();
 
     Node source();
+
     Node target();
 
     String name();

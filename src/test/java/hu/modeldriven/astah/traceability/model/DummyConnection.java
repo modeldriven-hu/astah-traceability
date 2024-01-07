@@ -19,7 +19,7 @@ public class DummyConnection implements Connection {
     }
 
     @Override
-    public String id(){
+    public String id() {
         return this.id;
     }
 

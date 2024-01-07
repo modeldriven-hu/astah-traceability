@@ -1,6 +1,6 @@
 package hu.modeldriven.astah.traceability.model;
 
-import java.awt.*;
+import java.awt.Graphics2D;
 
 public interface ConnectionRenderer {
 

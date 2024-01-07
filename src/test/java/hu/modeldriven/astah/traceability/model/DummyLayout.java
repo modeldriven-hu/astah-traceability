@@ -5,11 +5,11 @@ import java.util.Map;
 
 public class DummyLayout implements Layout {
 
-    private final Map<ElementId,Rectangle> nodePositions;
+    private final Map<ElementId, Rectangle> nodePositions;
     private final Map<ElementId, Path> connectionPositions;
 
-    public DummyLayout(Map<ElementId,Rectangle> nodePositions,
-                       Map<ElementId, Path> connectionPositions){
+    public DummyLayout(Map<ElementId, Rectangle> nodePositions,
+                       Map<ElementId, Path> connectionPositions) {
         this.nodePositions = nodePositions;
         this.connectionPositions = connectionPositions;
     }

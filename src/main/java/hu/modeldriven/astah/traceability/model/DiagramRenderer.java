@@ -1,7 +1,6 @@
 package hu.modeldriven.astah.traceability.model;
 
-import java.awt.*;
-import java.util.Map;
+import java.awt.Graphics2D;
 
 public interface DiagramRenderer {
 

@@ -2,11 +2,11 @@ package hu.modeldriven.astah.traceability.model;
 
 import java.util.Objects;
 
-public class DummyElementId implements ElementId{
+public class DummyElementId implements ElementId {
 
     private final String id;
 
-    public DummyElementId(String id){
+    public DummyElementId(String id) {
         this.id = id;
     }
 

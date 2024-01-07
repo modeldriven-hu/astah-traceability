@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
-   <extension point="com.change_vision.astah.ui.actionSets">
-      <actionSet
-            label="%action_set_label"
-            visible="true"
-            id="hu.modeldriven.astah-traceability.actionSet">
-         <menu
-               id="astah-traceability"
-               label="%menu_group"
-               path="tool/astah-traceability">
-         </menu>
-         <action
-			   label="%menu_label"
-               icon="icons/sample.gif"
-               class="hu.modeldriven.astah.traceability.TemplateAction"
-               tooltip="%menu_tooltip"
-               menubarPath="tool/astah-traceability/"
-               id="astah-traceability">
-         </action>
-     </actionSet>
-   </extension>
+    <extension point="com.change_vision.astah.ui.actionSets">
+        <actionSet
+                label="%action_set_label"
+                visible="true"
+                id="hu.modeldriven.astah-traceability.actionSet">
+            <menu
+                    id="astah-traceability"
+                    label="%menu_group"
+                    path="tool/astah-traceability">
+            </menu>
+            <action
+                    label="%menu_label"
+                    icon="icons/sample.gif"
+                    class="hu.modeldriven.astah.traceability.TemplateAction"
+                    tooltip="%menu_tooltip"
+                    menubarPath="tool/astah-traceability/"
+                    id="astah-traceability">
+            </action>
+        </actionSet>
+    </extension>
 </plugin>
