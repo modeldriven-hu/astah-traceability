@@ -19,8 +19,8 @@ public class DummyConnection implements Connection {
     }
 
     @Override
-    public String id() {
-        return this.id;
+    public ElementId id() {
+        return new DummyElementId(this.id);
     }
 
     @Override
@@ -40,6 +40,6 @@ public class DummyConnection implements Connection {
 
     @Override
     public ConnectionRenderer renderer() {
-        return new DummyConnectionRenderer();
+        return new DummyConnectionRenderer(name);
     }
 }

@@ -25,9 +25,7 @@ public class TraceabilityPanel extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-
         Graphics2D g2 = (Graphics2D) g;
-
         model.renderer().render(g2, this.layout);
     }
 }
