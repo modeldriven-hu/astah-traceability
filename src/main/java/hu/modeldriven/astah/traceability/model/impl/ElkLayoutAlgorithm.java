@@ -13,6 +13,7 @@ import org.eclipse.elk.core.options.EdgeRouting;
 import org.eclipse.elk.core.options.HierarchyHandling;
 import org.eclipse.elk.core.util.BasicProgressMonitor;
 import org.eclipse.elk.graph.ElkEdge;
+import org.eclipse.elk.graph.ElkLabel;
 import org.eclipse.elk.graph.ElkNode;
 import org.eclipse.elk.graph.util.ElkGraphUtil;
 import org.eclipse.elk.alg.layered.options.LayeredOptions;
@@ -26,7 +27,6 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
 
         ElkNode graph = createElkGraph(rootNode);
         ElkNode layoutedNode = layout(graph);
-
 
 
         return null;
@@ -87,17 +87,21 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
     }
 
     private ElkNode createElkNode(Node modelNode, ElkNode parent) {
+
         ElkNode node = ElkGraphUtil.createNode(parent);
         node.setIdentifier(modelNode.id().value());
-        // TODO set size
-        // TODO set label
+
+        node.setWidth(100);
+        node.setHeight(50);
+
         return node;
     }
 
     private void createEdge(Connection connection, ElkNode sourceNode, ElkNode targetNode) {
         ElkEdge edge = ElkGraphUtil.createSimpleEdge(sourceNode, targetNode);
-        // TODO set label
         edge.setIdentifier(connection.id().value());
+
+        ElkGraphUtil.createLabel(connection.name(), edge);
     }
 
 }
