@@ -1,13 +1,15 @@
 package hu.modeldriven.astah.traceability.model;
 
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.util.List;
 
 public interface Path {
 
     List<Point2D> coordinates();
 
-    Rectangle bounds();
+    Rectangle2D bounds();
 
 }

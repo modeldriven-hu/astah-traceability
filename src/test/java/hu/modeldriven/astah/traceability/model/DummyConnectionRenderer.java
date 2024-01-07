@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.util.List;
 
 public class DummyConnectionRenderer implements ConnectionRenderer {
@@ -18,8 +19,8 @@ public class DummyConnectionRenderer implements ConnectionRenderer {
     public void render(Graphics2D g, Path path) {
         g.setColor(Color.BLUE);
         drawPolyLine(g, path.coordinates());
-        Rectangle bounds = path.bounds();
-        g.drawString(name, bounds.x + bounds.width / 2,bounds.y + bounds.height /2);
+        Rectangle2D bounds = path.bounds();
+        g.drawString(name, (float) (bounds.getX() + bounds.getWidth() / 2), (float) (bounds.getY() + bounds.getHeight() /2));
     }
 
     private void drawPolyLine(Graphics2D g2d, List<Point2D> points) {

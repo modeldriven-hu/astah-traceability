@@ -2,6 +2,7 @@ package hu.modeldriven.astah.traceability.model;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 
 public class DummyDiagramRenderer implements DiagramRenderer {
 
@@ -20,7 +21,7 @@ public class DummyDiagramRenderer implements DiagramRenderer {
                                    Graphics2D g,
                                    Layout layout) {
 
-        Rectangle nodePosition = layout.location(currentNode);
+        Rectangle2D nodePosition = layout.location(currentNode);
         if (nodePosition != null) {
             Graphics2D newGraphics = (Graphics2D) g.create();
             currentNode.renderer().render(newGraphics, nodePosition);

@@ -3,6 +3,7 @@ package hu.modeldriven.astah.traceability.model;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 
 public class DummyNodeRenderer implements NodeRenderer {
 
@@ -13,14 +14,14 @@ public class DummyNodeRenderer implements NodeRenderer {
     }
 
     @Override
-    public void render(Graphics2D g, Rectangle bounds) {
+    public void render(Graphics2D g, Rectangle2D bounds) {
         g.setColor(Color.BLUE);
-        g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
+        g.fill(bounds);
 
         g.setColor(Color.DARK_GRAY);
-        g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
+        g.draw(bounds);
 
         g.setColor(Color.WHITE);
-        g.drawString(name, bounds.x, bounds.y + bounds.height / 2);
+        g.drawString(name, (float)bounds.getX(), (float)(bounds.getY() + bounds.getHeight() / 2));
     }
 }

@@ -5,6 +5,7 @@ import hu.modeldriven.astah.traceability.model.Layout;
 import hu.modeldriven.astah.traceability.model.LayoutAlgorithm;
 import hu.modeldriven.astah.traceability.model.Node;
 import org.eclipse.elk.alg.layered.LayeredLayoutProvider;
+import org.eclipse.elk.alg.layered.options.LayeredOptions;
 import org.eclipse.elk.core.data.LayoutAlgorithmData;
 import org.eclipse.elk.core.data.LayoutMetaDataService;
 import org.eclipse.elk.core.options.CoreOptions;
@@ -13,10 +14,8 @@ import org.eclipse.elk.core.options.EdgeRouting;
 import org.eclipse.elk.core.options.HierarchyHandling;
 import org.eclipse.elk.core.util.BasicProgressMonitor;
 import org.eclipse.elk.graph.ElkEdge;
-import org.eclipse.elk.graph.ElkLabel;
 import org.eclipse.elk.graph.ElkNode;
 import org.eclipse.elk.graph.util.ElkGraphUtil;
-import org.eclipse.elk.alg.layered.options.LayeredOptions;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -28,11 +27,12 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
         ElkNode graph = createElkGraph(rootNode);
         ElkNode layoutedNode = layout(graph);
 
+        // TODO finish
 
         return null;
     }
 
-    private ElkNode layout(ElkNode rootElkNode){
+    private ElkNode layout(ElkNode rootElkNode) {
         LayoutAlgorithmData data = LayoutMetaDataService
                 .getInstance()
                 .getAlgorithmDataBySuffixOrDefault(
@@ -48,7 +48,7 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
         LayeredLayoutProvider layeredLayoutProvider = new LayeredLayoutProvider();
         layeredLayoutProvider.initialize(null);
 
-        try{
+        try {
             BasicProgressMonitor monitor = new BasicProgressMonitor();
             layeredLayoutProvider.layout(rootElkNode, monitor);
         } finally {
