@@ -25,9 +25,8 @@ public class DummyDiagramRenderer implements DiagramRenderer {
             Graphics2D newGraphics = (Graphics2D) g.create();
             currentNode.renderer().render(newGraphics, nodePosition);
             newGraphics.dispose();
-
         } else {
-            System.err.println("No coordinate for node " + currentNode.id());
+            System.err.println("No coordinate for node " + currentNode.id().value());
         }
 
         for (Connection connection : currentNode.connections()) {
@@ -38,7 +37,7 @@ public class DummyDiagramRenderer implements DiagramRenderer {
                 connection.renderer().render(newGraphics, connectionPosition);
                 newGraphics.dispose();
             } else {
-                System.err.println("No coordinate for connection " + connection.id());
+                System.err.println("No coordinate for connection " + connection.id().value());
             }
 
             renderRecursively(connection.target(), g, layout);

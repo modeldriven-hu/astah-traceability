@@ -17,6 +17,7 @@ import org.eclipse.elk.graph.ElkLabel;
 import org.eclipse.elk.graph.ElkNode;
 import org.eclipse.elk.graph.util.ElkGraphUtil;
 
+import java.awt.geom.Rectangle2D;
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
@@ -94,20 +95,10 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
 
         ElkNode node = ElkGraphUtil.createNode(parent);
         node.setIdentifier(modelNode.id().value());
+        Rectangle2D preferredBounds = modelNode.renderer().preferredBounds();
 
-        node.setX(0);
-        node.setY(0);
-        node.setWidth(25);
-        node.setHeight(25);
-
-        final ElkLabel label = ElkGraphUtil.createLabel(node);
-        label.setText(modelNode.name());
-        label.setDimensions(25, 15);
-
-        label.setProperty(CoreOptions.NODE_LABELS_PLACEMENT,
-                EnumSet.of(NodeLabelPlacement.INSIDE,
-                        NodeLabelPlacement.H_CENTER,
-                        NodeLabelPlacement.V_CENTER));
+        node.setWidth(preferredBounds.getWidth());
+        node.setHeight(preferredBounds.getHeight());
 
         return node;
     }
