@@ -1,5 +1,7 @@
 package hu.modeldriven.astah.traceability.model;
 
+import hu.modeldriven.astah.traceability.model.impl.ElkLayoutAlgorithm;
+
 public class DummyTraceabilityModel implements TraceabilityModel {
 
     private final Node rootNode;
@@ -7,7 +9,7 @@ public class DummyTraceabilityModel implements TraceabilityModel {
 
     public DummyTraceabilityModel() {
         rootNode = createRootNode();
-        this.layoutAlgorithm = new DummyLayoutAlgorithm();
+        this.layoutAlgorithm = new ElkLayoutAlgorithm();
     }
 
     private Node createRootNode() {

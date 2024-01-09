@@ -40,6 +40,7 @@ public class ElkLayout implements Layout {
 
         for (ElkEdge edge : rootNode.getOutgoingEdges()) {
             paths.put(edge.getIdentifier(), calculatePath(edge));
+            calculateNodesAndPaths((ElkNode) edge.getTargets().get(0));
         }
     }
 
