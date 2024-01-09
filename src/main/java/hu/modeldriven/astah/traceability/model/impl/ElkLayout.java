@@ -24,25 +24,34 @@ public class ElkLayout implements Layout {
     public ElkLayout(ElkNode rootNode) {
         nodes = new HashMap<>();
         paths = new HashMap<>();
-        calculateNodesAndPaths(rootNode);
+        calculateFromRootNode(rootNode);
     }
 
-    private void calculateNodesAndPaths(ElkNode rootNode) {
-        if (nodes.containsKey(rootNode.getIdentifier())) {
+    private void calculateFromRootNode(ElkNode rootNode) {
+        for (ElkNode child : rootNode.getChildren()) {
+            calculateNodesAndPaths(child);
+        }
+    }
+
+    private void calculateNodesAndPaths(ElkNode node) {
+
+        if (nodes.containsKey(node.getIdentifier())) {
             return;
         }
 
         Rectangle2D rectangle = new Rectangle2D.Double(
-                rootNode.getX(), rootNode.getY(),
-                rootNode.getWidth(), rootNode.getHeight());
+                node.getX(), node.getY(),
+                node.getWidth(), node.getHeight());
 
-        nodes.put(rootNode.getIdentifier(), rectangle);
+        nodes.put(node.getIdentifier(), rectangle);
 
-        for (ElkEdge edge : rootNode.getOutgoingEdges()) {
+        for (ElkEdge edge : node.getOutgoingEdges()) {
             paths.put(edge.getIdentifier(), calculatePath(edge));
             calculateNodesAndPaths((ElkNode) edge.getTargets().get(0));
         }
     }
+
+
 
     private Path calculatePath(ElkEdge edge) {
         List<Point2D> points = new ArrayList<>();

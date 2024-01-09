@@ -65,25 +65,25 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
     private ElkNode createElkGraph(Node rootNode) {
         ElkNode graph = ElkGraphUtil.createGraph();
 
-        traverseTree(rootNode, graph, new HashSet<>());
+        traverseTree( rootNode,graph, new HashSet<>());
 
         return graph;
     }
 
-    private ElkNode traverseTree(Node node, ElkNode parentElkNode, Set<ElkNode> elkNodes) {
+    private ElkNode traverseTree(Node modelNode, ElkNode graph, Set<ElkNode> elkNodes) {
 
         ElkNode currentElkNode = elkNodes.stream()
-                .filter(elkNode -> node.id().value().equals(elkNode.getIdentifier()))
+                .filter(elkNode -> modelNode.id().value().equals(elkNode.getIdentifier()))
                 .findFirst()
                 .orElse(null);
 
         if (currentElkNode == null) {
-            currentElkNode = createElkNode(node, parentElkNode);
+            currentElkNode = createElkNode(modelNode, graph);
             elkNodes.add(currentElkNode);
         }
 
-        for (Connection connection : node.connections()) {
-            ElkNode targetElkNode = traverseTree(connection.target(), currentElkNode, elkNodes);
+        for (Connection connection : modelNode.connections()) {
+            ElkNode targetElkNode = traverseTree(connection.target(), graph, elkNodes);
             createEdge(connection, currentElkNode, targetElkNode);
         }
 
