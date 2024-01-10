@@ -105,7 +105,8 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
         ElkEdge edge = ElkGraphUtil.createSimpleEdge(sourceNode, targetNode);
         edge.setIdentifier(connection.id().value());
         ElkLabel label = ElkGraphUtil.createLabel(connection.name(), edge);
-        label.setDimensions(30, 20);
+        Rectangle2D labelBounds = connection.renderer().labelPreferredBounds();
+        label.setDimensions(labelBounds.getWidth(), labelBounds.getHeight());
     }
 
 }

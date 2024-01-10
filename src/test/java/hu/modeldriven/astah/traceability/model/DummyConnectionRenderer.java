@@ -1,5 +1,7 @@
 package hu.modeldriven.astah.traceability.model;
 
+import hu.modeldriven.astah.traceability.model.impl.TextLabel;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
@@ -40,4 +42,8 @@ public class DummyConnectionRenderer implements ConnectionRenderer {
         g2d.drawPolyline(xPoints, yPoints, points.size());
     }
 
+    @Override
+    public Rectangle2D labelPreferredBounds() {
+        return new TextLabel(name).size();
+    }
 }
