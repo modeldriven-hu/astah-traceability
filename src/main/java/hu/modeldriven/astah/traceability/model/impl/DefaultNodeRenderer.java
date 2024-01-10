@@ -2,41 +2,48 @@ package hu.modeldriven.astah.traceability.model.impl;
 
 import hu.modeldriven.astah.traceability.model.NodeRenderer;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
 public class DefaultNodeRenderer implements NodeRenderer {
 
-    private final String name;
+    private final String label;
+    private final Dimension labelSize;
 
-    public DefaultNodeRenderer(String name) {
-        this.name = name;
+    public DefaultNodeRenderer(String label) {
+        this.label = label;
+        this.labelSize = new TextLabel(label).size();
     }
 
     @Override
     public void render(Graphics2D g, Rectangle2D bounds) {
-        g.setColor(Color.BLUE);
+        g.setColor(new Color(77, 170, 109));
         g.fill(bounds);
 
-        g.setColor(Color.DARK_GRAY);
+        g.setColor(Color.BLACK);
+        g.setStroke(new BasicStroke(3f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 5f));
         g.draw(bounds);
 
-        g.setColor(Color.WHITE);
-        g.drawString(name, (float) bounds.getX(), (float) (bounds.getY() + bounds.getHeight() / 2));
+        g.setColor(Color.BLACK);
+
+        float posX = (float) (bounds.getX() + 5);
+        float posY = (float) (bounds.getY() + 5 + bounds.getHeight() / 2 );
+
+        g.drawString(label, posX, posY);
     }
 
     @Override
-    public Rectangle2D preferredBounds() {
+    public Dimension size() {
 
         int margin = 5;
 
-        Rectangle2D bounds = new TextLabel(name).size();
+        int width = margin + (int) labelSize.getWidth() + margin;
+        int height = margin + (int) labelSize.getHeight() + margin;
 
-        int width = margin + (int) bounds.getWidth() + margin;
-        int height = margin + (int) bounds.getHeight() + margin;
-
-        return new Rectangle2D.Double(0, 0, width, height);
+        return new Dimension(width, height);
     }
 
 }

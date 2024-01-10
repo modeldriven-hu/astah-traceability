@@ -32,6 +32,8 @@ public class DummyTraceabilityModel implements TraceabilityModel {
 
         child2.addConnection(new DummyConnection("Child2 -> SubChild3", child2, subChild3));
 
+        subChild1.addConnection(new DummyConnection("SubChild1 -> SubChild2", subChild1, subChild2));
+
         return rootNode;
     }
 

@@ -4,6 +4,7 @@ import hu.modeldriven.astah.traceability.model.Layout;
 import hu.modeldriven.astah.traceability.model.TraceabilityModel;
 
 import javax.swing.*;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
@@ -14,11 +15,8 @@ public class TraceabilityPanel extends JPanel {
 
     public TraceabilityPanel(TraceabilityModel model) {
         super();
+        setBackground(Color.WHITE);
         this.model = model;
-        calculateLayout();
-    }
-
-    private void calculateLayout() {
         this.layout = model.layout();
     }
 

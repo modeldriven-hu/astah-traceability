@@ -9,6 +9,7 @@ import org.eclipse.elk.alg.layered.options.LayeredOptions;
 import org.eclipse.elk.core.RecursiveGraphLayoutEngine;
 import org.eclipse.elk.core.options.CoreOptions;
 import org.eclipse.elk.core.options.Direction;
+import org.eclipse.elk.core.options.EdgeRouting;
 import org.eclipse.elk.core.options.HierarchyHandling;
 import org.eclipse.elk.core.util.BasicProgressMonitor;
 import org.eclipse.elk.graph.ElkEdge;
@@ -16,6 +17,7 @@ import org.eclipse.elk.graph.ElkLabel;
 import org.eclipse.elk.graph.ElkNode;
 import org.eclipse.elk.graph.util.ElkGraphUtil;
 
+import java.awt.Dimension;
 import java.awt.geom.Rectangle2D;
 import java.util.HashSet;
 import java.util.Set;
@@ -43,13 +45,13 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
 //        rootElkNode.setProperty(LayeredOptions.HIERARCHY_HANDLING, HierarchyHandling.SEPARATE_CHILDREN);
 
         graph.setProperty(CoreOptions.SEPARATE_CONNECTED_COMPONENTS, true);
-        graph.setProperty(CoreOptions.SPACING_COMPONENT_COMPONENT, 100.0);
-        graph.setProperty(CoreOptions.SPACING_NODE_NODE, 100.0);
-        graph.setProperty(LayeredMetaDataProvider.SPACING_NODE_NODE_BETWEEN_LAYERS, 100.0);
+        graph.setProperty(CoreOptions.SPACING_COMPONENT_COMPONENT, 50.0);
+        graph.setProperty(CoreOptions.SPACING_NODE_NODE, 50.0);
+        graph.setProperty(LayeredMetaDataProvider.SPACING_NODE_NODE_BETWEEN_LAYERS, 50.0);
         graph.setProperty(CoreOptions.SPACING_EDGE_EDGE, 50.0);
         graph.setProperty(CoreOptions.SPACING_EDGE_NODE, 50.0);
-        graph.setProperty(CoreOptions.DIRECTION, Direction.RIGHT);
-        graph.setProperty(LayeredOptions.HIERARCHY_HANDLING, HierarchyHandling.INCLUDE_CHILDREN);
+        graph.setProperty(CoreOptions.EDGE_ROUTING, EdgeRouting.ORTHOGONAL);
+        graph.setProperty(CoreOptions.DIRECTION, Direction.DOWN);
 
         try {
             BasicProgressMonitor monitor = new BasicProgressMonitor();
@@ -93,7 +95,7 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
 
         ElkNode node = ElkGraphUtil.createNode(parent);
         node.setIdentifier(modelNode.id().value());
-        Rectangle2D preferredBounds = modelNode.renderer().preferredBounds();
+        Dimension preferredBounds = modelNode.renderer().size();
 
         node.setWidth(preferredBounds.getWidth());
         node.setHeight(preferredBounds.getHeight());
@@ -105,7 +107,7 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
         ElkEdge edge = ElkGraphUtil.createSimpleEdge(sourceNode, targetNode);
         edge.setIdentifier(connection.id().value());
         ElkLabel label = ElkGraphUtil.createLabel(connection.name(), edge);
-        Rectangle2D labelBounds = connection.renderer().labelPreferredBounds();
+        Dimension labelBounds = connection.renderer().labelSize();
         label.setDimensions(labelBounds.getWidth(), labelBounds.getHeight());
     }
 

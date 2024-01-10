@@ -4,6 +4,7 @@ import hu.modeldriven.astah.traceability.model.ConnectionRenderer;
 import hu.modeldriven.astah.traceability.model.Path;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -50,7 +51,7 @@ public class DefaultConnectionRenderer implements ConnectionRenderer {
     }
 
     @Override
-    public Rectangle2D labelPreferredBounds() {
+    public Dimension labelSize() {
         return new TextLabel(name).size();
     }
 }
