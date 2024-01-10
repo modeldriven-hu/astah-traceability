@@ -52,7 +52,6 @@ public class ElkLayout implements Layout {
     }
 
 
-
     private Path calculatePath(ElkEdge edge) {
         List<Point2D> points = new ArrayList<>();
 

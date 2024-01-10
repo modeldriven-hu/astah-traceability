@@ -9,7 +9,7 @@ import java.awt.Graphics2D;
 
 public class TraceabilityPanel extends JPanel {
 
-    private TraceabilityModel model;
+    private final TraceabilityModel model;
     private Layout layout;
 
     public TraceabilityPanel(TraceabilityModel model) {
