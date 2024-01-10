@@ -21,7 +21,7 @@ public class DisplayModelElementDialogUseCase implements EventHandler<ModelEleme
 
     @Override
     public void handleEvent(ModelElementSelectionRequestedEvent event) {
-
+        
     }
 
     @Override
