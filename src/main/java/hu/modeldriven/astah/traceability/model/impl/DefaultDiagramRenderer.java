@@ -20,11 +20,10 @@ public class DefaultDiagramRenderer implements DiagramRenderer {
         renderRecursively(rootNode, g, layout);
     }
 
-    private void renderRecursively(Node currentNode,
-                                   Graphics2D g,
-                                   Layout layout) {
+    private void renderRecursively(Node currentNode, Graphics2D g, Layout layout) {
 
         Rectangle2D nodePosition = layout.location(currentNode);
+
         if (nodePosition != null) {
             Graphics2D newGraphics = cloneGraphics(g);
             currentNode.renderer().render(newGraphics, nodePosition);
@@ -36,6 +35,7 @@ public class DefaultDiagramRenderer implements DiagramRenderer {
         for (Connection connection : currentNode.connections()) {
 
             Path connectionPosition = layout.location(connection);
+
             if (connectionPosition != null) {
                 Graphics2D newGraphics = cloneGraphics(g);
                 connection.renderer().render(newGraphics, connectionPosition);

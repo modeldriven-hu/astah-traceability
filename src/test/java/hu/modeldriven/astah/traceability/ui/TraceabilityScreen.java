@@ -13,10 +13,12 @@ public class TraceabilityScreen {
     }
 
     public void show() {
-        TraceabilityModel model = new DummyTraceabilityModel();
-        TraceabilityPanel panel = new TraceabilityPanel();
-        panel.setModel(model);
         JFrame frame = new JFrame();
+
+        TraceabilityModel model = new DummyTraceabilityModel();
+        TraceabilityPanel panel = new TraceabilityPanel(frame);
+        panel.setModel(model);
+
         frame.getContentPane().add(panel);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.setSize(800, 600);
