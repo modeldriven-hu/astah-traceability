@@ -6,6 +6,8 @@ import hu.modeldriven.astah.traceability.model.Node;
 import hu.modeldriven.astah.traceability.model.Path;
 import org.eclipse.elk.graph.*;
 
+import java.awt.Dimension;
+import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -17,6 +19,8 @@ public class ElkLayout implements Layout {
 
     private final Map<String, Rectangle2D> nodes;
     private final Map<String, Path> paths;
+
+    private final Rectangle2D bounds = new Rectangle2D.Double();
 
     public ElkLayout(ElkNode rootNode) {
         nodes = new HashMap<>();
@@ -42,8 +46,15 @@ public class ElkLayout implements Layout {
 
         nodes.put(node.getIdentifier(), rectangle);
 
+        bounds.add(rectangle);
+
         for (ElkEdge edge : node.getOutgoingEdges()) {
-            paths.put(edge.getIdentifier(), calculatePath(edge));
+
+            Path path = calculatePath(edge);
+            paths.put(edge.getIdentifier(), path);
+
+            bounds.add(path.bounds());
+
             calculateNodesAndPaths((ElkNode) edge.getTargets().get(0));
         }
     }
@@ -69,14 +80,14 @@ public class ElkLayout implements Layout {
                     section.getEndY()));
         }
 
-        Point2D labelPosition = null;
+        Rectangle2D labelBounds = null;
 
         if (edge.getLabels().size() > 0) {
             ElkLabel elkLabel = edge.getLabels().get(0);
-            labelPosition = new Point2D.Double(elkLabel.getX(), elkLabel.getY());
+            labelBounds = new Rectangle2D.Double(elkLabel.getX(), elkLabel.getY(), elkLabel.getWidth(), elkLabel.getHeight());
         }
 
-        return new DefaultPath(points, labelPosition);
+        return new DefaultPath(points, labelBounds);
     }
 
     @Override
@@ -87,5 +98,10 @@ public class ElkLayout implements Layout {
     @Override
     public Path location(Connection connection) {
         return paths.get(connection.id().value());
+    }
+
+    @Override
+    public Dimension size() {
+        return new Dimension((int) bounds.getWidth(), (int) bounds.getHeight());
     }
 }
