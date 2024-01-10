@@ -18,12 +18,12 @@ public class TraceabilityDiagramPanel extends JPanel {
         setModel(model);
     }
 
-    public TraceabilityDiagramPanel(){
+    public TraceabilityDiagramPanel() {
         super();
         setBackground(Color.WHITE);
     }
 
-    public void setModel(TraceabilityModel model){
+    public void setModel(TraceabilityModel model) {
         this.model = model;
         this.layout = model.layout();
         this.setPreferredSize(this.layout.size());

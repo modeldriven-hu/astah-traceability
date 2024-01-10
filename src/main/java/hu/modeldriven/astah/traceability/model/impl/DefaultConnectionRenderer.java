@@ -23,7 +23,7 @@ public class DefaultConnectionRenderer implements ConnectionRenderer {
         g.setColor(Color.BLUE);
         drawPolyLine(g, path.coordinates());
 
-        if (path.labelPosition() != null){
+        if (path.labelPosition() != null) {
             Point2D labelPosition = path.labelPosition();
             g.drawString(name, (float) labelPosition.getX(), (float) labelPosition.getY());
         } else {

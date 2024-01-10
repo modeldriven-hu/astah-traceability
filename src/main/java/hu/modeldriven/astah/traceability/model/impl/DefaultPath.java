@@ -30,7 +30,7 @@ public class DefaultPath implements Path {
     }
 
     @Override
-    public Point2D labelPosition(){
+    public Point2D labelPosition() {
         return labelBounds.getBounds().getLocation();
     }
 
@@ -42,7 +42,7 @@ public class DefaultPath implements Path {
             initialBounds.add(point);
         }
 
-        if (labelBounds != null){
+        if (labelBounds != null) {
             initialBounds.add(labelBounds);
         }
 

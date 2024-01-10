@@ -7,7 +7,6 @@ import hu.modeldriven.astah.traceability.model.Path;
 import org.eclipse.elk.graph.*;
 
 import java.awt.Dimension;
-import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -80,12 +79,14 @@ public class ElkLayout implements Layout {
                     section.getEndY()));
         }
 
-        Rectangle2D labelBounds = null;
-
-        if (edge.getLabels().size() > 0) {
-            ElkLabel elkLabel = edge.getLabels().get(0);
-            labelBounds = new Rectangle2D.Double(elkLabel.getX(), elkLabel.getY(), elkLabel.getWidth(), elkLabel.getHeight());
-        }
+        Rectangle2D labelBounds = edge.getLabels().stream()
+                .findFirst()
+                .map(elkLabel -> new Rectangle2D.Double(
+                        elkLabel.getX(),
+                        elkLabel.getY(),
+                        elkLabel.getWidth(),
+                        elkLabel.getHeight()))
+                .orElse(null);
 
         return new DefaultPath(points, labelBounds);
     }

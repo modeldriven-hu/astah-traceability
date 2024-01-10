@@ -3,18 +3,17 @@ package hu.modeldriven.astah.traceability.model.impl;
 import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 public class TextLabel {
 
     private final String label;
 
-    public TextLabel(String label){
+    public TextLabel(String label) {
         this.label = label;
     }
 
-    public Dimension size(){
+    public Dimension size() {
         BufferedImage image = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
         Graphics graphics = image.getGraphics();
 

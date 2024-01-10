@@ -30,7 +30,7 @@ public class DefaultNodeRenderer implements NodeRenderer {
         g.setColor(Color.BLACK);
 
         float posX = (float) (bounds.getX() + 5);
-        float posY = (float) (bounds.getY() + 5 + bounds.getHeight() / 2 );
+        float posY = (float) (bounds.getY() + 5 + bounds.getHeight() / 2);
 
         g.drawString(label, posX, posY);
     }

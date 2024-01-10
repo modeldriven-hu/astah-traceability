@@ -49,7 +49,7 @@ public class DefaultDiagramRenderer implements DiagramRenderer {
 
     }
 
-    private Graphics2D cloneGraphics(Graphics g){
+    private Graphics2D cloneGraphics(Graphics g) {
         Graphics2D graphics2D = (Graphics2D) g.create();
 
         graphics2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB);
