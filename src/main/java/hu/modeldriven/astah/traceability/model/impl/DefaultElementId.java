@@ -1,12 +1,14 @@
-package hu.modeldriven.astah.traceability.model;
+package hu.modeldriven.astah.traceability.model.impl;
+
+import hu.modeldriven.astah.traceability.model.ElementId;
 
 import java.util.Objects;
 
-public class DummyElementId implements ElementId {
+public class DefaultElementId implements ElementId {
 
     private final String id;
 
-    public DummyElementId(String id) {
+    public DefaultElementId(String id) {
         this.id = id;
     }
 
@@ -19,7 +21,7 @@ public class DummyElementId implements ElementId {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DummyElementId that = (DummyElementId) o;
+        DefaultElementId that = (DefaultElementId) o;
         return Objects.equals(id, that.id);
     }
 

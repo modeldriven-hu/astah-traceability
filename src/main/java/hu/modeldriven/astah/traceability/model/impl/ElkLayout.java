@@ -72,7 +72,7 @@ public class ElkLayout implements Layout {
                     section.getEndY()));
         }
 
-        return new PathImpl(points);
+        return new DefaultPath(points);
     }
 
     @Override

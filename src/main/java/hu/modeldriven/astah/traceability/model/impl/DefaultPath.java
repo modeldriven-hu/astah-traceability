@@ -8,17 +8,17 @@ import java.awt.geom.Rectangle2D;
 import java.util.Arrays;
 import java.util.List;
 
-public class PathImpl implements Path {
+public class DefaultPath implements Path {
 
     private final List<Point2D> coordinates;
     private final Rectangle2D bounds;
 
-    public PathImpl(Point2D... coordinates) {
+    public DefaultPath(Point2D... coordinates) {
         this.coordinates = Arrays.asList(coordinates);
         this.bounds = calculateBounds(this.coordinates);
     }
 
-    public PathImpl(List<Point2D> coordinates) {
+    public DefaultPath(List<Point2D> coordinates) {
         this.coordinates = coordinates;
         this.bounds = calculateBounds(this.coordinates);
     }

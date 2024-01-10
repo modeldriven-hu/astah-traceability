@@ -1,5 +1,6 @@
 package hu.modeldriven.astah.traceability.model;
 
+import hu.modeldriven.astah.traceability.model.impl.DefaultDiagramRenderer;
 import hu.modeldriven.astah.traceability.model.impl.ElkLayoutAlgorithm;
 
 public class DummyTraceabilityModel implements TraceabilityModel {
@@ -41,7 +42,7 @@ public class DummyTraceabilityModel implements TraceabilityModel {
 
     @Override
     public DiagramRenderer renderer() {
-        return new DummyDiagramRenderer(rootNode);
+        return new DefaultDiagramRenderer(rootNode);
     }
 
 

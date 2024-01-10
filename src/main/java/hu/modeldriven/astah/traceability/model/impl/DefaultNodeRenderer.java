@@ -1,16 +1,16 @@
-package hu.modeldriven.astah.traceability.model;
+package hu.modeldriven.astah.traceability.model.impl;
 
-import hu.modeldriven.astah.traceability.model.impl.TextLabel;
+import hu.modeldriven.astah.traceability.model.NodeRenderer;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
-public class DummyNodeRenderer implements NodeRenderer {
+public class DefaultNodeRenderer implements NodeRenderer {
 
     private final String name;
 
-    public DummyNodeRenderer(String name) {
+    public DefaultNodeRenderer(String name) {
         this.name = name;
     }
 

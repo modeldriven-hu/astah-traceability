@@ -1,5 +1,8 @@
 package hu.modeldriven.astah.traceability.model;
 
+import hu.modeldriven.astah.traceability.model.impl.DefaultNodeRenderer;
+import hu.modeldriven.astah.traceability.model.impl.DefaultElementId;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +22,7 @@ public class DummyNode implements Node {
 
     @Override
     public ElementId id() {
-        return new DummyElementId(this.id);
+        return new DefaultElementId(this.id);
     }
 
     public void addConnection(Connection connection) {
@@ -38,6 +41,6 @@ public class DummyNode implements Node {
 
     @Override
     public NodeRenderer renderer() {
-        return new DummyNodeRenderer(name);
+        return new DefaultNodeRenderer(name);
     }
 }

@@ -1,6 +1,7 @@
-package hu.modeldriven.astah.traceability.model;
+package hu.modeldriven.astah.traceability.model.impl;
 
-import hu.modeldriven.astah.traceability.model.impl.TextLabel;
+import hu.modeldriven.astah.traceability.model.ConnectionRenderer;
+import hu.modeldriven.astah.traceability.model.Path;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -8,11 +9,11 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
-public class DummyConnectionRenderer implements ConnectionRenderer {
+public class DefaultConnectionRenderer implements ConnectionRenderer {
 
     private final String name;
 
-    public DummyConnectionRenderer(String name) {
+    public DefaultConnectionRenderer(String name) {
         this.name = name;
     }
 

@@ -1,13 +1,15 @@
-package hu.modeldriven.astah.traceability.model;
+package hu.modeldriven.astah.traceability.model.impl;
+
+import hu.modeldriven.astah.traceability.model.*;
 
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
-public class DummyDiagramRenderer implements DiagramRenderer {
+public class DefaultDiagramRenderer implements DiagramRenderer {
 
     private final Node rootNode;
 
-    public DummyDiagramRenderer(Node rootNode) {
+    public DefaultDiagramRenderer(Node rootNode) {
         this.rootNode = rootNode;
     }
 
