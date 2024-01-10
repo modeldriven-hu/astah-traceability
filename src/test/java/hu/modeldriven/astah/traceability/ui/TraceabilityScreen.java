@@ -14,7 +14,7 @@ public class TraceabilityScreen {
 
     public void show() {
         TraceabilityModel model = new DummyTraceabilityModel();
-        TraceabilityPanel panel = new TraceabilityPanel(model);
+        TraceabilityDiagramPanel panel = new TraceabilityDiagramPanel(model);
         JFrame frame = new JFrame();
         frame.getContentPane().add(panel);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);

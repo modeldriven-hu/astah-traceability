@@ -8,12 +8,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-public class TraceabilityPanel extends JPanel {
+public class TraceabilityDiagramPanel extends JPanel {
 
     private final TraceabilityModel model;
     private Layout layout;
 
-    public TraceabilityPanel(TraceabilityModel model) {
+    public TraceabilityDiagramPanel(TraceabilityModel model) {
         super();
         setBackground(Color.WHITE);
         this.model = model;
