@@ -4,10 +4,7 @@ import hu.modeldriven.astah.traceability.model.Connection;
 import hu.modeldriven.astah.traceability.model.Layout;
 import hu.modeldriven.astah.traceability.model.Node;
 import hu.modeldriven.astah.traceability.model.Path;
-import org.eclipse.elk.graph.ElkBendPoint;
-import org.eclipse.elk.graph.ElkEdge;
-import org.eclipse.elk.graph.ElkEdgeSection;
-import org.eclipse.elk.graph.ElkNode;
+import org.eclipse.elk.graph.*;
 
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -75,7 +72,8 @@ public class ElkLayout implements Layout {
         Point2D labelPosition = null;
 
         if (edge.getLabels().size() > 0) {
-
+            ElkLabel elkLabel = edge.getLabels().get(0);
+            labelPosition = new Point2D.Double(elkLabel.getX(), elkLabel.getY());
         }
 
         return new DefaultPath(points, labelPosition);
