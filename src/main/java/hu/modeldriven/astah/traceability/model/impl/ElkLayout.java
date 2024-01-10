@@ -72,7 +72,13 @@ public class ElkLayout implements Layout {
                     section.getEndY()));
         }
 
-        return new DefaultPath(points);
+        Point2D labelPosition = null;
+
+        if (edge.getLabels().size() > 0) {
+
+        }
+
+        return new DefaultPath(points, labelPosition);
     }
 
     @Override

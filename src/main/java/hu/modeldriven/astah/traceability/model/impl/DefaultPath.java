@@ -5,7 +5,6 @@ import hu.modeldriven.astah.traceability.model.Path;
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.util.Arrays;
 import java.util.List;
 
 public class DefaultPath implements Path {
@@ -13,13 +12,11 @@ public class DefaultPath implements Path {
     private final List<Point2D> coordinates;
     private final Rectangle2D bounds;
 
-    public DefaultPath(Point2D... coordinates) {
-        this.coordinates = Arrays.asList(coordinates);
-        this.bounds = calculateBounds(this.coordinates);
-    }
+    private final Point2D labelPosition;
 
-    public DefaultPath(List<Point2D> coordinates) {
+    public DefaultPath(List<Point2D> coordinates, Point2D labelPosition) {
         this.coordinates = coordinates;
+        this.labelPosition = labelPosition;
         this.bounds = calculateBounds(this.coordinates);
     }
 
@@ -31,6 +28,11 @@ public class DefaultPath implements Path {
     @Override
     public Rectangle2D bounds() {
         return bounds;
+    }
+
+    @Override
+    public Point2D labelPosition(){
+        return labelPosition;
     }
 
     private static Rectangle2D calculateBounds(List<Point2D> points) {

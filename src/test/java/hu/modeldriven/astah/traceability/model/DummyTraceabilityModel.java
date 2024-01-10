@@ -45,5 +45,4 @@ public class DummyTraceabilityModel implements TraceabilityModel {
         return new DefaultDiagramRenderer(rootNode);
     }
 
-
 }

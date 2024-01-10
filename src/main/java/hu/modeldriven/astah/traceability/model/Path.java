@@ -10,4 +10,6 @@ public interface Path {
 
     Rectangle2D bounds();
 
+    Point2D labelPosition();
+
 }

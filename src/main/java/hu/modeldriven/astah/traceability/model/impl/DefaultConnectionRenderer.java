@@ -21,8 +21,14 @@ public class DefaultConnectionRenderer implements ConnectionRenderer {
     public void render(Graphics2D g, Path path) {
         g.setColor(Color.BLUE);
         drawPolyLine(g, path.coordinates());
-        Rectangle2D bounds = path.bounds();
-        g.drawString(name, (float) (bounds.getX() + bounds.getWidth() / 2), (float) (bounds.getY() + bounds.getHeight() / 2));
+
+        if (path.labelPosition() != null){
+            Point2D labelPosition = path.labelPosition();
+            g.drawString(name, (float) labelPosition.getX(), (float) labelPosition.getY());
+        } else {
+            Rectangle2D bounds = path.bounds();
+            g.drawString(name, (float) (bounds.getX() + bounds.getWidth() / 2), (float) (bounds.getY() + bounds.getHeight() / 2));
+        }
     }
 
     private void drawPolyLine(Graphics2D g2d, List<Point2D> points) {
