@@ -1,6 +1,8 @@
 package hu.modeldriven.astah.traceability.layout.impl;
 
+import com.change_vision.jude.api.inf.model.IDependency;
 import com.change_vision.jude.api.inf.model.INamedElement;
+import com.change_vision.jude.api.inf.model.IRealization;
 import hu.modeldriven.astah.traceability.layout.Connection;
 import hu.modeldriven.astah.traceability.layout.ElementId;
 import hu.modeldriven.astah.traceability.layout.Node;
@@ -29,6 +31,15 @@ public class AstahNode implements Node {
 
     @Override
     public List<Connection> connections() {
+
+        for (IDependency dependency : element.getClientDependencies()){
+
+        }
+
+        for (IRealization realization : element.getClientRealizations()){
+
+        }
+
         return Collections.emptyList();
     }
 
