@@ -8,20 +8,25 @@ import hu.modeldriven.astah.traceability.layout.ElementId;
 import hu.modeldriven.astah.traceability.layout.Node;
 import hu.modeldriven.astah.traceability.layout.NodeRenderer;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class AstahNode implements Node {
 
     private final INamedElement element;
+    private final Set<Node> repository;
 
-    public AstahNode(INamedElement element) {
+    public AstahNode(INamedElement element, Set<Node> repository) {
         this.element = element;
+        this.repository = repository;
+        this.repository.add(this);
     }
 
     @Override
     public ElementId id() {
-        return new TextElementId(element.getId());
+        String id = element.getId();
+        return new TextElementId(id);
     }
 
     @Override
@@ -32,15 +37,29 @@ public class AstahNode implements Node {
     @Override
     public List<Connection> connections() {
 
+        List<Connection> connections = new ArrayList<>();
+
         for (IDependency dependency : element.getClientDependencies()){
 
+            INamedElement targetElement = dependency.getSupplier();
+
+            Node targetNode = null;
+
+            for (Node node : repository){
+                if (node.id().value().equals(targetElement.getId())){
+                    targetNode = node;
+                    break;
+                }
+            }
+
+            if (targetNode == null){
+                targetNode = new AstahNode(targetElement, repository);
+            }
+
+            connections.add(new AstahConnection(dependency, this, targetNode));
         }
 
-        for (IRealization realization : element.getClientRealizations()){
-
-        }
-
-        return Collections.emptyList();
+        return connections;
     }
 
     @Override

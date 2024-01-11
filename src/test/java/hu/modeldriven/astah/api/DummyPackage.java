@@ -8,17 +8,27 @@ import com.change_vision.jude.api.inf.presentation.IPresentation;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestNamedElement implements INamedElement {
+public class DummyPackage implements IPackage {
 
     private final String name;
+    private final List<INamedElement> elements = new ArrayList<>();
 
-    public TestNamedElement(String name) {
+    public DummyPackage(String name) {
         this.name = name;
+    }
+
+    public void addElement(INamedElement element) {
+        this.elements.add(element);
+    }
+
+    @Override
+    public INamedElement[] getOwnedElements() {
+        return elements.toArray(new INamedElement[elements.size()]);
     }
 
     @Override
     public String getName() {
-        return name;
+        return this.name;
     }
 
     @Override
@@ -98,7 +108,6 @@ public class TestNamedElement implements INamedElement {
 
     @Override
     public void setName(String s) throws InvalidEditingException {
-
     }
 
     @Override

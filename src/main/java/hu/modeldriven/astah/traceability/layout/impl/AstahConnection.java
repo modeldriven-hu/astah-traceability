@@ -1,6 +1,5 @@
 package hu.modeldriven.astah.traceability.layout.impl;
 
-import com.change_vision.jude.api.inf.model.IDependency;
 import com.change_vision.jude.api.inf.model.INamedElement;
 import hu.modeldriven.astah.traceability.layout.Connection;
 import hu.modeldriven.astah.traceability.layout.ConnectionRenderer;
@@ -42,8 +41,7 @@ public class AstahConnection implements Connection {
     }
 
     private String type(){
-        // FIXME calculate type
-        return "FIXME";
+        return element.getName();
     }
 
     @Override

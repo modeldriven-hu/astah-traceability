@@ -1,6 +1,6 @@
 package hu.modeldriven.astah.component.modelselector;
 
-import hu.modeldriven.astah.api.TestAstah;
+import hu.modeldriven.astah.api.DummyAstahRepresentation;
 
 import javax.swing.*;
 
@@ -9,7 +9,7 @@ public class TestModelElementSelectorDialog {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
 
-            TestAstah testModel = new TestAstah();
+            DummyAstahRepresentation testModel = new DummyAstahRepresentation();
 
             ModelElementSelectorDialog dialog = new ModelElementSelectorDialog(
                     null,

@@ -2,19 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<properties>
-		<bundle.symbolicName>hu.modeldriven.astah-traceability</bundle.symbolicName>
-		<bundle.namespace>hu.modeldriven.astah.traceability</bundle.namespace>
+		<bundle.symbolicName>hu.modeldriven.astahRepresentation-traceability</bundle.symbolicName>
+		<bundle.namespace>hu.modeldriven.astahRepresentation.traceability</bundle.namespace>
 		<plugin.install>true</plugin.install>
-		<astah.version>1.1</astah.version>
-		<astah.edition>sysml</astah.edition>
+		<astahRepresentation.version>1.1</astahRepresentation.version>
+		<astahRepresentation.edition>sysml</astahRepresentation.edition>
 		<astahPath>/usr/lib/astah_sysml</astahPath>
 	</properties>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>hu.modeldriven</groupId>
-	<artifactId>astah-traceability</artifactId>
+	<artifactId>astahRepresentation-traceability</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>astah-traceability</name>
+	<name>astahRepresentation-traceability</name>
 	<description>Traceability plugin</description>
 <!--	<pluginRepositories>
 		<pluginRepository>
@@ -120,7 +120,7 @@
 					<show>protected</show>
 					<links>
 						<link>http://java.sun.com/javase/ja/6/docs/ja/api/</link>
-						<link>http://members.change-vision.com/javadoc/astah-api/6_2/api/ja/doc/javadoc/</link>
+						<link>http://members.change-vision.com/javadoc/astahRepresentation-api/6_2/api/ja/doc/javadoc/</link>
 					</links>
 				</configuration>
 			</plugin>
@@ -154,7 +154,7 @@
 						</goals>
 						<configuration>
 							<outputDirectory>${project.build.directory}/classes</outputDirectory>
-							<excludeGroupIds>com.change_vision.astah,org.osgi</excludeGroupIds>
+							<excludeGroupIds>com.change_vision.astahRepresentation,org.osgi</excludeGroupIds>
 							<overWriteIfNewer>true</overWriteIfNewer>
 						</configuration>
 					</execution>
@@ -178,8 +178,8 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>com.change_vision.astah</groupId>
-				<artifactId>astah-maven-plugin</artifactId>
+				<groupId>com.change_vision.astahRepresentation</groupId>
+				<artifactId>astahRepresentation-maven-plugin</artifactId>
 				<version>1.0.0</version>
 			</plugin>
 			<plugin>
@@ -208,8 +208,8 @@
 						<Export-Package>!${bundle.namespace}.internal.*,hu.modeldriven.*,${bundle.namespace}.*;version="${project.version}"</Export-Package>
 						<Private-Package>${bundle.namespace}.internal.*</Private-Package>
 						<Bundle-Activator>${bundle.namespace}.Activator</Bundle-Activator>
-						<Astah-Version>${astah.version}</Astah-Version>
-						<Astah-Edition>${astah.edition}</Astah-Edition>
+						<Astah-Version>${astahRepresentation.version}</Astah-Version>
+						<Astah-Edition>${astahRepresentation.edition}</Astah-Edition>
 						<!-- | each module can override these defaults in their osgi.bnd file -->
 						<_include>-osgi.bnd</_include>
 						<Embed-Dependency>*;scope=compile|runtime;type=!pom</Embed-Dependency>
@@ -255,11 +255,11 @@
 	</build>
 	<dependencies>
 		<dependency>
-			<groupId>com.change_vision.astah</groupId>
-			<artifactId>astah-api</artifactId>
-			<version>${astah.version}</version>
+			<groupId>com.change_vision.astahRepresentation</groupId>
+			<artifactId>astahRepresentation-api</artifactId>
+			<version>${astahRepresentation.version}</version>
 			<scope>system</scope>
-			<systemPath>${astahPath}/astah-api.jar</systemPath>
+			<systemPath>${astahPath}/astahRepresentation-api.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>org.osgi</groupId>

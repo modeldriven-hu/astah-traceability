@@ -3,6 +3,8 @@ package hu.modeldriven.astah.traceability.layout.impl;
 import com.change_vision.jude.api.inf.model.INamedElement;
 import hu.modeldriven.astah.traceability.layout.*;
 
+import java.util.LinkedHashSet;
+
 public class DefaultTraceabilityModel implements TraceabilityModel {
 
     private final Node rootNode;
@@ -10,7 +12,7 @@ public class DefaultTraceabilityModel implements TraceabilityModel {
     private final LayoutAlgorithm layoutAlgorithm;
 
     public DefaultTraceabilityModel(INamedElement element) {
-        this.rootNode = new AstahNode(element);
+        this.rootNode = new AstahNode(element, new LinkedHashSet<>());
         this.layoutAlgorithm = new ElkLayoutAlgorithm();
     }
 

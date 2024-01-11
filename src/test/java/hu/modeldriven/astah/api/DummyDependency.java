@@ -5,30 +5,38 @@ import com.change_vision.jude.api.inf.exception.InvalidUsingException;
 import com.change_vision.jude.api.inf.model.*;
 import com.change_vision.jude.api.inf.presentation.IPresentation;
 
-import java.util.ArrayList;
-import java.util.List;
+public class DummyDependency implements IDependency {
 
-public class TestPackage implements IPackage {
+    private static int CURRENT_ID = 0;
 
     private final String name;
-    private final List<INamedElement> elements = new ArrayList<>();
 
-    public TestPackage(String name) {
+    private final INamedElement client;
+
+    private final INamedElement supplier;
+
+    private final String id;
+
+    public DummyDependency(String name, INamedElement client, INamedElement supplier){
         this.name = name;
-    }
-
-    public void addElement(INamedElement element) {
-        this.elements.add(element);
+        this.client = client;
+        this.supplier = supplier;
+        this.id = "Dependency_" + CURRENT_ID++;
     }
 
     @Override
-    public INamedElement[] getOwnedElements() {
-        return elements.toArray(new INamedElement[elements.size()]);
+    public INamedElement getSupplier() {
+        return supplier;
+    }
+
+    @Override
+    public INamedElement getClient() {
+        return client;
     }
 
     @Override
     public String getName() {
-        return this.name;
+        return name;
     }
 
     @Override
@@ -108,6 +116,7 @@ public class TestPackage implements IPackage {
 
     @Override
     public void setName(String s) throws InvalidEditingException {
+
     }
 
     @Override
@@ -142,7 +151,7 @@ public class TestPackage implements IPackage {
 
     @Override
     public String getId() {
-        return null;
+        return id;
     }
 
     @Override
