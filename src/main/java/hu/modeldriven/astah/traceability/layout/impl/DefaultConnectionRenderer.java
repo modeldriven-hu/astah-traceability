@@ -1,7 +1,7 @@
-package hu.modeldriven.astah.traceability.model.impl;
+package hu.modeldriven.astah.traceability.layout.impl;
 
-import hu.modeldriven.astah.traceability.model.ConnectionRenderer;
-import hu.modeldriven.astah.traceability.model.Path;
+import hu.modeldriven.astah.traceability.layout.ConnectionRenderer;
+import hu.modeldriven.astah.traceability.layout.Path;
 
 import java.awt.Color;
 import java.awt.Dimension;

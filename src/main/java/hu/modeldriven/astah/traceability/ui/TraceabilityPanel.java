@@ -1,6 +1,7 @@
 package hu.modeldriven.astah.traceability.ui;
 
-import hu.modeldriven.astah.traceability.model.TraceabilityModel;
+import hu.modeldriven.astah.core.Astah;
+import hu.modeldriven.astah.traceability.layout.TraceabilityModel;
 import hu.modeldriven.astah.traceability.ui.event.DiagramRefreshRequestedEvent;
 import hu.modeldriven.astah.traceability.ui.event.DisplayConfigurationDialogRequestedEvent;
 import hu.modeldriven.astah.traceability.ui.event.ModelElementSelectionRequestedEvent;
@@ -17,9 +18,12 @@ public class TraceabilityPanel extends AbstractTraceabilityPanel {
     private final EventBus eventBus;
     private final TraceabilityDiagramPanel diagramPanel;
 
-    public TraceabilityPanel(Component parentComponent) {
+    private final Astah astah;
+
+    public TraceabilityPanel(Component parentComponent, EventBus eventBus, Astah astah) {
         this.parentComponent = parentComponent;
-        this.eventBus = new EventBus();
+        this.eventBus = eventBus;
+        this.astah = astah;
         this.diagramPanel = new TraceabilityDiagramPanel();
         initUIComponents();
         initUseCases();
@@ -47,7 +51,7 @@ public class TraceabilityPanel extends AbstractTraceabilityPanel {
     }
 
     private void initUseCases() {
-        eventBus.subscribe(new DisplayModelElementDialogUseCase(parentComponent, eventBus));
+        eventBus.subscribe(new DisplayModelElementDialogUseCase(parentComponent, eventBus, astah));
     }
 
     // Only for testing

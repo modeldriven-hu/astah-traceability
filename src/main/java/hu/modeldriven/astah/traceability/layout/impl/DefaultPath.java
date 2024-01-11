@@ -1,6 +1,6 @@
-package hu.modeldriven.astah.traceability.model.impl;
+package hu.modeldriven.astah.traceability.layout.impl;
 
-import hu.modeldriven.astah.traceability.model.Path;
+import hu.modeldriven.astah.traceability.layout.Path;
 
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;

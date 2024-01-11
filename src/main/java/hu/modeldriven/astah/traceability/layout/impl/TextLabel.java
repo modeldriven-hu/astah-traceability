@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.traceability.model.impl;
+package hu.modeldriven.astah.traceability.layout.impl;
 
 import java.awt.Dimension;
 import java.awt.FontMetrics;

@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.traceability.model;
+package hu.modeldriven.astah.traceability.layout;
 
 public interface TraceabilityModel {
 

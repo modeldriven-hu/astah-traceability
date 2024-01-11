@@ -1,7 +1,7 @@
-package hu.modeldriven.astah.traceability.model;
+package hu.modeldriven.astah.traceability.layout;
 
-import hu.modeldriven.astah.traceability.model.impl.DefaultDiagramRenderer;
-import hu.modeldriven.astah.traceability.model.impl.ElkLayoutAlgorithm;
+import hu.modeldriven.astah.traceability.layout.impl.DefaultDiagramRenderer;
+import hu.modeldriven.astah.traceability.layout.impl.ElkLayoutAlgorithm;
 
 public class DummyTraceabilityModel implements TraceabilityModel {
 

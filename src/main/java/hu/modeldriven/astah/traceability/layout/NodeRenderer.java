@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.traceability.model;
+package hu.modeldriven.astah.traceability.layout;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;

@@ -1,9 +1,9 @@
-package hu.modeldriven.astah.traceability.model.impl;
+package hu.modeldriven.astah.traceability.layout.impl;
 
-import hu.modeldriven.astah.traceability.model.Connection;
-import hu.modeldriven.astah.traceability.model.Layout;
-import hu.modeldriven.astah.traceability.model.LayoutAlgorithm;
-import hu.modeldriven.astah.traceability.model.Node;
+import hu.modeldriven.astah.traceability.layout.Connection;
+import hu.modeldriven.astah.traceability.layout.Layout;
+import hu.modeldriven.astah.traceability.layout.LayoutAlgorithm;
+import hu.modeldriven.astah.traceability.layout.Node;
 import org.eclipse.elk.alg.layered.options.LayeredMetaDataProvider;
 import org.eclipse.elk.core.RecursiveGraphLayoutEngine;
 import org.eclipse.elk.core.options.CoreOptions;

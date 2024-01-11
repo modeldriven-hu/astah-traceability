@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.traceability.model;
+package hu.modeldriven.astah.traceability.layout;
 
 import java.util.List;
 

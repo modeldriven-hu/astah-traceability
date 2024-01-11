@@ -1,10 +1,12 @@
 package hu.modeldriven.astah.api;
 
 import com.change_vision.jude.api.inf.model.IPackage;
+import hu.modeldriven.astah.core.Astah;
 
-public class TestModel {
+public class TestAstah implements Astah {
 
-    public IPackage rootElement(){
+    @Override
+    public IPackage rootPackage(){
 
         TestPackage rootPackage = new TestPackage("Root");
         rootPackage.addElement(new TestNamedElement("Element1"));

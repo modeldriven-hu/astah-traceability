@@ -1,9 +1,9 @@
-package hu.modeldriven.astah.traceability.model.impl;
+package hu.modeldriven.astah.traceability.layout.impl;
 
-import hu.modeldriven.astah.traceability.model.Connection;
-import hu.modeldriven.astah.traceability.model.Layout;
-import hu.modeldriven.astah.traceability.model.Node;
-import hu.modeldriven.astah.traceability.model.Path;
+import hu.modeldriven.astah.traceability.layout.Connection;
+import hu.modeldriven.astah.traceability.layout.Layout;
+import hu.modeldriven.astah.traceability.layout.Node;
+import hu.modeldriven.astah.traceability.layout.Path;
 import org.eclipse.elk.graph.*;
 
 import java.awt.Dimension;

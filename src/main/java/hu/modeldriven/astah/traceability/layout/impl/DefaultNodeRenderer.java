@@ -1,6 +1,6 @@
-package hu.modeldriven.astah.traceability.model.impl;
+package hu.modeldriven.astah.traceability.layout.impl;
 
-import hu.modeldriven.astah.traceability.model.NodeRenderer;
+import hu.modeldriven.astah.traceability.layout.NodeRenderer;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

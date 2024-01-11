@@ -1,7 +1,7 @@
 package hu.modeldriven.astah.traceability.ui;
 
-import hu.modeldriven.astah.traceability.model.Layout;
-import hu.modeldriven.astah.traceability.model.TraceabilityModel;
+import hu.modeldriven.astah.traceability.layout.Layout;
+import hu.modeldriven.astah.traceability.layout.TraceabilityModel;
 
 import javax.swing.*;
 import java.awt.Color;

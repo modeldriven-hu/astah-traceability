@@ -1,6 +1,6 @@
-package hu.modeldriven.astah.traceability.model.impl;
+package hu.modeldriven.astah.traceability.layout.impl;
 
-import hu.modeldriven.astah.traceability.model.*;
+import hu.modeldriven.astah.traceability.layout.*;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;

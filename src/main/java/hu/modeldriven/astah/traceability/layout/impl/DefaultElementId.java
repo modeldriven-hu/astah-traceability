@@ -1,6 +1,6 @@
-package hu.modeldriven.astah.traceability.model.impl;
+package hu.modeldriven.astah.traceability.layout.impl;
 
-import hu.modeldriven.astah.traceability.model.ElementId;
+import hu.modeldriven.astah.traceability.layout.ElementId;
 
 import java.util.Objects;
 
