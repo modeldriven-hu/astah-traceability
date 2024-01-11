@@ -4,11 +4,11 @@ import hu.modeldriven.astah.traceability.layout.ElementId;
 
 import java.util.Objects;
 
-public class DefaultElementId implements ElementId {
+public class TextElementId implements ElementId {
 
     private final String id;
 
-    public DefaultElementId(String id) {
+    public TextElementId(String id) {
         this.id = id;
     }
 
@@ -21,7 +21,7 @@ public class DefaultElementId implements ElementId {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DefaultElementId that = (DefaultElementId) o;
+        TextElementId that = (TextElementId) o;
         return Objects.equals(id, that.id);
     }
 

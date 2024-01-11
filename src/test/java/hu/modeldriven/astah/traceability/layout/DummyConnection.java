@@ -1,7 +1,7 @@
 package hu.modeldriven.astah.traceability.layout;
 
 import hu.modeldriven.astah.traceability.layout.impl.DefaultConnectionRenderer;
-import hu.modeldriven.astah.traceability.layout.impl.DefaultElementId;
+import hu.modeldriven.astah.traceability.layout.impl.TextElementId;
 
 public class DummyConnection implements Connection {
 
@@ -23,7 +23,7 @@ public class DummyConnection implements Connection {
 
     @Override
     public ElementId id() {
-        return new DefaultElementId(this.id);
+        return new TextElementId(this.id);
     }
 
     @Override

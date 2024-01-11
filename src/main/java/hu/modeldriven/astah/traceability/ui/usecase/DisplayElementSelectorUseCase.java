@@ -1,7 +1,6 @@
 package hu.modeldriven.astah.traceability.ui.usecase;
 
 import com.change_vision.jude.api.inf.model.INamedElement;
-import com.change_vision.jude.api.inf.model.IPackage;
 import hu.modeldriven.astah.component.modelselector.ModelElementSelectorDialog;
 import hu.modeldriven.astah.core.Astah;
 import hu.modeldriven.astah.traceability.ui.event.ModelElementSelectedEvent;
@@ -15,14 +14,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class DisplayModelElementDialogUseCase implements EventHandler<ModelElementSelectionRequestedEvent>, Consumer<INamedElement> {
+public class DisplayElementSelectorUseCase implements EventHandler<ModelElementSelectionRequestedEvent>, Consumer<INamedElement> {
 
     private final Component parent;
     private final EventBus eventBus;
 
     private final Astah astah;
 
-    public DisplayModelElementDialogUseCase(Component parent, EventBus eventBus, Astah astah) {
+    public DisplayElementSelectorUseCase(Component parent, EventBus eventBus, Astah astah) {
         this.parent = parent;
         this.eventBus = eventBus;
         this.astah = astah;

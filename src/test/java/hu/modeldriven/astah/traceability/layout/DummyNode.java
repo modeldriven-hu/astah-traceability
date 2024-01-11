@@ -1,6 +1,6 @@
 package hu.modeldriven.astah.traceability.layout;
 
-import hu.modeldriven.astah.traceability.layout.impl.DefaultElementId;
+import hu.modeldriven.astah.traceability.layout.impl.TextElementId;
 import hu.modeldriven.astah.traceability.layout.impl.DefaultNodeRenderer;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class DummyNode implements Node {
 
     @Override
     public ElementId id() {
-        return new DefaultElementId(this.id);
+        return new TextElementId(this.id);
     }
 
     public void addConnection(Connection connection) {
