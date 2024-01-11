@@ -2,6 +2,7 @@ package hu.modeldriven.astah.traceability.ui;
 
 import hu.modeldriven.astah.api.DummyAstahRepresentation;
 import hu.modeldriven.astah.core.AstahRepresentation;
+import hu.modeldriven.astah.traceability.layout.DummyTraceabilityModel;
 import hu.modeldriven.core.eventbus.EventBus;
 
 import javax.swing.*;
