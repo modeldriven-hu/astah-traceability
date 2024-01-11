@@ -5,8 +5,8 @@ import hu.modeldriven.astah.traceability.layout.TraceabilityModel;
 import hu.modeldriven.astah.traceability.ui.event.DiagramRefreshRequestedEvent;
 import hu.modeldriven.astah.traceability.ui.event.DisplayConfigurationDialogRequestedEvent;
 import hu.modeldriven.astah.traceability.ui.event.ModelElementSelectionRequestedEvent;
-import hu.modeldriven.astah.traceability.ui.usecase.DisplayElementSelectorUseCase;
 import hu.modeldriven.astah.traceability.ui.usecase.DisplayElementNameUseCase;
+import hu.modeldriven.astah.traceability.ui.usecase.DisplayElementSelectorUseCase;
 import hu.modeldriven.astah.traceability.ui.usecase.UpdateDiagramUseCase;
 import hu.modeldriven.core.eventbus.EventBus;
 

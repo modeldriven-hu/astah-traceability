@@ -13,7 +13,7 @@ public class UpdateDiagramUseCase implements EventHandler<ModelElementSelectedEv
 
     private final TraceabilityDiagramPanel diagramPanel;
 
-    public UpdateDiagramUseCase(TraceabilityDiagramPanel diagramPanel){
+    public UpdateDiagramUseCase(TraceabilityDiagramPanel diagramPanel) {
         this.diagramPanel = diagramPanel;
     }
 

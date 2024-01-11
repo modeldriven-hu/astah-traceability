@@ -3,8 +3,7 @@ package hu.modeldriven.astah.component.modelselector;
 import com.change_vision.jude.api.inf.model.INamedElement;
 import com.change_vision.jude.api.inf.model.IPackage;
 
-import javax.swing.JDialog;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.util.function.Consumer;

@@ -23,10 +23,10 @@ public class ModelElementTreeNode implements TreeNode {
         createChildren(modelElement);
     }
 
-    private void createChildren(INamedElement modelElement){
+    private void createChildren(INamedElement modelElement) {
         if (modelElement instanceof IPackage) {
             for (INamedElement child : ((IPackage) modelElement).getOwnedElements()) {
-                    children.add(new ModelElementTreeNode(this, child ));
+                children.add(new ModelElementTreeNode(this, child));
             }
         }
     }

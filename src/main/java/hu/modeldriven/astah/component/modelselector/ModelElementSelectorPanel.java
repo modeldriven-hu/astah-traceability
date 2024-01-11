@@ -3,7 +3,7 @@ package hu.modeldriven.astah.component.modelselector;
 import com.change_vision.jude.api.inf.model.INamedElement;
 import com.change_vision.jude.api.inf.model.IPackage;
 
-import javax.swing.JDialog;
+import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
 import java.util.function.Consumer;

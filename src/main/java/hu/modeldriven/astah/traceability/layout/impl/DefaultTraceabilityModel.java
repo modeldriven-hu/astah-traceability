@@ -9,7 +9,7 @@ public class DefaultTraceabilityModel implements TraceabilityModel {
 
     private final LayoutAlgorithm layoutAlgorithm;
 
-    public DefaultTraceabilityModel(INamedElement element){
+    public DefaultTraceabilityModel(INamedElement element) {
         this.rootNode = new AstahNode(element);
         this.layoutAlgorithm = new ElkLayoutAlgorithm();
     }

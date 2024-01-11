@@ -7,7 +7,7 @@ public class ModelElementSelectedEvent implements Event {
 
     private final INamedElement element;
 
-    public ModelElementSelectedEvent(INamedElement element){
+    public ModelElementSelectedEvent(INamedElement element) {
         this.element = element;
     }
 

@@ -13,7 +13,7 @@ public class AstahNode implements Node {
 
     private final INamedElement element;
 
-    public AstahNode(INamedElement element){
+    public AstahNode(INamedElement element) {
         this.element = element;
     }
 
