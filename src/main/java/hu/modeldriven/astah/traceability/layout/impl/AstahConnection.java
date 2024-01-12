@@ -14,7 +14,7 @@ public class AstahConnection implements Connection {
 
     private final Node target;
 
-    public AstahConnection(INamedElement element, Node source, Node target){
+    public AstahConnection(INamedElement element, Node source, Node target) {
         this.element = element;
         this.source = source;
         this.target = target;
@@ -40,7 +40,7 @@ public class AstahConnection implements Connection {
         return element.getName();
     }
 
-    private String type(){
+    private String type() {
         return element.getName();
     }
 

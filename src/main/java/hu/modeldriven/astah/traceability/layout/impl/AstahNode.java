@@ -2,7 +2,6 @@ package hu.modeldriven.astah.traceability.layout.impl;
 
 import com.change_vision.jude.api.inf.model.IDependency;
 import com.change_vision.jude.api.inf.model.INamedElement;
-import com.change_vision.jude.api.inf.model.IRealization;
 import hu.modeldriven.astah.traceability.layout.Connection;
 import hu.modeldriven.astah.traceability.layout.ElementId;
 import hu.modeldriven.astah.traceability.layout.Node;
@@ -17,10 +16,13 @@ public class AstahNode implements Node {
     private final INamedElement element;
     private final Set<Node> repository;
 
+    private final List<Connection> connections;
+
     public AstahNode(INamedElement element, Set<Node> repository) {
         this.element = element;
         this.repository = repository;
         this.repository.add(this);
+        this.connections = buildConnections();
     }
 
     @Override
@@ -36,23 +38,27 @@ public class AstahNode implements Node {
 
     @Override
     public List<Connection> connections() {
+        return connections;
+    }
+
+    private List<Connection> buildConnections() {
 
         List<Connection> connections = new ArrayList<>();
 
-        for (IDependency dependency : element.getClientDependencies()){
+        for (IDependency dependency : element.getClientDependencies()) {
 
             INamedElement targetElement = dependency.getSupplier();
 
             Node targetNode = null;
 
-            for (Node node : repository){
-                if (node.id().value().equals(targetElement.getId())){
+            for (Node node : repository) {
+                if (node.id().value().equals(targetElement.getId())) {
                     targetNode = node;
                     break;
                 }
             }
 
-            if (targetNode == null){
+            if (targetNode == null) {
                 targetNode = new AstahNode(targetElement, repository);
             }
 

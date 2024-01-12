@@ -10,13 +10,15 @@ import java.awt.geom.Rectangle2D;
 public class DefaultDiagramRenderer implements DiagramRenderer {
 
     private final Node rootNode;
+    private final Layout layout;
 
-    public DefaultDiagramRenderer(Node rootNode) {
+    public DefaultDiagramRenderer(Node rootNode, Layout layout) {
         this.rootNode = rootNode;
+        this.layout = layout;
     }
 
     @Override
-    public void render(Graphics2D g, Layout layout) {
+    public void render(Graphics2D g) {
         renderRecursively(rootNode, g, layout);
     }
 

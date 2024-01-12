@@ -13,7 +13,7 @@ public class DefaultTraceabilityModel implements TraceabilityModel {
 
     public DefaultTraceabilityModel(INamedElement element) {
         this.rootNode = new AstahNode(element, new LinkedHashSet<>());
-        this.layoutAlgorithm = new ElkLayoutAlgorithm();
+        this.layoutAlgorithm = new CachedLayoutAlgorithm(new ElkLayoutAlgorithm());
     }
 
     @Override
@@ -23,7 +23,7 @@ public class DefaultTraceabilityModel implements TraceabilityModel {
 
     @Override
     public DiagramRenderer renderer() {
-        return new DefaultDiagramRenderer(rootNode);
+        return new DefaultDiagramRenderer(rootNode, layout());
     }
 
 }

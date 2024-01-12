@@ -20,6 +20,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ElkLayoutAlgorithm implements LayoutAlgorithm {
+
     @Override
     public Layout layout(Node rootNode) {
         ElkNode graph = createElkGraph(rootNode);

@@ -9,7 +9,7 @@ public class TextElementId implements ElementId {
     private final String id;
 
     public TextElementId(String id) {
-        if (id == null){
+        if (id == null) {
             throw new IllegalArgumentException("Id shall not be null");
         }
         this.id = id;

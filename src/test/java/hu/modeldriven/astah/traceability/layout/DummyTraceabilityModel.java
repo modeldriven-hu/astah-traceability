@@ -44,7 +44,7 @@ public class DummyTraceabilityModel implements TraceabilityModel {
 
     @Override
     public DiagramRenderer renderer() {
-        return new DefaultDiagramRenderer(rootNode);
+        return new DefaultDiagramRenderer(rootNode, layout());
     }
 
 }

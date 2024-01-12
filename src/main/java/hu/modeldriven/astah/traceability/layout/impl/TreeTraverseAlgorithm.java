@@ -29,9 +29,9 @@ public class TreeTraverseAlgorithm {
 
     public interface TreeVisitor {
 
-        public void visit(Node node);
+        void visit(Node node);
 
-        public void visit(Connection connection);
+        void visit(Connection connection);
 
     }
 

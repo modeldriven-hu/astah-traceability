@@ -4,6 +4,6 @@ import java.awt.Graphics2D;
 
 public interface DiagramRenderer {
 
-    void render(Graphics2D g, Layout layout);
+    void render(Graphics2D g);
 
 }

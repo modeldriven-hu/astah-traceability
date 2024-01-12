@@ -27,7 +27,7 @@ public class TraceabilityDiagramPanel extends JPanel {
     }
 
     public void onMouseClicked(MouseEvent e) {
-        if (this.model != null && e.getButton() == MouseEvent.BUTTON1){
+        if (this.model != null && e.getButton() == MouseEvent.BUTTON1) {
             int x = e.getX();
             int y = e.getY();
         }
@@ -46,9 +46,7 @@ public class TraceabilityDiagramPanel extends JPanel {
 
         if (this.layout != null) {
             Graphics2D g2 = (Graphics2D) g;
-            model.renderer().render(g2, this.layout);
-            // FIXME we might not need to provide layout externally
-            // because renderer could do just that
+            model.renderer().render(g2);
         }
     }
 }

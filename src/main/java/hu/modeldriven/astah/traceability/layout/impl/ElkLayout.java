@@ -12,7 +12,10 @@ import org.eclipse.elk.graph.ElkNode;
 import java.awt.Dimension;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ElkLayout implements Layout {
 
@@ -29,11 +32,12 @@ public class ElkLayout implements Layout {
         connectionPaths = new HashMap<>();
         nodes = new HashMap<>();
         connections = new HashMap<>();
+
         buildNodeAndConnectionCache(rootNode, nodes, connections);
         calculateFromRootNode(rootElkNode);
     }
 
-    void buildNodeAndConnectionCache(Node rootNode, Map<String, Node> nodes, Map<String, Connection> connections){
+    void buildNodeAndConnectionCache(Node rootNode, Map<String, Node> nodes, Map<String, Connection> connections) {
         TreeTraverseAlgorithm algorithm = new TreeTraverseAlgorithm();
 
         algorithm.traverse(rootNode, new TreeTraverseAlgorithm.TreeVisitor() {
@@ -63,14 +67,17 @@ public class ElkLayout implements Layout {
         }
 
         Rectangle2D rectangle = calculateRectangle(node);
-        nodeRectangles.put(findNodeById(node.getIdentifier()), rectangle);
+        Node canvasNode = findNodeById(node.getIdentifier());
+
+        nodeRectangles.put(canvasNode, rectangle);
 
         bounds.add(rectangle);
 
         for (ElkEdge edge : node.getOutgoingEdges()) {
 
             Path path = calculatePath(edge);
-            connectionPaths.put(findConnectionById(edge.getIdentifier()), path);
+            Connection connection = findConnectionById(edge.getIdentifier());
+            connectionPaths.put(connection, path);
 
             bounds.add(path.bounds());
 
@@ -78,7 +85,7 @@ public class ElkLayout implements Layout {
         }
     }
 
-    private Rectangle2D calculateRectangle(ElkNode node){
+    private Rectangle2D calculateRectangle(ElkNode node) {
         return new Rectangle2D.Double(
                 node.getX(), node.getY(),
                 node.getWidth(), node.getHeight());
@@ -116,11 +123,11 @@ public class ElkLayout implements Layout {
         return new DefaultPath(points, labelBounds);
     }
 
-    private Node findNodeById(String id){
+    private Node findNodeById(String id) {
         return nodes.get(id);
     }
 
-    private Connection findConnectionById(String id){
+    private Connection findConnectionById(String id) {
         return connections.get(id);
     }
 
@@ -142,8 +149,8 @@ public class ElkLayout implements Layout {
     @Override
     public Node findNodeByLocation(Point2D point) {
 
-        for (Map.Entry<Node, Rectangle2D> nodeEntry: nodeRectangles.entrySet()){
-            if (nodeEntry.getValue().contains(point)){
+        for (Map.Entry<Node, Rectangle2D> nodeEntry : nodeRectangles.entrySet()) {
+            if (nodeEntry.getValue().contains(point)) {
                 return nodeEntry.getKey();
             }
         }
@@ -153,8 +160,8 @@ public class ElkLayout implements Layout {
 
     @Override
     public Connection findConnectionByLocation(Point2D point) {
-        for (Map.Entry<Connection, Path> connectionEntry: connectionPaths.entrySet()){
-            if (connectionEntry.getValue().bounds().contains(point)){
+        for (Map.Entry<Connection, Path> connectionEntry : connectionPaths.entrySet()) {
+            if (connectionEntry.getValue().bounds().contains(point)) {
                 return connectionEntry.getKey();
             }
         }

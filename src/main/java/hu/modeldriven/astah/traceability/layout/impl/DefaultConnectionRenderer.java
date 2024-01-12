@@ -7,7 +7,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.util.List;
 
 public class DefaultConnectionRenderer implements ConnectionRenderer {
@@ -34,7 +33,7 @@ public class DefaultConnectionRenderer implements ConnectionRenderer {
 
     private List<Point2D> lastTwoPoints(List<Point2D> points) {
 
-        if (points.size() < 2){
+        if (points.size() < 2) {
             throw new IllegalArgumentException("Point list shall have at least two points");
         }
 
