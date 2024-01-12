@@ -15,10 +15,12 @@ public interface Layout {
 
     Dimension size();
 
-    Optional<Node> findNodeByLocation(Point2D point);
+    Node findNodeByLocation(Point2D point);
 
-    Optional<Connection> findConnectionByLocation(Point2D point);
+    Connection findConnectionByLocation(Point2D point);
 
     void select(Node node, SelectionMethod selectionMethod);
+
+    void select(Connection connection, SelectionMethod selectionMethod);
 
 }

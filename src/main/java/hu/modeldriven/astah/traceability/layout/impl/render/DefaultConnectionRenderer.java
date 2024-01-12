@@ -23,7 +23,12 @@ public class DefaultConnectionRenderer implements ConnectionRenderer {
     @Override
     public void render(Graphics2D g, Path path) {
 
-        g.setColor(Color.BLACK);
+        if (connection.isSelected()){
+            g.setColor(Color.YELLOW);
+        } else {
+            g.setColor(Color.BLACK);
+        }
+
         drawPolyLine(g, path.coordinates());
 
         List<Point2D> lastTwoPoints = lastTwoPoints(path.coordinates());

@@ -1,5 +1,6 @@
 package hu.modeldriven.astah.traceability.ui;
 
+import hu.modeldriven.astah.traceability.layout.Connection;
 import hu.modeldriven.astah.traceability.layout.Layout;
 import hu.modeldriven.astah.traceability.layout.Node;
 import hu.modeldriven.astah.traceability.layout.TraceabilityModel;
@@ -23,23 +24,30 @@ public class TraceabilityDiagramPanel extends JPanel {
         setBackground(Color.WHITE);
         addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                onMouseClicked(e);
+            public void mouseReleased(MouseEvent e) {
+                onMouseReleased(e);
             }
         });
     }
 
-    public void onMouseClicked(MouseEvent e) {
+    public void onMouseReleased(MouseEvent e) {
         if (this.model != null && e.getButton() == MouseEvent.BUTTON1) {
 
-            Optional<Node> optionalNode = this.model.layout().findNodeByLocation(new Point2D.Double(e.getX(), e.getY()));
+            Point2D point = new Point2D.Double(e.getX(), e.getY());
 
-            optionalNode.ifPresent(
-                    node -> {
-                        this.model.layout().select(node, Layout.SelectionMethod.SingleSelection);
-                        this.repaint();
-                    }
-            );
+            Node node = this.model.layout().findNodeByLocation(point);
+
+            if (node != null) {
+                this.model.layout().select(node, Layout.SelectionMethod.SingleSelection);
+                this.repaint();
+            }
+
+            Connection connection = this.model.layout().findConnectionByLocation(point);
+
+            if (connection != null) {
+                this.model.layout().select(connection, Layout.SelectionMethod.SingleSelection);
+                this.repaint();
+            }
 
         }
     }

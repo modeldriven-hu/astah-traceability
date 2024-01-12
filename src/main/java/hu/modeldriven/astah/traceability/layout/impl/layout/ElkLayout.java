@@ -1,9 +1,6 @@
 package hu.modeldriven.astah.traceability.layout.impl.layout;
 
-import hu.modeldriven.astah.traceability.layout.Connection;
-import hu.modeldriven.astah.traceability.layout.Layout;
-import hu.modeldriven.astah.traceability.layout.Node;
-import hu.modeldriven.astah.traceability.layout.Path;
+import hu.modeldriven.astah.traceability.layout.*;
 import hu.modeldriven.astah.traceability.layout.impl.core.DefaultPath;
 import org.eclipse.elk.graph.ElkBendPoint;
 import org.eclipse.elk.graph.ElkEdge;
@@ -118,42 +115,42 @@ public class ElkLayout implements Layout {
     }
 
     @Override
-    public Optional<Node> findNodeByLocation(Point2D point) {
+    public Node findNodeByLocation(Point2D point) {
 
         for (Map.Entry<Node, Rectangle2D> nodeEntry : nodeRectangles.entrySet()) {
             if (nodeEntry.getValue().contains(point)) {
-                return Optional.of(nodeEntry.getKey());
+                return nodeEntry.getKey();
             }
         }
 
-        return Optional.empty();
+        return null;
     }
 
     @Override
-    public Optional<Connection> findConnectionByLocation(Point2D point) {
+    public Connection findConnectionByLocation(Point2D point) {
         for (Map.Entry<Connection, Path> connectionEntry : connectionPaths.entrySet()) {
             if (connectionEntry.getValue().bounds().contains(point)) {
-                return Optional.of(connectionEntry.getKey());
+                return connectionEntry.getKey();
             }
         }
 
-        return Optional.empty();
+        return null;
     }
 
     @Override
     public void select(Node node, SelectionMethod selectionMethod) {
-
-        if (selectionMethod == SelectionMethod.SingleSelection) {
-
-            for (Node currentNode : nodeRectangles.keySet()) {
-                currentNode.deselect();
-            }
-
-            node.select();
-        } else {
-            throw new UnsupportedOperationException("Not implemented");
-        }
+        singleSelect(node);
     }
 
+    @Override
+    public void select(Connection connection, SelectionMethod selectionMethod) {
+        singleSelect(connection);
+    }
+
+    private void singleSelect(Selectable selectable){
+        nodeRectangles.keySet().stream().forEach(Selectable::deselect);
+        connectionPaths.keySet().stream().forEach(Selectable::deselect);
+        selectable.select();;
+    }
 
 }
