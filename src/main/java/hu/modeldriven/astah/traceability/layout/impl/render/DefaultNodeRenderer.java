@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.traceability.layout.impl;
+package hu.modeldriven.astah.traceability.layout.impl.render;
 
 import hu.modeldriven.astah.traceability.layout.NodeRenderer;
 

@@ -6,6 +6,8 @@ import hu.modeldriven.astah.traceability.layout.Connection;
 import hu.modeldriven.astah.traceability.layout.ElementId;
 import hu.modeldriven.astah.traceability.layout.Node;
 import hu.modeldriven.astah.traceability.layout.NodeRenderer;
+import hu.modeldriven.astah.traceability.layout.impl.core.TextElementId;
+import hu.modeldriven.astah.traceability.layout.impl.render.DefaultNodeRenderer;
 
 import java.util.ArrayList;
 import java.util.List;

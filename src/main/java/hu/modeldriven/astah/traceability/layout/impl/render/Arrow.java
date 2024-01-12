@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.traceability.layout.impl;
+package hu.modeldriven.astah.traceability.layout.impl.render;
 
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D;

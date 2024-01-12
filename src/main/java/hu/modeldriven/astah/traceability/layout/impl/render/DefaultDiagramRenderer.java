@@ -1,6 +1,7 @@
-package hu.modeldriven.astah.traceability.layout.impl;
+package hu.modeldriven.astah.traceability.layout.impl.render;
 
 import hu.modeldriven.astah.traceability.layout.*;
+import hu.modeldriven.astah.traceability.layout.impl.tree.TreeTraverseAlgorithm;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;

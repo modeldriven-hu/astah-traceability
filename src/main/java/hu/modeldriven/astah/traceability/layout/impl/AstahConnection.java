@@ -5,6 +5,8 @@ import hu.modeldriven.astah.traceability.layout.Connection;
 import hu.modeldriven.astah.traceability.layout.ConnectionRenderer;
 import hu.modeldriven.astah.traceability.layout.ElementId;
 import hu.modeldriven.astah.traceability.layout.Node;
+import hu.modeldriven.astah.traceability.layout.impl.core.TextElementId;
+import hu.modeldriven.astah.traceability.layout.impl.render.DefaultConnectionRenderer;
 
 public class AstahConnection implements Connection {
 

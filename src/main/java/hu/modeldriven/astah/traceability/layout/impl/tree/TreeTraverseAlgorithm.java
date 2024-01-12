@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.traceability.layout.impl;
+package hu.modeldriven.astah.traceability.layout.impl.tree;
 
 import hu.modeldriven.astah.traceability.layout.Connection;
 import hu.modeldriven.astah.traceability.layout.Node;

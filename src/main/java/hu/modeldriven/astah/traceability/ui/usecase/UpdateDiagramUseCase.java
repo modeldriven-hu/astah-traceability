@@ -1,6 +1,6 @@
 package hu.modeldriven.astah.traceability.ui.usecase;
 
-import hu.modeldriven.astah.traceability.layout.impl.DefaultTraceabilityModel;
+import hu.modeldriven.astah.traceability.layout.impl.AstahTraceabilityModel;
 import hu.modeldriven.astah.traceability.ui.TraceabilityDiagramPanel;
 import hu.modeldriven.astah.traceability.ui.event.ModelElementSelectedEvent;
 import hu.modeldriven.core.eventbus.Event;
@@ -19,7 +19,7 @@ public class UpdateDiagramUseCase implements EventHandler<ModelElementSelectedEv
 
     @Override
     public void handleEvent(ModelElementSelectedEvent event) {
-        this.diagramPanel.setModel(new DefaultTraceabilityModel(event.element()));
+        this.diagramPanel.setModel(new AstahTraceabilityModel(event.element()));
         this.diagramPanel.repaint();
     }
 

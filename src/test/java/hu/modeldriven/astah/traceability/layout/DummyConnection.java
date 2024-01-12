@@ -1,7 +1,7 @@
 package hu.modeldriven.astah.traceability.layout;
 
-import hu.modeldriven.astah.traceability.layout.impl.DefaultConnectionRenderer;
-import hu.modeldriven.astah.traceability.layout.impl.TextElementId;
+import hu.modeldriven.astah.traceability.layout.impl.render.DefaultConnectionRenderer;
+import hu.modeldriven.astah.traceability.layout.impl.core.TextElementId;
 
 public class DummyConnection implements Connection {
 

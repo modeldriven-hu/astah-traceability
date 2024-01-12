@@ -1,6 +1,7 @@
 package hu.modeldriven.astah.traceability.ui;
 
 import hu.modeldriven.astah.traceability.layout.Layout;
+import hu.modeldriven.astah.traceability.layout.Node;
 import hu.modeldriven.astah.traceability.layout.TraceabilityModel;
 
 import javax.swing.*;
@@ -9,6 +10,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Point2D;
+import java.util.Optional;
 
 public class TraceabilityDiagramPanel extends JPanel {
 
@@ -28,8 +31,13 @@ public class TraceabilityDiagramPanel extends JPanel {
 
     public void onMouseClicked(MouseEvent e) {
         if (this.model != null && e.getButton() == MouseEvent.BUTTON1) {
-            int x = e.getX();
-            int y = e.getY();
+
+            Optional<Node> optionalNode = this.model.layout().findNodeByLocation(new Point2D.Double(e.getX(),e.getY()));
+
+            optionalNode.ifPresent(
+                    node -> this.model.layout().select(node, Layout.SelectionMethod.SingleSelection)
+            );
+
         }
     }
 

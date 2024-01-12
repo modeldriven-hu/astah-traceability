@@ -1,7 +1,7 @@
 package hu.modeldriven.astah.traceability.layout;
 
-import hu.modeldriven.astah.traceability.layout.impl.TextElementId;
-import hu.modeldriven.astah.traceability.layout.impl.DefaultNodeRenderer;
+import hu.modeldriven.astah.traceability.layout.impl.core.TextElementId;
+import hu.modeldriven.astah.traceability.layout.impl.render.DefaultNodeRenderer;
 
 import java.util.ArrayList;
 import java.util.List;

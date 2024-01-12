@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.traceability.layout.impl;
+package hu.modeldriven.astah.traceability.layout.impl.layout;
 
 import hu.modeldriven.astah.traceability.layout.Layout;
 import hu.modeldriven.astah.traceability.layout.LayoutAlgorithm;
