@@ -20,6 +20,7 @@ public class TraceabilityScreenTest {
         EventBus eventBus = new EventBus();
         AstahRepresentation astahRepresentation = new DummyAstahRepresentation();
         TraceabilityPanel panel = new TraceabilityPanel(frame, eventBus, astahRepresentation);
+        panel.setModel(new DummyTraceabilityModel());
 
         frame.getContentPane().add(panel);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);

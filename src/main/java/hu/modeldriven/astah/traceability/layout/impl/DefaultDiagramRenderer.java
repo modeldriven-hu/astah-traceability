@@ -19,36 +19,37 @@ public class DefaultDiagramRenderer implements DiagramRenderer {
 
     @Override
     public void render(Graphics2D g) {
-        renderRecursively(rootNode, g, layout);
-    }
 
-    private void renderRecursively(Node currentNode, Graphics2D g, Layout layout) {
+        TreeTraverseAlgorithm algorithm = new TreeTraverseAlgorithm();
 
-        Rectangle2D nodePosition = layout.location(currentNode);
+        algorithm.traverse(rootNode, new TreeTraverseAlgorithm.TreeVisitor() {
+            @Override
+            public void visit(Node node) {
+                Rectangle2D nodePosition = layout.location(node);
 
-        if (nodePosition != null) {
-            Graphics2D newGraphics = cloneGraphics(g);
-            currentNode.renderer().render(newGraphics, nodePosition);
-            newGraphics.dispose();
-        } else {
-            System.err.println("No coordinate for node " + currentNode.id().value());
-        }
-
-        for (Connection connection : currentNode.connections()) {
-
-            Path connectionPosition = layout.location(connection);
-
-            if (connectionPosition != null) {
-                Graphics2D newGraphics = cloneGraphics(g);
-                connection.renderer().render(newGraphics, connectionPosition);
-                newGraphics.dispose();
-            } else {
-                System.err.println("No coordinate for connection " + connection.id().value());
+                if (nodePosition != null) {
+                    Graphics2D newGraphics = cloneGraphics(g);
+                    node.renderer().render(newGraphics, nodePosition);
+                    newGraphics.dispose();
+                } else {
+                    System.err.println("No coordinate for node " + node.id().value());
+                }
             }
 
-            renderRecursively(connection.target(), g, layout);
-        }
+            @Override
+            public void visit(Connection connection) {
 
+                Path connectionPosition = layout.location(connection);
+
+                if (connectionPosition != null) {
+                    Graphics2D newGraphics = cloneGraphics(g);
+                    connection.renderer().render(newGraphics, connectionPosition);
+                    newGraphics.dispose();
+                } else {
+                    System.err.println("No coordinate for connection " + connection.id().value());
+                }
+            }
+        });
     }
 
     private Graphics2D cloneGraphics(Graphics g) {
