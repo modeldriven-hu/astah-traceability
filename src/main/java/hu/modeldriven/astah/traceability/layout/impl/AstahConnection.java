@@ -7,6 +7,7 @@ import hu.modeldriven.astah.traceability.layout.ElementId;
 import hu.modeldriven.astah.traceability.layout.Node;
 import hu.modeldriven.astah.traceability.layout.impl.core.TextElementId;
 import hu.modeldriven.astah.traceability.layout.impl.render.AstahConnectionRenderer;
+import hu.modeldriven.astah.traceability.layout.impl.render.AstahTheme;
 
 public class AstahConnection implements Connection {
 
@@ -16,12 +17,15 @@ public class AstahConnection implements Connection {
 
     private final Node target;
 
+    private final AstahTheme theme;
+
     private boolean selected;
 
-    public AstahConnection(INamedElement element, Node source, Node target) {
+    public AstahConnection(INamedElement element, Node source, Node target, AstahTheme theme) {
         this.element = element;
         this.source = source;
         this.target = target;
+        this.theme = theme;
     }
 
     public INamedElement namedElement(){
@@ -50,7 +54,7 @@ public class AstahConnection implements Connection {
 
     @Override
     public ConnectionRenderer renderer() {
-        return new AstahConnectionRenderer(this);
+        return new AstahConnectionRenderer(this, theme);
     }
 
     @Override

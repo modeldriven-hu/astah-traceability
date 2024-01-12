@@ -2,41 +2,62 @@ package hu.modeldriven.astah.traceability.layout.impl.render;
 
 import hu.modeldriven.astah.traceability.layout.impl.AstahNode;
 
-import java.awt.Color;
-import java.util.HashMap;
-import java.util.Map;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class AstahTheme {
 
-    public Color getSelectedNodeBackgroundColor(AstahNode node){
+    public Image getNodeIcon(AstahNode node) {
+        return convertIconToImage(UIManager.getIcon("FileView.fileIcon"));
+    }
+
+    private Image convertIconToImage(Icon icon) {
+        if (icon instanceof ImageIcon) {
+            return ((ImageIcon) icon).getImage();
+        } else {
+            int w = icon.getIconWidth();
+            int h = icon.getIconHeight();
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            GraphicsDevice gd = ge.getDefaultScreenDevice();
+            GraphicsConfiguration gc = gd.getDefaultConfiguration();
+            BufferedImage image = gc.createCompatibleImage(w, h);
+            Graphics2D g = image.createGraphics();
+            icon.paintIcon(null, g, 0, 0);
+            g.dispose();
+            return image;
+        }
+    }
+
+    public Color getSelectedNodeBackgroundColor(AstahNode node) {
         return Color.YELLOW;
     }
 
-    public Color getNodeBackgroundColor(AstahNode node){
+    public Color getNodeBackgroundColor(AstahNode node) {
         return new Color(77, 170, 109, 100);
     }
 
-    public Color getSelectedNodeLabelColor(AstahNode node){
+    public Color getSelectedNodeLabelColor(AstahNode node) {
         return Color.BLACK;
     }
 
-    public Color getNodeLabelColor(AstahNode node){
+    public Color getNodeLabelColor(AstahNode node) {
         return Color.BLACK;
     }
 
-    public Color getConnectionEdgeColor(){
+    public Color getConnectionEdgeColor() {
         return Color.BLACK;
     }
 
-    public Color getSelectedConnectionEdgeColor(){
+    public Color getSelectedConnectionEdgeColor() {
         return Color.BLUE;
     }
 
-    public Color getConnectionLabelColor(){
+    public Color getConnectionLabelColor() {
         return Color.BLACK;
     }
 
-    public Color getSelectedConnectionLabelColor(){
+    public Color getSelectedConnectionLabelColor() {
         return Color.RED;
     }
 

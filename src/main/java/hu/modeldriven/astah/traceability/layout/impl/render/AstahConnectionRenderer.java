@@ -18,10 +18,10 @@ public class AstahConnectionRenderer implements ConnectionRenderer {
 
     private final AstahTheme theme;
 
-    public AstahConnectionRenderer(AstahConnection connection) {
+    public AstahConnectionRenderer(AstahConnection connection, AstahTheme theme) {
         this.connection = connection;
         this.name = connection.name();
-        this.theme = new AstahTheme();
+        this.theme = theme;
     }
 
     @Override

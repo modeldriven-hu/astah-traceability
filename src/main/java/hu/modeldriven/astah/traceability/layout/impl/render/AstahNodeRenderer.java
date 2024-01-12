@@ -3,8 +3,10 @@ package hu.modeldriven.astah.traceability.layout.impl.render;
 import hu.modeldriven.astah.traceability.layout.NodeRenderer;
 import hu.modeldriven.astah.traceability.layout.impl.AstahNode;
 
+import javax.swing.*;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.geom.Rectangle2D;
 
 public class AstahNodeRenderer implements NodeRenderer {
@@ -16,11 +18,11 @@ public class AstahNodeRenderer implements NodeRenderer {
 
     private final AstahTheme theme;
 
-    public AstahNodeRenderer(AstahNode node) {
+    public AstahNodeRenderer(AstahNode node, AstahTheme theme) {
         this.node = node;
         this.label = node.name();
         this.labelSize = new TextLabel(label).size();
-        this.theme = new AstahTheme();
+        this.theme = theme;
     }
 
     @Override
@@ -33,6 +35,9 @@ public class AstahNodeRenderer implements NodeRenderer {
         }
 
         g.fill(bounds);
+
+        Image image = theme.getNodeIcon(node);
+        g.drawImage(image, (int)bounds.getX(), (int)bounds.getY(), null);
 
         if (node.isSelected()) {
             g.setColor(theme.getSelectedNodeLabelColor(node));

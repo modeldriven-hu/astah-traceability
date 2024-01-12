@@ -8,6 +8,7 @@ import hu.modeldriven.astah.traceability.layout.Node;
 import hu.modeldriven.astah.traceability.layout.NodeRenderer;
 import hu.modeldriven.astah.traceability.layout.impl.core.TextElementId;
 import hu.modeldriven.astah.traceability.layout.impl.render.AstahNodeRenderer;
+import hu.modeldriven.astah.traceability.layout.impl.render.AstahTheme;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +19,16 @@ public class AstahNode implements Node {
     private final INamedElement element;
     private final Set<Node> repository;
 
+    private final AstahTheme theme;
+
     private final List<Connection> connections;
 
     private boolean selected;
 
-    public AstahNode(INamedElement element, Set<Node> repository) {
+    public AstahNode(INamedElement element, Set<Node> repository, AstahTheme theme) {
         this.element = element;
         this.repository = repository;
+        this.theme = theme;
         this.repository.add(this);
         this.connections = buildConnections();
     }
@@ -67,10 +71,10 @@ public class AstahNode implements Node {
             }
 
             if (targetNode == null) {
-                targetNode = new AstahNode(targetElement, repository);
+                targetNode = new AstahNode(targetElement, repository, theme);
             }
 
-            connections.add(new AstahConnection(dependency, this, targetNode));
+            connections.add(new AstahConnection(dependency, this, targetNode, theme));
         }
 
         return connections;
@@ -78,7 +82,7 @@ public class AstahNode implements Node {
 
     @Override
     public NodeRenderer renderer() {
-        return new AstahNodeRenderer(this);
+        return new AstahNodeRenderer(this, theme);
     }
 
     @Override
