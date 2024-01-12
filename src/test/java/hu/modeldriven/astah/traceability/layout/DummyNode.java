@@ -41,6 +41,21 @@ public class DummyNode implements Node {
 
     @Override
     public NodeRenderer renderer() {
-        return new DefaultNodeRenderer(name);
+        return new DefaultNodeRenderer(this);
+    }
+
+    @Override
+    public void select() {
+
+    }
+
+    @Override
+    public void deselect() {
+
+    }
+
+    @Override
+    public boolean isSelected() {
+        return false;
     }
 }

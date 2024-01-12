@@ -43,6 +43,21 @@ public class DummyConnection implements Connection {
 
     @Override
     public ConnectionRenderer renderer() {
-        return new DefaultConnectionRenderer(name);
+        return new DefaultConnectionRenderer(this);
+    }
+
+    @Override
+    public void select() {
+
+    }
+
+    @Override
+    public void deselect() {
+
+    }
+
+    @Override
+    public boolean isSelected() {
+        return false;
     }
 }

@@ -16,6 +16,8 @@ public class AstahConnection implements Connection {
 
     private final Node target;
 
+    private boolean selected;
+
     public AstahConnection(INamedElement element, Node source, Node target) {
         this.element = element;
         this.source = source;
@@ -42,12 +44,23 @@ public class AstahConnection implements Connection {
         return element.getName();
     }
 
-    private String type() {
-        return element.getName();
+    @Override
+    public ConnectionRenderer renderer() {
+        return new DefaultConnectionRenderer(this);
     }
 
     @Override
-    public ConnectionRenderer renderer() {
-        return new DefaultConnectionRenderer(type());
+    public void select() {
+        this.selected = true;
+    }
+
+    @Override
+    public void deselect() {
+        this.selected = false;
+    }
+
+    @Override
+    public boolean isSelected() {
+        return this.selected;
     }
 }

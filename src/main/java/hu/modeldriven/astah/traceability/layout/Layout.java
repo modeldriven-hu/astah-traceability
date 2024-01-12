@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface Layout {
 
-    enum SelectionMethod { SingleSelection};
+    enum SelectionMethod {SingleSelection}
 
     Rectangle2D location(Node node);
 

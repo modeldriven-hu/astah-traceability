@@ -6,4 +6,6 @@ public interface Selectable {
 
     void deselect();
 
+    boolean isSelected();
+
 }

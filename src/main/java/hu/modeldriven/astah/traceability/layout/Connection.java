@@ -1,6 +1,6 @@
 package hu.modeldriven.astah.traceability.layout;
 
-public interface Connection {
+public interface Connection extends Selectable {
 
     ElementId id();
 

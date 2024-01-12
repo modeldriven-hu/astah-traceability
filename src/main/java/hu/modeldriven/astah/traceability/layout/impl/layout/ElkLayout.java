@@ -5,7 +5,6 @@ import hu.modeldriven.astah.traceability.layout.Layout;
 import hu.modeldriven.astah.traceability.layout.Node;
 import hu.modeldriven.astah.traceability.layout.Path;
 import hu.modeldriven.astah.traceability.layout.impl.core.DefaultPath;
-import hu.modeldriven.astah.traceability.layout.impl.tree.TreeTraverseAlgorithm;
 import org.eclipse.elk.graph.ElkBendPoint;
 import org.eclipse.elk.graph.ElkEdge;
 import org.eclipse.elk.graph.ElkEdgeSection;
@@ -81,13 +80,13 @@ public class ElkLayout implements Layout {
 
         for (ElkEdgeSection section : edge.getSections()) {
 
-            points.add(new Point2D.Double(section.getStartX(),section.getStartY()));
+            points.add(new Point2D.Double(section.getStartX(), section.getStartY()));
 
             for (ElkBendPoint bendPoint : section.getBendPoints()) {
-                points.add(new Point2D.Double(bendPoint.getX(),bendPoint.getY()));
+                points.add(new Point2D.Double(bendPoint.getX(), bendPoint.getY()));
             }
 
-            points.add(new Point2D.Double(section.getEndX(),section.getEndY()));
+            points.add(new Point2D.Double(section.getEndX(), section.getEndY()));
         }
 
         Rectangle2D labelBounds = edge.getLabels()
@@ -144,6 +143,16 @@ public class ElkLayout implements Layout {
     @Override
     public void select(Node node, SelectionMethod selectionMethod) {
 
+        if (selectionMethod == SelectionMethod.SingleSelection) {
+
+            for (Node currentNode : nodeRectangles.keySet()) {
+                currentNode.deselect();
+            }
+
+            node.select();
+        } else {
+            throw new UnsupportedOperationException("Not implemented");
+        }
     }
 
 

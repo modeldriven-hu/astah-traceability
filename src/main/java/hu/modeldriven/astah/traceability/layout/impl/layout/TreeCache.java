@@ -12,7 +12,7 @@ public class TreeCache {
     private final Map<String, Node> nodes = new HashMap<>();
     private final Map<String, Connection> connections = new HashMap<>();
 
-    public TreeCache(Node rootNode){
+    public TreeCache(Node rootNode) {
         TreeTraverseAlgorithm algorithm = new TreeTraverseAlgorithm();
 
         algorithm.traverse(rootNode, new TreeTraverseAlgorithm.TreeVisitor() {
@@ -29,11 +29,11 @@ public class TreeCache {
         });
     }
 
-    public Node findNodeById(String id){
+    public Node findNodeById(String id) {
         return nodes.get(id);
     }
 
-    public Connection findConnectionById(String id){
+    public Connection findConnectionById(String id) {
         return connections.get(id);
     }
 

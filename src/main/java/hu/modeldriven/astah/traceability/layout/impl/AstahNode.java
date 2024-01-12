@@ -20,6 +20,8 @@ public class AstahNode implements Node {
 
     private final List<Connection> connections;
 
+    private boolean selected;
+
     public AstahNode(INamedElement element, Set<Node> repository) {
         this.element = element;
         this.repository = repository;
@@ -72,6 +74,21 @@ public class AstahNode implements Node {
 
     @Override
     public NodeRenderer renderer() {
-        return new DefaultNodeRenderer(name());
+        return new DefaultNodeRenderer(this);
+    }
+
+    @Override
+    public void select() {
+        this.selected = true;
+    }
+
+    @Override
+    public void deselect() {
+        this.selected = false;
+    }
+
+    @Override
+    public boolean isSelected() {
+        return this.selected;
     }
 }

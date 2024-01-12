@@ -32,10 +32,13 @@ public class TraceabilityDiagramPanel extends JPanel {
     public void onMouseClicked(MouseEvent e) {
         if (this.model != null && e.getButton() == MouseEvent.BUTTON1) {
 
-            Optional<Node> optionalNode = this.model.layout().findNodeByLocation(new Point2D.Double(e.getX(),e.getY()));
+            Optional<Node> optionalNode = this.model.layout().findNodeByLocation(new Point2D.Double(e.getX(), e.getY()));
 
             optionalNode.ifPresent(
-                    node -> this.model.layout().select(node, Layout.SelectionMethod.SingleSelection)
+                    node -> {
+                        this.model.layout().select(node, Layout.SelectionMethod.SingleSelection);
+                        this.repaint();
+                    }
             );
 
         }

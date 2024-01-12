@@ -1,5 +1,6 @@
 package hu.modeldriven.astah.traceability.layout.impl.render;
 
+import hu.modeldriven.astah.traceability.layout.Connection;
 import hu.modeldriven.astah.traceability.layout.ConnectionRenderer;
 import hu.modeldriven.astah.traceability.layout.Path;
 
@@ -11,10 +12,12 @@ import java.util.List;
 
 public class DefaultConnectionRenderer implements ConnectionRenderer {
 
+    private final Connection connection;
     private final String name;
 
-    public DefaultConnectionRenderer(String name) {
-        this.name = name;
+    public DefaultConnectionRenderer(Connection connection) {
+        this.connection = connection;
+        this.name = connection.name();
     }
 
     @Override

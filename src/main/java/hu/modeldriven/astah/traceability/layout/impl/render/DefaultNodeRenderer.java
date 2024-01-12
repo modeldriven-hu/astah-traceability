@@ -1,5 +1,6 @@
 package hu.modeldriven.astah.traceability.layout.impl.render;
 
+import hu.modeldriven.astah.traceability.layout.Node;
 import hu.modeldriven.astah.traceability.layout.NodeRenderer;
 
 import java.awt.Color;
@@ -9,17 +10,26 @@ import java.awt.geom.Rectangle2D;
 
 public class DefaultNodeRenderer implements NodeRenderer {
 
+    private final Node node;
+
     private final String label;
     private final Dimension labelSize;
 
-    public DefaultNodeRenderer(String label) {
-        this.label = label;
+    public DefaultNodeRenderer(Node node) {
+        this.node = node;
+        this.label = node.name();
         this.labelSize = new TextLabel(label).size();
     }
 
     @Override
     public void render(Graphics2D g, Rectangle2D bounds) {
-        g.setColor(new Color(77, 170, 109, 100));
+
+        if (node.isSelected()) {
+            g.setColor(Color.YELLOW);
+        } else {
+            g.setColor(new Color(77, 170, 109, 100));
+        }
+
         g.fill(bounds);
 
         //g.setColor(Color.BLACK);
