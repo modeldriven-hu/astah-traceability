@@ -1,7 +1,6 @@
 package hu.modeldriven.astah.traceability.ui;
 
 import hu.modeldriven.astah.traceability.layout.Connection;
-import hu.modeldriven.astah.traceability.layout.Layout;
 import hu.modeldriven.astah.traceability.layout.Node;
 import hu.modeldriven.astah.traceability.layout.TraceabilityModel;
 
@@ -12,12 +11,10 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
-import java.util.Optional;
 
 public class TraceabilityDiagramPanel extends JPanel {
 
     private TraceabilityModel model;
-    private Layout layout;
 
     public TraceabilityDiagramPanel() {
         super();
@@ -55,8 +52,7 @@ public class TraceabilityDiagramPanel extends JPanel {
 
     public void setModel(TraceabilityModel model) {
         this.model = model;
-        this.layout = model.layout();
-        this.setPreferredSize(this.layout.size());
+        this.setPreferredSize(this.model.layout().size());
         this.invalidate();
     }
 
@@ -64,9 +60,8 @@ public class TraceabilityDiagramPanel extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
 
-        if (this.layout != null) {
-            Graphics2D g2 = (Graphics2D) g;
-            model.renderer().render(g2);
+        if (this.model != null) {
+            model.renderer().render((Graphics2D) g);
         }
     }
 }

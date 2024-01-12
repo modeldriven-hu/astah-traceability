@@ -1,11 +1,9 @@
 package hu.modeldriven.astah.traceability.layout.impl.render;
 
-import hu.modeldriven.astah.traceability.layout.Connection;
 import hu.modeldriven.astah.traceability.layout.ConnectionRenderer;
 import hu.modeldriven.astah.traceability.layout.Path;
 import hu.modeldriven.astah.traceability.layout.impl.AstahConnection;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
@@ -27,7 +25,7 @@ public class AstahConnectionRenderer implements ConnectionRenderer {
     @Override
     public void render(Graphics2D g, Path path) {
 
-        if (connection.isSelected()){
+        if (connection.isSelected()) {
             g.setColor(theme.getSelectedConnectionEdgeColor());
         } else {
             g.setColor(theme.getConnectionEdgeColor());
@@ -39,7 +37,7 @@ public class AstahConnectionRenderer implements ConnectionRenderer {
         Arrow arrow = new Arrow(lastTwoPoints.get(0), lastTwoPoints.get(1));
         arrow.draw(g);
 
-        if (connection.isSelected()){
+        if (connection.isSelected()) {
             g.setColor(theme.getSelectedConnectionLabelColor());
         } else {
             g.setColor(theme.getConnectionLabelColor());

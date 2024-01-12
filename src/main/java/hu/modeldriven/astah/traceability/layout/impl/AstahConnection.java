@@ -28,7 +28,7 @@ public class AstahConnection implements Connection {
         this.theme = theme;
     }
 
-    public INamedElement namedElement(){
+    public INamedElement namedElement() {
         return this.element;
     }
 

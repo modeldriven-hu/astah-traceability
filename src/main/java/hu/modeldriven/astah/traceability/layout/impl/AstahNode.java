@@ -33,7 +33,7 @@ public class AstahNode implements Node {
         this.connections = buildConnections();
     }
 
-    public INamedElement namedElement(){
+    public INamedElement namedElement() {
         return this.element;
     }
 

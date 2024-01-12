@@ -3,7 +3,6 @@ package hu.modeldriven.astah.traceability.layout.impl.render;
 import hu.modeldriven.astah.traceability.layout.NodeRenderer;
 import hu.modeldriven.astah.traceability.layout.impl.AstahNode;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
@@ -47,7 +46,7 @@ public class AstahNodeRenderer implements NodeRenderer {
         g.draw(bounds);
 
         Image image = theme.getNodeIcon(node);
-        g.drawImage(image, (int)bounds.getX() + MARGIN, (int)bounds.getY() + MARGIN, null);
+        g.drawImage(image, (int) bounds.getX() + MARGIN, (int) bounds.getY() + MARGIN, null);
 
         float posX = (float) (bounds.getX() + MARGIN + image.getWidth(null) + PADDING_ICON_TEXT);
         float posY = (float) (bounds.getY() + bounds.getHeight() / 2);

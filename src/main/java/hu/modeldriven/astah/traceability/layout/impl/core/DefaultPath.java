@@ -36,13 +36,13 @@ public class DefaultPath implements Path {
 
     private static Rectangle2D calculateBounds(List<Point2D> points, Rectangle2D labelBounds) {
 
-        Rectangle2D initialBounds = new Rectangle2D.Double(points.get(0).getX(), points.get(0).getY(), 0,0);
+        Rectangle2D initialBounds = new Rectangle2D.Double(points.get(0).getX(), points.get(0).getY(), 0, 0);
 
         for (Point2D point : points) {
             initialBounds.add(point);
         }
 
-        if (initialBounds.getWidth() > initialBounds.getHeight()){
+        if (initialBounds.getWidth() > initialBounds.getHeight()) {
             initialBounds.add(initialBounds.getX(), initialBounds.getY() - 10);
             initialBounds.add(initialBounds.getX(), initialBounds.getY() + 20);
         } else {
