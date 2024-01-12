@@ -27,7 +27,9 @@ public class AstahNodeRenderer implements NodeRenderer {
     @Override
     public void render(Graphics2D g, Rectangle2D bounds) {
 
-        Color backgroundColor, borderColor, labelColor;
+        Color backgroundColor;
+        Color borderColor;
+        Color labelColor;
 
         if (node.isSelected()) {
             backgroundColor = theme.getSelectedNodeBackgroundColor(node);

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public class ElkLayout implements Layout {
 
@@ -27,32 +28,37 @@ public class ElkLayout implements Layout {
         calculateFromRootNode(rootElkNode, treeCache);
     }
 
-
     private void calculateFromRootNode(ElkNode rootNode, TreeCache treeCache) {
         for (ElkNode child : rootNode.getChildren()) {
             calculateNodesAndPaths(child, treeCache);
         }
     }
 
-    private void calculateNodesAndPaths(ElkNode node, TreeCache treeCache) {
+    private void calculateNodesAndPaths(ElkNode elkNode, TreeCache treeCache) {
+
+        String elkNodeId = elkNode.getIdentifier();
 
         // Skip if the node's rectangle is already calculated
-        if (nodeRectangles.containsKey(node.getIdentifier())) {
-            return;
+        for (Node visitedNode : nodeRectangles.keySet()){
+            if (visitedNode.id().value().equals(elkNodeId)){
+                return;
+            }
         }
 
-        // Calculate the rectangle for the current node
-        Rectangle2D rectangle = calculateRectangle(node);
+        // Find the corresponding node based on elk identifier
+        Node node = treeCache.findNodeById(elkNodeId);
 
-        // Find the corresponding canvas node
-        Node canvasNode = treeCache.findNodeById(node.getIdentifier());
+        // Calculate the rectangle for the current elk node
+        Rectangle2D rectangle = calculateRectangle(elkNode);
 
-        // Store the rectangle in the map and add to bounds
-        nodeRectangles.put(canvasNode, rectangle);
+        // Store the node-rectangle pair in the map
+        nodeRectangles.put(node, rectangle);
+
+        // increase the bounds
         bounds.add(rectangle);
 
         // Process outgoing edges
-        for (ElkEdge edge : node.getOutgoingEdges()) {
+        for (ElkEdge edge : elkNode.getOutgoingEdges()) {
 
             // Calculate the path for the current edge
             Path path = calculatePath(edge);
@@ -140,6 +146,7 @@ public class ElkLayout implements Layout {
         return null;
     }
 
+    // FIXME probably selection management should be moved outside
 
     @Override
     public void select(Selectable selectable) {
@@ -152,5 +159,27 @@ public class ElkLayout implements Layout {
         nodeRectangles.keySet().stream().forEach(Selectable::deselect);
         connectionPaths.keySet().stream().forEach(Selectable::deselect);
     }
+
+    @Override
+    public Identifiable selectedElement() {
+        return Stream.concat(
+                        nodeRectangles.keySet()
+                                .stream()
+                                .filter(Node::isSelected)
+                                .map(Identifiable.class::cast),
+                        connectionPaths.keySet()
+                                .stream()
+                                .filter(Connection::isSelected)
+                                .map(Identifiable.class::cast)
+                )
+                .findFirst()
+                .orElse(null);
+    }
+
+    @Override
+    public boolean hasSelection() {
+        return selectedElement() != null;
+    }
+
 
 }

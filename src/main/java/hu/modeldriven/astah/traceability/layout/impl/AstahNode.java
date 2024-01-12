@@ -55,7 +55,7 @@ public class AstahNode implements Node {
 
     private List<Connection> buildConnections() {
 
-        List<Connection> connections = new ArrayList<>();
+        List<Connection> results = new ArrayList<>();
 
         for (IDependency dependency : element.getClientDependencies()) {
 
@@ -74,10 +74,10 @@ public class AstahNode implements Node {
                 targetNode = new AstahNode(targetElement, repository, theme);
             }
 
-            connections.add(new AstahConnection(dependency, this, targetNode, theme));
+            results.add(new AstahConnection(dependency, this, targetNode, theme));
         }
 
-        return connections;
+        return results;
     }
 
     @Override

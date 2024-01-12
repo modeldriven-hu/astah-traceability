@@ -1,6 +1,7 @@
 package hu.modeldriven.astah.traceability.ui;
 
 import hu.modeldriven.astah.traceability.layout.Connection;
+import hu.modeldriven.astah.traceability.layout.Identifiable;
 import hu.modeldriven.astah.traceability.layout.Node;
 import hu.modeldriven.astah.traceability.layout.TraceabilityModel;
 
@@ -8,26 +9,64 @@ import javax.swing.*;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
 public class TraceabilityDiagramPanel extends JPanel {
 
+    private final JPopupMenu popupMenu;
+
     private TraceabilityModel model;
 
     public TraceabilityDiagramPanel() {
         super();
+        this.popupMenu = createMenu();
         setBackground(Color.WHITE);
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                onMouseReleased(e);
+                selectOnMousePress(e);
+            }
+        });
+
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                displayPopupOnMousePress(e);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                displayPopupOnMousePress(e);
             }
         });
     }
 
-    public void onMouseReleased(MouseEvent e) {
+    private JPopupMenu createMenu() {
+        JPopupMenu menu = new JPopupMenu();
+        JMenuItem menuItem = new JMenuItem("Select in Structure Tree");
+        menuItem.addActionListener(this::onSelectInStructurePressed);
+        menu.add(menuItem);
+        return menu;
+    }
+
+    private void onSelectInStructurePressed(ActionEvent actionEvent) {
+        Identifiable element = this.model.layout().selectedElement();
+
+        if (element != null) {
+            // TODO call method
+        }
+    }
+
+    private void displayPopupOnMousePress(MouseEvent e) {
+        if (this.model != null && this.model.layout().hasSelection() && e.isPopupTrigger()) {
+            popupMenu.show(e.getComponent(), e.getX(), e.getY());
+        }
+    }
+
+    private void selectOnMousePress(MouseEvent e) {
         if (this.model != null && e.getButton() == MouseEvent.BUTTON1) {
 
             Point2D point = new Point2D.Double(e.getX(), e.getY());

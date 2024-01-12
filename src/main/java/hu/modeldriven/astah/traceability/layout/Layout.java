@@ -20,4 +20,8 @@ public interface Layout {
 
     void deselectAll();
 
+    Identifiable selectedElement();
+
+    boolean hasSelection();
+
 }

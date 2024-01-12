@@ -17,10 +17,10 @@ import java.awt.event.ActionEvent;
 public class TraceabilityPanel extends AbstractTraceabilityPanel {
 
     private final Component parentComponent;
-    private final EventBus eventBus;
+    private final transient EventBus eventBus;
     private final TraceabilityDiagramPanel diagramPanel;
 
-    private final AstahRepresentation astah;
+    private final transient AstahRepresentation astah;
 
     public TraceabilityPanel(Component parentComponent, EventBus eventBus, AstahRepresentation astah) {
         this.parentComponent = parentComponent;
