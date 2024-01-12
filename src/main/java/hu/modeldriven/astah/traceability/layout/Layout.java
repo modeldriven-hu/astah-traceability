@@ -23,4 +23,6 @@ public interface Layout {
 
     void select(Connection connection, SelectionMethod selectionMethod);
 
+    void deselectAll();
+
 }

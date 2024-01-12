@@ -4,13 +4,13 @@ import hu.modeldriven.astah.traceability.layout.NodeRenderer;
 import hu.modeldriven.astah.traceability.layout.impl.AstahNode;
 
 import javax.swing.*;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 public class AstahNodeRenderer implements NodeRenderer {
 
+    private static final int MARGIN = 10;
+    private static final int PADDING_ICON_TEXT = 5;
     private final AstahNode node;
 
     private final String label;
@@ -28,36 +28,44 @@ public class AstahNodeRenderer implements NodeRenderer {
     @Override
     public void render(Graphics2D g, Rectangle2D bounds) {
 
+        Color backgroundColor, borderColor, labelColor;
+
         if (node.isSelected()) {
-            g.setColor(theme.getSelectedNodeBackgroundColor(node));
+            backgroundColor = theme.getSelectedNodeBackgroundColor(node);
+            borderColor = theme.getSelectedNodeBorderColor(node);
+            labelColor = theme.getSelectedNodeLabelColor(node);
         } else {
-            g.setColor(theme.getNodeBackgroundColor(node));
+            backgroundColor = theme.getNodeBackgroundColor(node);
+            borderColor = theme.getNodeBorderColor(node);
+            labelColor = theme.getNodeLabelColor(node);
         }
 
+        g.setColor(backgroundColor);
         g.fill(bounds);
 
+        g.setColor(borderColor);
+        g.draw(bounds);
+
         Image image = theme.getNodeIcon(node);
-        g.drawImage(image, (int)bounds.getX(), (int)bounds.getY(), null);
+        g.drawImage(image, (int)bounds.getX() + MARGIN, (int)bounds.getY() + MARGIN, null);
 
-        if (node.isSelected()) {
-            g.setColor(theme.getSelectedNodeLabelColor(node));
-        } else {
-            g.setColor(theme.getNodeLabelColor(node));
-        }
+        float posX = (float) (bounds.getX() + MARGIN + image.getWidth(null) + PADDING_ICON_TEXT);
+        float posY = (float) (bounds.getY() + bounds.getHeight() / 2);
 
-        float posX = (float) (bounds.getX() + 5);
-        float posY = (float) (bounds.getY() + 5 + bounds.getHeight() / 2);
+        FontMetrics metric = g.getFontMetrics(g.getFont());
+        g.setColor(labelColor);
 
-        g.drawString(label, posX, posY);
+        // Strings are drawn not at the top left position but on the baseline, 2 is a magic constants :D
+        g.drawString(label, posX, posY + metric.getAscent() - metric.getDescent() - metric.getLeading() - 2);
     }
 
     @Override
     public Dimension size() {
 
-        int margin = 5;
+        int iconSize = theme.getNodeIcon(this.node).getWidth(null);
 
-        int width = margin + (int) labelSize.getWidth() + margin;
-        int height = margin + (int) labelSize.getHeight() + margin;
+        int width = MARGIN + iconSize + PADDING_ICON_TEXT + (int) labelSize.getWidth() + MARGIN;
+        int height = MARGIN + iconSize + MARGIN;
 
         return new Dimension(width, height);
     }

@@ -147,10 +147,15 @@ public class ElkLayout implements Layout {
         singleSelect(connection);
     }
 
-    private void singleSelect(Selectable selectable){
+    @Override
+    public void deselectAll() {
         nodeRectangles.keySet().stream().forEach(Selectable::deselect);
         connectionPaths.keySet().stream().forEach(Selectable::deselect);
-        selectable.select();;
+    }
+
+    private void singleSelect(Selectable selectable){
+        deselectAll();
+        selectable.select();
     }
 
 }

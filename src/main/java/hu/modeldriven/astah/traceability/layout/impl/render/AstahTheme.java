@@ -61,4 +61,11 @@ public class AstahTheme {
         return Color.RED;
     }
 
+    public Color getSelectedNodeBorderColor(AstahNode node) {
+        return Color.BLUE;
+    }
+
+    public Color getNodeBorderColor(AstahNode node) {
+        return Color.BLACK;
+    }
 }

@@ -39,16 +39,19 @@ public class TraceabilityDiagramPanel extends JPanel {
 
             if (node != null) {
                 this.model.layout().select(node, Layout.SelectionMethod.SingleSelection);
-                this.repaint();
             }
 
             Connection connection = this.model.layout().findConnectionByLocation(point);
 
             if (connection != null) {
                 this.model.layout().select(connection, Layout.SelectionMethod.SingleSelection);
-                this.repaint();
             }
 
+            if (node == null && connection == null) {
+                this.model.layout().deselectAll();
+            }
+
+            this.repaint();
         }
     }
 
