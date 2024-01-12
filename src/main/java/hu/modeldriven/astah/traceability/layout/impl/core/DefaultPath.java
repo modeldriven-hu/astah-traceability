@@ -51,7 +51,7 @@ public class DefaultPath implements Path {
         }
 
         if (labelBounds != null) {
-            //initialBounds.add(labelBounds);
+            initialBounds.add(labelBounds);
         }
 
         return initialBounds;

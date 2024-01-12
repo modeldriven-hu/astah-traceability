@@ -16,18 +16,21 @@ public class AstahConnectionRenderer implements ConnectionRenderer {
     private final AstahConnection connection;
     private final String name;
 
+    private final AstahTheme theme;
+
     public AstahConnectionRenderer(AstahConnection connection) {
         this.connection = connection;
         this.name = connection.name();
+        this.theme = new AstahTheme();
     }
 
     @Override
     public void render(Graphics2D g, Path path) {
 
         if (connection.isSelected()){
-            g.setColor(Color.YELLOW);
+            g.setColor(theme.getSelectedConnectionEdgeColor());
         } else {
-            g.setColor(Color.BLACK);
+            g.setColor(theme.getConnectionEdgeColor());
         }
 
         drawPolyLine(g, path.coordinates());
@@ -35,6 +38,12 @@ public class AstahConnectionRenderer implements ConnectionRenderer {
         List<Point2D> lastTwoPoints = lastTwoPoints(path.coordinates());
         Arrow arrow = new Arrow(lastTwoPoints.get(0), lastTwoPoints.get(1));
         arrow.draw(g);
+
+        if (connection.isSelected()){
+            g.setColor(theme.getSelectedConnectionLabelColor());
+        } else {
+            g.setColor(theme.getConnectionLabelColor());
+        }
 
         Point2D labelPosition = path.labelPosition();
         g.drawString(name, (float) labelPosition.getX(), (float) labelPosition.getY());
