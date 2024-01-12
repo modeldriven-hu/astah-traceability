@@ -20,12 +20,12 @@ public class DefaultNodeRenderer implements NodeRenderer {
 
     @Override
     public void render(Graphics2D g, Rectangle2D bounds) {
-        g.setColor(new Color(77, 170, 109));
+        g.setColor(new Color(77, 170, 109, 100));
         g.fill(bounds);
 
-        g.setColor(Color.BLACK);
-        g.setStroke(new BasicStroke(3f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 5f));
-        g.draw(bounds);
+        //g.setColor(Color.BLACK);
+        //g.setStroke(new BasicStroke(3f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND, 5f));
+        //g.draw(bounds);
 
         g.setColor(Color.BLACK);
 

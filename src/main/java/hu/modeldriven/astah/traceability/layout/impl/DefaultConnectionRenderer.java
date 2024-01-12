@@ -20,16 +20,25 @@ public class DefaultConnectionRenderer implements ConnectionRenderer {
 
     @Override
     public void render(Graphics2D g, Path path) {
-        g.setColor(Color.BLUE);
+
+        g.setColor(Color.BLACK);
         drawPolyLine(g, path.coordinates());
 
-        if (path.labelPosition() != null) {
-            Point2D labelPosition = path.labelPosition();
-            g.drawString(name, (float) labelPosition.getX(), (float) labelPosition.getY());
-        } else {
-            Rectangle2D bounds = path.bounds();
-            g.drawString(name, (float) (bounds.getX() + bounds.getWidth() / 2), (float) (bounds.getY() + bounds.getHeight() / 2));
+        List<Point2D> lastTwoPoints = lastTwoPoints(path.coordinates());
+        Arrow arrow = new Arrow(lastTwoPoints.get(0), lastTwoPoints.get(1));
+        arrow.draw(g);
+
+        Point2D labelPosition = path.labelPosition();
+        g.drawString(name, (float) labelPosition.getX(), (float) labelPosition.getY());
+    }
+
+    private List<Point2D> lastTwoPoints(List<Point2D> points) {
+
+        if (points.size() < 2){
+            throw new IllegalArgumentException("Point list shall have at least two points");
         }
+
+        return points.subList(points.size() - 2, points.size());
     }
 
     private void drawPolyLine(Graphics2D g2d, List<Point2D> points) {
