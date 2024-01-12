@@ -7,8 +7,6 @@ import java.util.Optional;
 
 public interface Layout {
 
-    enum SelectionMethod {SingleSelection}
-
     Rectangle2D location(Node node);
 
     Path location(Connection connection);
@@ -19,9 +17,7 @@ public interface Layout {
 
     Connection findConnectionByLocation(Point2D point);
 
-    void select(Node node, SelectionMethod selectionMethod);
-
-    void select(Connection connection, SelectionMethod selectionMethod);
+    void select(Selectable selectable);
 
     void deselectAll();
 

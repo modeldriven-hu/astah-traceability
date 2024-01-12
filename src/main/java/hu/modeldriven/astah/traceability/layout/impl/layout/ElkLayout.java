@@ -137,25 +137,17 @@ public class ElkLayout implements Layout {
         return null;
     }
 
-    @Override
-    public void select(Node node, SelectionMethod selectionMethod) {
-        singleSelect(node);
-    }
 
     @Override
-    public void select(Connection connection, SelectionMethod selectionMethod) {
-        singleSelect(connection);
+    public void select(Selectable selectable) {
+        deselectAll();
+        selectable.select();
     }
 
     @Override
     public void deselectAll() {
         nodeRectangles.keySet().stream().forEach(Selectable::deselect);
         connectionPaths.keySet().stream().forEach(Selectable::deselect);
-    }
-
-    private void singleSelect(Selectable selectable){
-        deselectAll();
-        selectable.select();
     }
 
 }

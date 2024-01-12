@@ -36,15 +36,13 @@ public class TraceabilityDiagramPanel extends JPanel {
             Point2D point = new Point2D.Double(e.getX(), e.getY());
 
             Node node = this.model.layout().findNodeByLocation(point);
-
             if (node != null) {
-                this.model.layout().select(node, Layout.SelectionMethod.SingleSelection);
+                this.model.layout().select(node);
             }
 
             Connection connection = this.model.layout().findConnectionByLocation(point);
-
             if (connection != null) {
-                this.model.layout().select(connection, Layout.SelectionMethod.SingleSelection);
+                this.model.layout().select(connection);
             }
 
             if (node == null && connection == null) {
