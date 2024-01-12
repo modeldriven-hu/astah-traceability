@@ -7,7 +7,7 @@ import hu.modeldriven.astah.traceability.layout.ElementId;
 import hu.modeldriven.astah.traceability.layout.Node;
 import hu.modeldriven.astah.traceability.layout.NodeRenderer;
 import hu.modeldriven.astah.traceability.layout.impl.core.TextElementId;
-import hu.modeldriven.astah.traceability.layout.impl.render.DefaultNodeRenderer;
+import hu.modeldriven.astah.traceability.layout.impl.render.AstahNodeRenderer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +27,10 @@ public class AstahNode implements Node {
         this.repository = repository;
         this.repository.add(this);
         this.connections = buildConnections();
+    }
+
+    public INamedElement namedElement(){
+        return this.element;
     }
 
     @Override
@@ -74,7 +78,7 @@ public class AstahNode implements Node {
 
     @Override
     public NodeRenderer renderer() {
-        return new DefaultNodeRenderer(this);
+        return new AstahNodeRenderer(this);
     }
 
     @Override

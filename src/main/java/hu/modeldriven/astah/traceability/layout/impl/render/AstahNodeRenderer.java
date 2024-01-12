@@ -2,20 +2,21 @@ package hu.modeldriven.astah.traceability.layout.impl.render;
 
 import hu.modeldriven.astah.traceability.layout.Node;
 import hu.modeldriven.astah.traceability.layout.NodeRenderer;
+import hu.modeldriven.astah.traceability.layout.impl.AstahNode;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
-public class DefaultNodeRenderer implements NodeRenderer {
+public class AstahNodeRenderer implements NodeRenderer {
 
-    private final Node node;
+    private final AstahNode node;
 
     private final String label;
     private final Dimension labelSize;
 
-    public DefaultNodeRenderer(Node node) {
+    public AstahNodeRenderer(AstahNode node) {
         this.node = node;
         this.label = node.name();
         this.labelSize = new TextLabel(label).size();

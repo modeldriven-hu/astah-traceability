@@ -2,7 +2,6 @@ package hu.modeldriven.astah.traceability.ui;
 
 import hu.modeldriven.astah.api.DummyAstahRepresentation;
 import hu.modeldriven.astah.core.AstahRepresentation;
-import hu.modeldriven.astah.traceability.layout.DummyTraceabilityModel;
 import hu.modeldriven.core.eventbus.EventBus;
 
 import javax.swing.*;
@@ -20,7 +19,7 @@ public class TraceabilityScreenTest {
         EventBus eventBus = new EventBus();
         AstahRepresentation astahRepresentation = new DummyAstahRepresentation();
         TraceabilityPanel panel = new TraceabilityPanel(frame, eventBus, astahRepresentation);
-    
+
         frame.getContentPane().add(panel);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.setSize(800, 600);

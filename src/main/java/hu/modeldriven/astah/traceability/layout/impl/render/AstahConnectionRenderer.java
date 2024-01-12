@@ -3,6 +3,7 @@ package hu.modeldriven.astah.traceability.layout.impl.render;
 import hu.modeldriven.astah.traceability.layout.Connection;
 import hu.modeldriven.astah.traceability.layout.ConnectionRenderer;
 import hu.modeldriven.astah.traceability.layout.Path;
+import hu.modeldriven.astah.traceability.layout.impl.AstahConnection;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,12 +11,12 @@ import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
 import java.util.List;
 
-public class DefaultConnectionRenderer implements ConnectionRenderer {
+public class AstahConnectionRenderer implements ConnectionRenderer {
 
-    private final Connection connection;
+    private final AstahConnection connection;
     private final String name;
 
-    public DefaultConnectionRenderer(Connection connection) {
+    public AstahConnectionRenderer(AstahConnection connection) {
         this.connection = connection;
         this.name = connection.name();
     }
