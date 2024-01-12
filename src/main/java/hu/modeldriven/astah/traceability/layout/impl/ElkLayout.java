@@ -12,22 +12,42 @@ import org.eclipse.elk.graph.ElkNode;
 import java.awt.Dimension;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ElkLayout implements Layout {
 
-    private final Map<String, Rectangle2D> nodes;
-    private final Map<String, Path> paths;
+    private final Map<Node, Rectangle2D> nodeRectangles;
+    private final Map<Connection, Path> connectionPaths;
+
+    private final Map<String, Node> nodes;
+    private final Map<String, Connection> connections;
 
     private final Rectangle2D bounds = new Rectangle2D.Double();
 
-    public ElkLayout(ElkNode rootNode) {
+    public ElkLayout(ElkNode rootElkNode, Node rootNode) {
+        nodeRectangles = new HashMap<>();
+        connectionPaths = new HashMap<>();
         nodes = new HashMap<>();
-        paths = new HashMap<>();
-        calculateFromRootNode(rootNode);
+        connections = new HashMap<>();
+        buildNodeAndConnectionCache(rootNode, nodes, connections);
+        calculateFromRootNode(rootElkNode);
+    }
+
+    void buildNodeAndConnectionCache(Node rootNode, Map<String, Node> nodes, Map<String, Connection> connections){
+        TreeTraverseAlgorithm algorithm = new TreeTraverseAlgorithm();
+
+        algorithm.traverse(rootNode, new TreeTraverseAlgorithm.TreeVisitor() {
+
+            @Override
+            public void visit(Node node) {
+                nodes.put(node.id().value(), node);
+            }
+
+            @Override
+            public void visit(Connection connection) {
+                connections.put(connection.id().value(), connection);
+            }
+        });
     }
 
     private void calculateFromRootNode(ElkNode rootNode) {
@@ -38,22 +58,19 @@ public class ElkLayout implements Layout {
 
     private void calculateNodesAndPaths(ElkNode node) {
 
-        if (nodes.containsKey(node.getIdentifier())) {
+        if (nodeRectangles.containsKey(node.getIdentifier())) {
             return;
         }
 
-        Rectangle2D rectangle = new Rectangle2D.Double(
-                node.getX(), node.getY(),
-                node.getWidth(), node.getHeight());
-
-        nodes.put(node.getIdentifier(), rectangle);
+        Rectangle2D rectangle = calculateRectangle(node);
+        nodeRectangles.put(findNodeById(node.getIdentifier()), rectangle);
 
         bounds.add(rectangle);
 
         for (ElkEdge edge : node.getOutgoingEdges()) {
 
             Path path = calculatePath(edge);
-            paths.put(edge.getIdentifier(), path);
+            connectionPaths.put(findConnectionById(edge.getIdentifier()), path);
 
             bounds.add(path.bounds());
 
@@ -61,6 +78,11 @@ public class ElkLayout implements Layout {
         }
     }
 
+    private Rectangle2D calculateRectangle(ElkNode node){
+        return new Rectangle2D.Double(
+                node.getX(), node.getY(),
+                node.getWidth(), node.getHeight());
+    }
 
     private Path calculatePath(ElkEdge edge) {
         List<Point2D> points = new ArrayList<>();
@@ -94,18 +116,50 @@ public class ElkLayout implements Layout {
         return new DefaultPath(points, labelBounds);
     }
 
+    private Node findNodeById(String id){
+        return nodes.get(id);
+    }
+
+    private Connection findConnectionById(String id){
+        return connections.get(id);
+    }
+
     @Override
     public Rectangle2D location(Node node) {
-        return nodes.get(node.id().value());
+        return nodeRectangles.get(node);
     }
 
     @Override
     public Path location(Connection connection) {
-        return paths.get(connection.id().value());
+        return connectionPaths.get(connection);
     }
 
     @Override
     public Dimension size() {
         return new Dimension((int) bounds.getWidth(), (int) bounds.getHeight());
     }
+
+    @Override
+    public Node findNodeByLocation(Point2D point) {
+
+        for (Map.Entry<Node, Rectangle2D> nodeEntry: nodeRectangles.entrySet()){
+            if (nodeEntry.getValue().contains(point)){
+                return nodeEntry.getKey();
+            }
+        }
+
+        return null;
+    }
+
+    @Override
+    public Connection findConnectionByLocation(Point2D point) {
+        for (Map.Entry<Connection, Path> connectionEntry: connectionPaths.entrySet()){
+            if (connectionEntry.getValue().bounds().contains(point)){
+                return connectionEntry.getKey();
+            }
+        }
+
+        return null;
+    }
+
 }

@@ -1,7 +1,9 @@
 package hu.modeldriven.astah.traceability.layout;
 
 import java.awt.Dimension;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.util.Optional;
 
 public interface Layout {
 
@@ -10,5 +12,9 @@ public interface Layout {
     Path location(Connection connection);
 
     Dimension size();
+
+    Node findNodeByLocation(Point2D point);
+
+    Connection findConnectionByLocation(Point2D point);
 
 }

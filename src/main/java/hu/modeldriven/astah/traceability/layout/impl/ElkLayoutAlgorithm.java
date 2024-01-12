@@ -24,7 +24,7 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
     public Layout layout(Node rootNode) {
         ElkNode graph = createElkGraph(rootNode);
         ElkNode newNode = layout(graph);
-        return new ElkLayout(newNode);
+        return new ElkLayout(newNode, rootNode);
     }
 
     private ElkNode layout(ElkNode graph) {
