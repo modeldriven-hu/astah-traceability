@@ -16,12 +16,6 @@ public interface Layout {
 
     Connection findConnectionByLocation(Point2D point);
 
-    void select(Selectable selectable);
-
-    void deselectAll();
-
-    Identifiable selectedElement();
-
-    boolean hasSelection();
+    LayoutSelection selection();
 
 }

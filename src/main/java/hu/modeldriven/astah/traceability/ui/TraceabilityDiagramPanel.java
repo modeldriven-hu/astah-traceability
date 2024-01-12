@@ -1,9 +1,6 @@
 package hu.modeldriven.astah.traceability.ui;
 
-import hu.modeldriven.astah.traceability.layout.Connection;
-import hu.modeldriven.astah.traceability.layout.Identifiable;
-import hu.modeldriven.astah.traceability.layout.Node;
-import hu.modeldriven.astah.traceability.layout.TraceabilityModel;
+import hu.modeldriven.astah.traceability.layout.*;
 
 import javax.swing.*;
 import java.awt.Color;
@@ -53,15 +50,16 @@ public class TraceabilityDiagramPanel extends JPanel {
     }
 
     private void onSelectInStructurePressed(ActionEvent actionEvent) {
-        Identifiable element = this.model.layout().selectedElement();
+        Identifiable element = this.model.layout().selection().selectedElement();
 
         if (element != null) {
+            System.out.println("Selected element: " + element.id().value());
             // TODO call method
         }
     }
 
     private void displayPopupOnMousePress(MouseEvent e) {
-        if (this.model != null && this.model.layout().hasSelection() && e.isPopupTrigger()) {
+        if (this.model != null && this.model.layout().selection().hasSelection() && e.isPopupTrigger()) {
             popupMenu.show(e.getComponent(), e.getX(), e.getY());
         }
     }
@@ -71,18 +69,21 @@ public class TraceabilityDiagramPanel extends JPanel {
 
             Point2D point = new Point2D.Double(e.getX(), e.getY());
 
-            Node node = this.model.layout().findNodeByLocation(point);
+            Layout layout = this.model.layout();
+            LayoutSelection selection = layout.selection();
+
+            Node node = layout.findNodeByLocation(point);
             if (node != null) {
-                this.model.layout().select(node);
+                selection.select(node);
             }
 
-            Connection connection = this.model.layout().findConnectionByLocation(point);
+            Connection connection = layout.findConnectionByLocation(point);
             if (connection != null) {
-                this.model.layout().select(connection);
+                selection.select(connection);
             }
 
             if (node == null && connection == null) {
-                this.model.layout().deselectAll();
+                selection.deselectAll();
             }
 
             this.repaint();

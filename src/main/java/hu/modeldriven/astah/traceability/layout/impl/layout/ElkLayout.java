@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 
 public class ElkLayout implements Layout {
 
@@ -39,8 +38,8 @@ public class ElkLayout implements Layout {
         String elkNodeId = elkNode.getIdentifier();
 
         // Skip if the node's rectangle is already calculated
-        for (Node visitedNode : nodeRectangles.keySet()){
-            if (visitedNode.id().value().equals(elkNodeId)){
+        for (Node visitedNode : nodeRectangles.keySet()) {
+            if (visitedNode.id().value().equals(elkNodeId)) {
                 return;
             }
         }
@@ -146,40 +145,9 @@ public class ElkLayout implements Layout {
         return null;
     }
 
-    // FIXME probably selection management should be moved outside
-
     @Override
-    public void select(Selectable selectable) {
-        deselectAll();
-        selectable.select();
+    public LayoutSelection selection() {
+        return new ElkLayoutSelection(nodeRectangles.keySet(), connectionPaths.keySet());
     }
-
-    @Override
-    public void deselectAll() {
-        nodeRectangles.keySet().stream().forEach(Selectable::deselect);
-        connectionPaths.keySet().stream().forEach(Selectable::deselect);
-    }
-
-    @Override
-    public Identifiable selectedElement() {
-        return Stream.concat(
-                        nodeRectangles.keySet()
-                                .stream()
-                                .filter(Node::isSelected)
-                                .map(Identifiable.class::cast),
-                        connectionPaths.keySet()
-                                .stream()
-                                .filter(Connection::isSelected)
-                                .map(Identifiable.class::cast)
-                )
-                .findFirst()
-                .orElse(null);
-    }
-
-    @Override
-    public boolean hasSelection() {
-        return selectedElement() != null;
-    }
-
 
 }
