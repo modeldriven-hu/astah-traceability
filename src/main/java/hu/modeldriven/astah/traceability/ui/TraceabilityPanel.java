@@ -2,19 +2,15 @@ package hu.modeldriven.astah.traceability.ui;
 
 import hu.modeldriven.astah.core.AstahRepresentation;
 import hu.modeldriven.astah.traceability.layout.TraceabilityModel;
-import hu.modeldriven.astah.traceability.ui.event.DiagramRefreshRequestedEvent;
-import hu.modeldriven.astah.traceability.ui.event.DisplayConfigurationDialogRequestedEvent;
-import hu.modeldriven.astah.traceability.ui.event.ModelElementSelectionRequestedEvent;
-import hu.modeldriven.astah.traceability.ui.usecase.DisplayElementNameUseCase;
-import hu.modeldriven.astah.traceability.ui.usecase.DisplayElementSelectorUseCase;
-import hu.modeldriven.astah.traceability.ui.usecase.UpdateDiagramUseCase;
+import hu.modeldriven.astah.traceability.ui.event.*;
+import hu.modeldriven.astah.traceability.ui.usecase.*;
 import hu.modeldriven.core.eventbus.EventBus;
 
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 
-public class TraceabilityPanel extends AbstractTraceabilityPanel {
+public class TraceabilityPanel extends AbstractTraceabilityPanel implements TraceabilityDiagramActionListener{
 
     private final Component parentComponent;
     private final transient EventBus eventBus;
@@ -26,7 +22,7 @@ public class TraceabilityPanel extends AbstractTraceabilityPanel {
         this.parentComponent = parentComponent;
         this.eventBus = eventBus;
         this.astah = astah;
-        this.diagramPanel = new TraceabilityDiagramPanel();
+        this.diagramPanel = new TraceabilityDiagramPanel(this);
         initUIComponents();
         initUseCases();
     }
@@ -56,6 +52,8 @@ public class TraceabilityPanel extends AbstractTraceabilityPanel {
         eventBus.subscribe(new DisplayElementSelectorUseCase(parentComponent, eventBus, astah));
         eventBus.subscribe(new DisplayElementNameUseCase(modelElementTextField));
         eventBus.subscribe(new UpdateDiagramUseCase(diagramPanel));
+        eventBus.subscribe(new DisplayExceptionUseCase());
+        eventBus.subscribe(new ShowElementInStructureTreeUseCase(eventBus, astah));
     }
 
     // Only for testing
@@ -63,4 +61,8 @@ public class TraceabilityPanel extends AbstractTraceabilityPanel {
         this.diagramPanel.setModel(model);
     }
 
+    @Override
+    public void onElementSelectInTreeRequested(String id) {
+        eventBus.publish(new ShowInStructureTreeRequestedEvent(id));
+    }
 }

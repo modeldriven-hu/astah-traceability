@@ -13,12 +13,14 @@ import java.awt.geom.Point2D;
 
 public class TraceabilityDiagramPanel extends JPanel {
 
+    private final TraceabilityDiagramActionListener listener;
     private final JPopupMenu popupMenu;
 
     private TraceabilityModel model;
 
-    public TraceabilityDiagramPanel() {
+    public TraceabilityDiagramPanel(TraceabilityDiagramActionListener listener) {
         super();
+        this.listener = listener;
         this.popupMenu = createMenu();
         setBackground(Color.WHITE);
         addMouseListener(new MouseAdapter() {
@@ -53,8 +55,7 @@ public class TraceabilityDiagramPanel extends JPanel {
         Identifiable element = this.model.layout().selection().selectedElement();
 
         if (element != null) {
-            System.out.println("Selected element: " + element.id().value());
-            // TODO call method
+            listener.onElementSelectInTreeRequested(element.id().value());
         }
     }
 

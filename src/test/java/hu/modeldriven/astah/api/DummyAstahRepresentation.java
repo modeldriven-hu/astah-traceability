@@ -1,6 +1,8 @@
 package hu.modeldriven.astah.api;
 
+import com.change_vision.jude.api.inf.model.INamedElement;
 import com.change_vision.jude.api.inf.model.IPackage;
+import hu.modeldriven.astah.core.AstahException;
 import hu.modeldriven.astah.core.AstahRepresentation;
 
 public class DummyAstahRepresentation implements AstahRepresentation {
@@ -17,8 +19,10 @@ public class DummyAstahRepresentation implements AstahRepresentation {
         DummyNamedElement element5 = new DummyNamedElement("Element5");
 
         element1.addClientDependency(new DummyDependency("element1->element2", element1, element2));
-        element2.addClientDependency(new DummyDependency("element2->element3", element2, element3));
-        element4.addClientDependency(new DummyDependency("element4->element2", element4, element2));
+
+        element3.addClientDependency(new DummyDependency("element3->element4", element3, element4));
+        element4.addClientDependency(new DummyDependency("element4->element5", element4, element5));
+        element5.addClientDependency(new DummyDependency("element5->element3", element5, element3));
 
         rootPackage.addElement(element1);
         rootPackage.addElement(element2);
@@ -35,6 +39,12 @@ public class DummyAstahRepresentation implements AstahRepresentation {
         subChildPackage.addElement(element5);
 
         return rootPackage;
+    }
+
+    @Override
+    public void selectModelElement(String id) throws AstahException {
+        System.out.println("Selecting model element id=" + id);
+        throw new AstahException(new UnsupportedOperationException("Selecting model element"));
     }
 
 }

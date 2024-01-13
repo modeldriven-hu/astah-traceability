@@ -64,12 +64,12 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
     private ElkNode createElkGraph(Node rootNode) {
         ElkNode graph = ElkGraphUtil.createGraph();
 
-        traverseTree(rootNode, graph, new HashSet<>());
+        traverseTree(rootNode, graph, new HashSet<>(), new HashSet<>());
 
         return graph;
     }
 
-    private ElkNode traverseTree(Node modelNode, ElkNode graph, Set<ElkNode> elkNodes) {
+    private ElkNode traverseTree(Node modelNode, ElkNode graph, Set<ElkNode> elkNodes, Set<Connection> visitedEdges) {
 
         ElkNode currentElkNode = elkNodes.stream()
                 .filter(elkNode -> modelNode.id().value().equals(elkNode.getIdentifier()))
@@ -82,8 +82,12 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
         }
 
         for (Connection connection : modelNode.connections()) {
-            ElkNode targetElkNode = traverseTree(connection.target(), graph, elkNodes);
-            createEdge(connection, currentElkNode, targetElkNode);
+
+            if (!visitedEdges.contains(connection)) {
+                visitedEdges.add(connection);
+                ElkNode targetElkNode = traverseTree(connection.target(), graph, elkNodes, visitedEdges);
+                createEdge(connection, currentElkNode, targetElkNode);
+            }
         }
 
         return currentElkNode;
