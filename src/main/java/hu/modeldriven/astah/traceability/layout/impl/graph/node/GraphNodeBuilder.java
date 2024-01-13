@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.traceability.layout.impl.graph;
+package hu.modeldriven.astah.traceability.layout.impl.graph.node;
 
 import com.change_vision.jude.api.inf.model.INamedElement;
 import hu.modeldriven.astah.traceability.layout.impl.AstahNode;

@@ -18,34 +18,34 @@ public class AstahTheme {
         return convertIconToImage(UIManager.getIcon("FileView.fileIcon"));
     }
 
-    public String getNodeName(AstahNode node){
+    public String getNodeName(AstahNode node) {
         return node.name();
     }
 
     public String getConnectionName(AstahConnection connection) {
         INamedElement namedElement = connection.namedElement();
 
-        if (namedElement instanceof IDependency){
+        if (namedElement instanceof IDependency) {
             return "Dependency";
         }
 
-        if (namedElement instanceof IAssociation){
+        if (namedElement instanceof IAssociation) {
             return "Association";
         }
 
-        if (namedElement instanceof IGeneralization){
+        if (namedElement instanceof IGeneralization) {
             return "Generalization";
         }
 
-        if (namedElement instanceof IAssociationClass){
+        if (namedElement instanceof IAssociationClass) {
             return "AssociationClass";
         }
 
-        if (namedElement instanceof IRealization){
+        if (namedElement instanceof IRealization) {
             return "Realization";
         }
 
-        if (namedElement instanceof IUsage){
+        if (namedElement instanceof IUsage) {
             return "Usage";
         }
 

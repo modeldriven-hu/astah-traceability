@@ -47,8 +47,8 @@ public class AstahConnectionRenderer implements ConnectionRenderer {
 
         Point2D labelPosition = path.labelPosition();
 
-        int posX = (int)labelPosition.getX();
-        int posY = (int)labelPosition.getY();
+        int posX = (int) labelPosition.getX();
+        int posY = (int) labelPosition.getY();
 
         // Because labels are not drawn by swing to the top left coordinate, this
         // has to be fixed with ascent calculation
@@ -59,7 +59,7 @@ public class AstahConnectionRenderer implements ConnectionRenderer {
 
         g.setColor(labelColor);
         g.drawString(name, posX + image.getWidth(null) + ICON_LABEL_PADDING, posY);
-}
+    }
 
     private List<Point2D> lastTwoPoints(List<Point2D> points) {
 

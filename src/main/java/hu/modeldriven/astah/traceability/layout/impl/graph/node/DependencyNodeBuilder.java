@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.traceability.layout.impl.graph;
+package hu.modeldriven.astah.traceability.layout.impl.graph.node;
 
 import com.change_vision.jude.api.inf.model.IDependency;
 import com.change_vision.jude.api.inf.model.INamedElement;
@@ -19,12 +19,12 @@ public class DependencyNodeBuilder extends AbstractGraphNodeBuilder<IDependency>
     }
 
     @Override
-    protected INamedElement getSupplierForNode(IDependency relationship) {
+    protected INamedElement getSupplier(IDependency relationship) {
         return relationship.getSupplier();
     }
 
     @Override
-    protected INamedElement getClientForNode(IDependency relationship) {
+    protected INamedElement getClient(IDependency relationship) {
         return relationship.getClient();
     }
 }

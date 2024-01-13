@@ -1,8 +1,7 @@
-package hu.modeldriven.astah.traceability.layout.impl.graph;
+package hu.modeldriven.astah.traceability.layout.impl.graph.connection;
 
 import com.change_vision.jude.api.inf.model.IDependency;
 import com.change_vision.jude.api.inf.model.INamedElement;
-import hu.modeldriven.astah.traceability.layout.Node;
 import hu.modeldriven.astah.traceability.layout.impl.AstahNode;
 
 import java.util.Arrays;
@@ -11,7 +10,7 @@ import java.util.Map;
 
 public class DependencyConnectionBuilder extends AbstractGraphConnectionBuilder<IDependency> {
 
-    public DependencyConnectionBuilder(Map<String, AstahNode> nodes){
+    public DependencyConnectionBuilder(Map<String, AstahNode> nodes) {
         super(nodes);
     }
 
@@ -26,23 +25,23 @@ public class DependencyConnectionBuilder extends AbstractGraphConnectionBuilder<
     }
 
     @Override
-    protected Node getIncomingClientForConnection(IDependency relation) {
-        return nodes.get(relation.getClient().getId());
+    protected INamedElement getIncomingClient(IDependency relation) {
+        return relation.getClient();
     }
 
     @Override
-    protected Node getIncomingSupplierForConnection(IDependency relation) {
-        return nodes.get(relation.getSupplier().getId());
+    protected INamedElement getIncomingSupplier(IDependency relation) {
+        return relation.getSupplier();
     }
 
     @Override
-    protected Node getOutgoingClientForConnection(IDependency relation) {
-        return nodes.get(relation.getClient().getId());
+    protected INamedElement getOutgoingClient(IDependency relation) {
+        return relation.getClient();
     }
 
     @Override
-    protected Node getOutgoingSupplierForConnection(IDependency relation) {
-        return nodes.get(relation.getSupplier().getId());
+    protected INamedElement getOutgoingSupplier(IDependency relation) {
+        return relation.getSupplier();
     }
 
 }

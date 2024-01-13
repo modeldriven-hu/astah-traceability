@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.traceability.layout.impl.graph;
+package hu.modeldriven.astah.traceability.layout.impl.graph.connection;
 
 import com.change_vision.jude.api.inf.model.INamedElement;
 import hu.modeldriven.astah.traceability.layout.Node;
@@ -13,20 +13,20 @@ public abstract class AbstractGraphConnectionBuilder<T extends INamedElement> im
 
     protected final Map<String, AstahNode> nodes;
 
-    public AbstractGraphConnectionBuilder(Map<String, AstahNode> nodes){
+    public AbstractGraphConnectionBuilder(Map<String, AstahNode> nodes) {
         this.nodes = nodes;
     }
 
 
     @Override
-    public void build(AstahNode node, Map<String, AstahConnection> visitedConnections, AstahTheme theme){
+    public void build(AstahNode node, Map<String, AstahConnection> visitedConnections, AstahTheme theme) {
 
         INamedElement namedElement = node.namedElement();
 
         for (T relationship : getOutgoingRelationships(namedElement)) {
             if (!visitedConnections.containsKey(relationship.getId())) {
-                Node clientNode = getOutgoingClientForConnection(relationship);
-                Node supplierNode = getOutgoingSupplierForConnection(relationship);
+                Node clientNode = nodes.get(getOutgoingClient(relationship).getId());
+                Node supplierNode = nodes.get(getOutgoingSupplier(relationship).getId());
                 AstahConnection connection = new AstahConnection(relationship, clientNode, supplierNode, theme);
                 visitedConnections.put(relationship.getId(), connection);
             }
@@ -34,8 +34,8 @@ public abstract class AbstractGraphConnectionBuilder<T extends INamedElement> im
 
         for (T relationship : getIncomingRelationships(namedElement)) {
             if (!visitedConnections.containsKey(relationship.getId())) {
-                Node clientNode = getIncomingClientForConnection(relationship);
-                Node supplierNode = getIncomingSupplierForConnection(relationship);
+                Node clientNode = nodes.get(getIncomingClient(relationship).getId());
+                Node supplierNode = nodes.get(getIncomingSupplier(relationship).getId());
                 AstahConnection connection = new AstahConnection(relationship, clientNode, supplierNode, theme);
                 visitedConnections.put(relationship.getId(), connection);
             }
@@ -47,12 +47,12 @@ public abstract class AbstractGraphConnectionBuilder<T extends INamedElement> im
 
     protected abstract List<T> getOutgoingRelationships(INamedElement element);
 
-    protected abstract Node getIncomingClientForConnection(T relation);
+    protected abstract INamedElement getIncomingClient(T relation);
 
-    protected abstract Node getIncomingSupplierForConnection(T relation);
+    protected abstract INamedElement getIncomingSupplier(T relation);
 
-    protected abstract Node getOutgoingClientForConnection(T relation);
+    protected abstract INamedElement getOutgoingClient(T relation);
 
-    protected abstract Node getOutgoingSupplierForConnection(T relation);
+    protected abstract INamedElement getOutgoingSupplier(T relation);
 
 }

@@ -14,14 +14,12 @@ import org.eclipse.elk.graph.util.ElkGraphUtil;
 
 import java.awt.Dimension;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 public class ElkLayoutGraphAlgorithm implements LayoutAlgorithm {
 
     @Override
-    public Layout layout(Graph graph){
+    public Layout layout(Graph graph) {
         ElkNode elkGraph = createElkGraph(graph);
         ElkNode newNode = layout(elkGraph);
         return new ElkGraphLayout(newNode, graph);
@@ -57,11 +55,11 @@ public class ElkLayoutGraphAlgorithm implements LayoutAlgorithm {
 
         Map<Node, ElkNode> elkNodes = new HashMap<>();
 
-        for (Node node: graph.nodes()){
+        for (Node node : graph.nodes()) {
             elkNodes.put(node, createElkNode(node, elkGraph));
         }
 
-        for (Connection connection: graph.connections()){
+        for (Connection connection : graph.connections()) {
             ElkNode sourceNode = elkNodes.get(connection.source());
             ElkNode targetNode = elkNodes.get(connection.target());
             createEdge(connection, sourceNode, targetNode);
