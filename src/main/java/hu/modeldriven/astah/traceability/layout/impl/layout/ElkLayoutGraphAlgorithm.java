@@ -13,20 +13,22 @@ import org.eclipse.elk.graph.ElkNode;
 import org.eclipse.elk.graph.util.ElkGraphUtil;
 
 import java.awt.Dimension;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
-public class ElkLayoutAlgorithm implements LayoutAlgorithm {
+public class ElkLayoutGraphAlgorithm implements LayoutAlgorithm {
 
     @Override
     public Layout layout(Node rootNode) {
-        ElkNode graph = createElkGraph(rootNode);
-        ElkNode newNode = layout(graph);
-        return new ElkLayout(newNode, rootNode);
+        return null;
     }
 
     @Override
-    public Layout layout(Graph graph) {
+    public Layout layout(Graph graph){
+        ElkNode elkGraph = createElkGraph(graph);
+        ElkNode newNode = layout(elkGraph);
         return null;
     }
 
@@ -50,36 +52,26 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
         return graph;
     }
 
-    private ElkNode createElkGraph(Node rootNode) {
-        ElkNode graph = ElkGraphUtil.createGraph();
-
-        traverseTree(rootNode, graph, new HashSet<>(), new HashSet<>());
-
-        return graph;
+    private ElkNode createElkGraph(Graph graph) {
+        ElkNode elkGraph = ElkGraphUtil.createGraph();
+        buildElkGraph(graph, elkGraph);
+        return elkGraph;
     }
 
-    private ElkNode traverseTree(Node modelNode, ElkNode graph, Set<ElkNode> elkNodes, Set<Connection> visitedEdges) {
+    private void buildElkGraph(Graph graph, ElkNode elkGraph) {
 
-        ElkNode currentElkNode = elkNodes.stream()
-                .filter(elkNode -> modelNode.id().value().equals(elkNode.getIdentifier()))
-                .findFirst()
-                .orElse(null);
+        Map<Node, ElkNode> elkNodes = new HashMap<>();
 
-        if (currentElkNode == null) {
-            currentElkNode = createElkNode(modelNode, graph);
-            elkNodes.add(currentElkNode);
+        for (Node node: graph.nodes()){
+            elkNodes.put(node, createElkNode(node, elkGraph));
         }
 
-        for (Connection connection : modelNode.connections()) {
-
-            if (!visitedEdges.contains(connection)) {
-                visitedEdges.add(connection);
-                ElkNode targetElkNode = traverseTree(connection.target(), graph, elkNodes, visitedEdges);
-                createEdge(connection, currentElkNode, targetElkNode);
-            }
+        for (Connection connection: graph.connections()){
+            ElkNode sourceNode = elkNodes.get(connection.source());
+            ElkNode targetNode = elkNodes.get(connection.target());
+            createEdge(connection, sourceNode, targetNode);
         }
 
-        return currentElkNode;
     }
 
     private ElkNode createElkNode(Node modelNode, ElkNode parent) {
