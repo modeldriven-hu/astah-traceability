@@ -9,8 +9,18 @@ import java.util.List;
 public class AstahElementUsages extends AbstractAstahElementRelationships<IUsage> {
 
     @Override
+    protected List<IUsage> getIncomingRelationships(INamedElement element) {
+        return Arrays.asList(element.getSupplierUsages());
+    }
+
+    @Override
     protected List<IUsage> getOutgoingRelationships(INamedElement element) {
         return Arrays.asList(element.getClientUsages());
+    }
+
+    @Override
+    protected INamedElement getIncomingElement(IUsage relation) {
+        return relation.getClient();
     }
 
     @Override

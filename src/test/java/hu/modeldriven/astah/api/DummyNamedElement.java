@@ -16,18 +16,26 @@ public class DummyNamedElement implements INamedElement {
     private final String name;
     private final List<IDependency> clientDependencies;
 
+    private final List<IDependency> supplierDependencies;
+
     private final List<IUsage> clientUsages;
 
     public DummyNamedElement(String name) {
         this.id = "NameElement_"+CURRENT_ID++;
         this.name = name;
         this.clientDependencies = new ArrayList<>();
+        this.supplierDependencies = new ArrayList<>();
         this.clientUsages = new ArrayList<>();
     }
 
     public void addClientDependency(IDependency dependency) {
         this.clientDependencies.add(dependency);
     }
+
+    public void addSupplierDependency(IDependency dependency) {
+        this.supplierDependencies.add(dependency);
+    }
+
 
     public void addClientUsage(IUsage usage) {
         this.clientUsages.add(usage);
@@ -55,7 +63,7 @@ public class DummyNamedElement implements INamedElement {
 
     @Override
     public IDependency[] getSupplierDependencies() {
-        return new IDependency[0];
+        return supplierDependencies.toArray(new IDependency[0]);
     }
 
     @Override

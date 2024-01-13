@@ -59,9 +59,9 @@ public class AstahNode implements Node {
 
         List<Connection> results = new ArrayList<>();
 
-        results.addAll(new AstahElementDependencies().getRelationships(element, this, repository, theme));
-        results.addAll(new AstahElementUsages().getRelationships(element, this, repository, theme));
-        results.addAll(new AstahElementRealizations().getRelationships(element, this, repository, theme));
+        results.addAll(new AstahElementDependencies().buildRelationships(element, this, repository, theme));
+        results.addAll(new AstahElementUsages().buildRelationships(element, this, repository, theme));
+        results.addAll(new AstahElementRealizations().buildRelationships(element, this, repository, theme));
 
         return results;
     }

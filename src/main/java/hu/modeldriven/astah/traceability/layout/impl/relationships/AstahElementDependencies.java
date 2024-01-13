@@ -9,8 +9,18 @@ import java.util.List;
 public class AstahElementDependencies extends AbstractAstahElementRelationships<IDependency> {
 
     @Override
+    protected List<IDependency> getIncomingRelationships(INamedElement element) {
+        return Arrays.asList(element.getSupplierDependencies());
+    }
+
+    @Override
     public List<IDependency> getOutgoingRelationships(INamedElement element) {
         return Arrays.asList(element.getClientDependencies());
+    }
+
+    @Override
+    protected INamedElement getIncomingElement(IDependency relation) {
+        return relation.getClient();
     }
 
     @Override
