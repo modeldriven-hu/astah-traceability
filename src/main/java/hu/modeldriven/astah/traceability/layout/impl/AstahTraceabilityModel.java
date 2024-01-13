@@ -11,13 +11,16 @@ import java.util.LinkedHashSet;
 
 public class AstahTraceabilityModel implements TraceabilityModel {
 
-    private final Node rootNode;
+    private final AstahNode rootNode;
 
     private final LayoutAlgorithm layoutAlgorithm;
 
+    private final Graph graph;
+
     public AstahTraceabilityModel(INamedElement element) {
         AstahTheme theme = new AstahTheme();
-        this.rootNode = new AstahNode(element, new LinkedHashSet<>(), theme);
+        this.rootNode = new AstahNode(element, theme);
+        this.graph = new AstahGraph(element, theme);
         this.layoutAlgorithm = new CachedLayoutAlgorithm(new ElkLayoutAlgorithm());
     }
 
