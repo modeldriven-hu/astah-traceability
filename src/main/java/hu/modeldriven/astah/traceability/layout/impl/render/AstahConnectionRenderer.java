@@ -47,20 +47,19 @@ public class AstahConnectionRenderer implements ConnectionRenderer {
 
         Point2D labelPosition = path.labelPosition();
 
-        int posX = (int)labelPosition.getY();
+        int posX = (int)labelPosition.getX();
         int posY = (int)labelPosition.getY();
 
         // Because labels are not drawn by swing to the top left coordinate, this
         // has to be fixed with ascent calculation
         FontMetrics metric = g.getFontMetrics(g.getFont());
 
-        //Image image = theme.getLabelIcon(connection);
-        //g.drawImage(image, posX, posY - metric.getAscent() - ICON_COORDINATE_FIX, null);
+        Image image = theme.getLabelIcon(connection);
+        g.drawImage(image, posX, posY - metric.getAscent() - ICON_COORDINATE_FIX, null);
 
         g.setColor(labelColor);
-        g.drawString(name, posX, posY);
-        //g.drawString(name, posX + image.getWidth(null) + ICON_LABEL_PADDING, posY);
-    }
+        g.drawString(name, posX + image.getWidth(null) + ICON_LABEL_PADDING, posY);
+}
 
     private List<Point2D> lastTwoPoints(List<Point2D> points) {
 
