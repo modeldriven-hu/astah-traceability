@@ -14,11 +14,6 @@ public class Arrow {
         this.toPt = points.get(1);
     }
 
-    public Arrow(Point2D fromPt, Point2D toPt) {
-        this.fromPt = fromPt;
-        this.toPt = toPt;
-    }
-
     public void draw(Graphics2D g) {
         drawArrow(g, fromPt, toPt, 11);
     }
