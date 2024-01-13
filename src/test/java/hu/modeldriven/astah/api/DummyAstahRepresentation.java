@@ -19,11 +19,10 @@ public class DummyAstahRepresentation implements AstahRepresentation {
         DummyNamedElement element5 = new DummyNamedElement("Element5");
 
         element1.addClientDependency(new DummyDependency("element1->element2", element1, element2));
-        element2.addSupplierDependency(new DummyDependency("element2->element1", element1, element2));
 
         element3.addClientDependency(new DummyDependency("element3->element4", element3, element4));
         element4.addClientDependency(new DummyDependency("element4->element5", element4, element5));
-        element5.addClientUsage(new DummyUsage("element5->element3", element5, element3));
+        element5.addClientDependency(new DummyDependency("element5->element3", element5, element3));
 
         rootPackage.addElement(element1);
         rootPackage.addElement(element2);

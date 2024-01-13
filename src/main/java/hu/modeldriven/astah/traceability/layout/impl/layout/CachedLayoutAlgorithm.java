@@ -10,7 +10,6 @@ public class CachedLayoutAlgorithm implements LayoutAlgorithm {
     private final LayoutAlgorithm algorithm;
 
     private Layout currentLayout;
-    private Node currentNode;
 
     private Graph currentGraph;
 
@@ -18,16 +17,6 @@ public class CachedLayoutAlgorithm implements LayoutAlgorithm {
         this.algorithm = algorithm;
     }
 
-    @Override
-    public Layout layout(Node rootNode) {
-
-        if (currentNode != rootNode || currentLayout == null) {
-            currentNode = rootNode;
-            currentLayout = algorithm.layout(rootNode);
-        }
-
-        return currentLayout;
-    }
 
     @Override
     public Layout layout(Graph graph){

@@ -15,25 +15,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ElkLayout implements Layout {
+public class ElkGraphLayout implements Layout {
 
     private final Map<Node, Rectangle2D> nodeRectangles = new HashMap<>();
     private final Map<Connection, Path> connectionPaths = new HashMap<>();
 
     private final Rectangle2D bounds = new Rectangle2D.Double();
 
-    public ElkLayout(ElkNode rootElkNode, Node rootNode) {
-        TreeCache treeCache = new TreeCache(rootNode);
-        calculateFromRootNode(rootElkNode, treeCache);
+    public ElkGraphLayout(ElkNode rootElkNode, Graph graph) {
+        calculateFromRootNode(rootElkNode, graph);
     }
 
-    private void calculateFromRootNode(ElkNode rootNode, TreeCache treeCache) {
+    private void calculateFromRootNode(ElkNode rootNode, Graph graph) {
         for (ElkNode child : rootNode.getChildren()) {
-            calculateNodesAndPaths(child, treeCache);
+            calculateNodesAndPaths(child, graph);
         }
     }
 
-    private void calculateNodesAndPaths(ElkNode elkNode, TreeCache treeCache) {
+    private void calculateNodesAndPaths(ElkNode elkNode, Graph graph) {
 
         String elkNodeId = elkNode.getIdentifier();
 
@@ -45,7 +44,7 @@ public class ElkLayout implements Layout {
         }
 
         // Find the corresponding node based on elk identifier
-        Node node = treeCache.findNodeById(elkNodeId);
+        Node node = graph.findNodeById(elkNodeId);
 
         // Calculate the rectangle for the current elk node
         Rectangle2D rectangle = calculateRectangle(elkNode);
@@ -63,14 +62,14 @@ public class ElkLayout implements Layout {
             Path path = calculatePath(edge);
 
             // Find the connection associated with the edge
-            Connection connection = treeCache.findConnectionById(edge.getIdentifier());
+            Connection connection = graph.findConnectionById(edge.getIdentifier());
 
             // Store the path in the map and add to bounds
             connectionPaths.put(connection, path);
             bounds.add(path.bounds());
 
             // Recursively calculate nodes and paths for the target node
-            calculateNodesAndPaths((ElkNode) edge.getTargets().get(0), treeCache);
+            calculateNodesAndPaths((ElkNode) edge.getTargets().get(0), graph);
         }
     }
 

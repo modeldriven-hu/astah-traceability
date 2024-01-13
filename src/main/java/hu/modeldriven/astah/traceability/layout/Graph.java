@@ -5,10 +5,12 @@ import java.util.Set;
 
 public interface Graph {
 
-    Node initalNode();
-
     Collection<? extends Node> nodes();
 
     Collection<? extends Connection> connections();
+
+    Node findNodeById(String id);
+
+    Connection findConnectionById(String id);
 
 }

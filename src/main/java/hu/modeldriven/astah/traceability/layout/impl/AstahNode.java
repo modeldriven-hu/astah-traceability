@@ -6,16 +6,11 @@ import hu.modeldriven.astah.traceability.layout.ElementId;
 import hu.modeldriven.astah.traceability.layout.Node;
 import hu.modeldriven.astah.traceability.layout.NodeRenderer;
 import hu.modeldriven.astah.traceability.layout.impl.core.TextElementId;
-import hu.modeldriven.astah.traceability.layout.impl.relationships.AstahElementDependencies;
-import hu.modeldriven.astah.traceability.layout.impl.relationships.AstahElementRealizations;
-import hu.modeldriven.astah.traceability.layout.impl.relationships.AstahElementUsages;
 import hu.modeldriven.astah.traceability.layout.impl.render.AstahNodeRenderer;
 import hu.modeldriven.astah.traceability.layout.impl.render.AstahTheme;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 public class AstahNode implements Node {
 

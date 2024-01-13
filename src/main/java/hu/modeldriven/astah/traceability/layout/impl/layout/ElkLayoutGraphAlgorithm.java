@@ -21,15 +21,10 @@ import java.util.Set;
 public class ElkLayoutGraphAlgorithm implements LayoutAlgorithm {
 
     @Override
-    public Layout layout(Node rootNode) {
-        return null;
-    }
-
-    @Override
     public Layout layout(Graph graph){
         ElkNode elkGraph = createElkGraph(graph);
         ElkNode newNode = layout(elkGraph);
-        return null;
+        return new ElkGraphLayout(newNode, graph);
     }
 
     private ElkNode layout(ElkNode graph) {

@@ -84,11 +84,6 @@ public class AstahGraph implements Graph {
     }
 
     @Override
-    public Node initalNode() {
-        return null;
-    }
-
-    @Override
     public Collection<? extends Node> nodes() {
         return nodes.values();
     }
@@ -96,5 +91,15 @@ public class AstahGraph implements Graph {
     @Override
     public Collection<? extends Connection> connections() {
         return connections.values();
+    }
+
+    @Override
+    public Node findNodeById(String id) {
+        return nodes.get(id);
+    }
+
+    @Override
+    public Connection findConnectionById(String id) {
+        return connections.get(id);
     }
 }
