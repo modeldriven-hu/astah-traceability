@@ -19,7 +19,7 @@ public class AstahNodeRenderer implements NodeRenderer {
 
     public AstahNodeRenderer(AstahNode node, AstahTheme theme) {
         this.node = node;
-        this.label = node.name();
+        this.label = theme.getNodeName(node);
         this.labelSize = new TextLabel(label).size();
         this.theme = theme;
     }
