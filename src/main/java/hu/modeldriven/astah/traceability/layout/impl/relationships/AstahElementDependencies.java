@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.traceability.layout.impl.dependencies;
+package hu.modeldriven.astah.traceability.layout.impl.relationships;
 
 import com.change_vision.jude.api.inf.model.IDependency;
 import com.change_vision.jude.api.inf.model.INamedElement;
@@ -9,12 +9,12 @@ import java.util.List;
 public class AstahElementDependencies extends AbstractAstahElementRelationships<IDependency> {
 
     @Override
-    public List<IDependency> getElementRelations(INamedElement element) {
+    public List<IDependency> getOutgoingRelationships(INamedElement element) {
         return Arrays.asList(element.getClientDependencies());
     }
 
     @Override
-    public INamedElement getTargetElement(IDependency relation) {
+    public INamedElement getOutgoingElement(IDependency relation) {
         return relation.getSupplier();
     }
 }

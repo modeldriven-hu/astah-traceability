@@ -1,14 +1,14 @@
 package hu.modeldriven.astah.traceability.layout.impl;
 
-import com.change_vision.jude.api.inf.model.IDependency;
 import com.change_vision.jude.api.inf.model.INamedElement;
-import com.change_vision.jude.api.inf.model.IUsage;
 import hu.modeldriven.astah.traceability.layout.Connection;
 import hu.modeldriven.astah.traceability.layout.ElementId;
 import hu.modeldriven.astah.traceability.layout.Node;
 import hu.modeldriven.astah.traceability.layout.NodeRenderer;
 import hu.modeldriven.astah.traceability.layout.impl.core.TextElementId;
-import hu.modeldriven.astah.traceability.layout.impl.dependencies.AstahElementDependencies;
+import hu.modeldriven.astah.traceability.layout.impl.relationships.AstahElementDependencies;
+import hu.modeldriven.astah.traceability.layout.impl.relationships.AstahElementRealizations;
+import hu.modeldriven.astah.traceability.layout.impl.relationships.AstahElementUsages;
 import hu.modeldriven.astah.traceability.layout.impl.render.AstahNodeRenderer;
 import hu.modeldriven.astah.traceability.layout.impl.render.AstahTheme;
 
@@ -60,6 +60,8 @@ public class AstahNode implements Node {
         List<Connection> results = new ArrayList<>();
 
         results.addAll(new AstahElementDependencies().getRelationships(element, this, repository, theme));
+        results.addAll(new AstahElementUsages().getRelationships(element, this, repository, theme));
+        results.addAll(new AstahElementRealizations().getRelationships(element, this, repository, theme));
 
         return results;
     }

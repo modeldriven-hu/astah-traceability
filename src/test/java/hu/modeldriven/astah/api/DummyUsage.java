@@ -5,32 +5,34 @@ import com.change_vision.jude.api.inf.exception.InvalidUsingException;
 import com.change_vision.jude.api.inf.model.*;
 import com.change_vision.jude.api.inf.presentation.IPresentation;
 
-import java.util.ArrayList;
-import java.util.List;
+public class DummyUsage implements IUsage {
 
-public class DummyNamedElement implements INamedElement {
 
     private static int CURRENT_ID = 0;
 
-    private final String id;
     private final String name;
-    private final List<IDependency> clientDependencies;
 
-    private final List<IUsage> clientUsages;
+    private final INamedElement client;
 
-    public DummyNamedElement(String name) {
-        this.id = "NameElement_"+CURRENT_ID++;
+    private final INamedElement supplier;
+
+    private final String id;
+
+    public DummyUsage(String name, INamedElement client, INamedElement supplier){
         this.name = name;
-        this.clientDependencies = new ArrayList<>();
-        this.clientUsages = new ArrayList<>();
+        this.client = client;
+        this.supplier = supplier;
+        this.id = "Usage_" + CURRENT_ID++;
     }
 
-    public void addClientDependency(IDependency dependency) {
-        this.clientDependencies.add(dependency);
+    @Override
+    public INamedElement getSupplier() {
+        return supplier;
     }
 
-    public void addClientUsage(IUsage usage) {
-        this.clientUsages.add(usage);
+    @Override
+    public INamedElement getClient() {
+        return client;
     }
 
     @Override
@@ -60,7 +62,7 @@ public class DummyNamedElement implements INamedElement {
 
     @Override
     public IDependency[] getClientDependencies() {
-        return clientDependencies.toArray(new IDependency[0]);
+        return new IDependency[0];
     }
 
     @Override
@@ -80,7 +82,7 @@ public class DummyNamedElement implements INamedElement {
 
     @Override
     public IUsage[] getClientUsages() {
-        return clientUsages.toArray(new IUsage[0]);
+        return new IUsage[0];
     }
 
     @Override
@@ -247,4 +249,5 @@ public class DummyNamedElement implements INamedElement {
     public void deleteHyperlink(IHyperlink iHyperlink) throws InvalidEditingException {
 
     }
+
 }
