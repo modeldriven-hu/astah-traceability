@@ -2,11 +2,13 @@ package hu.modeldriven.astah.traceability.layout.impl;
 
 import com.change_vision.jude.api.inf.model.IDependency;
 import com.change_vision.jude.api.inf.model.INamedElement;
+import com.change_vision.jude.api.inf.model.IUsage;
 import hu.modeldriven.astah.traceability.layout.Connection;
 import hu.modeldriven.astah.traceability.layout.ElementId;
 import hu.modeldriven.astah.traceability.layout.Node;
 import hu.modeldriven.astah.traceability.layout.NodeRenderer;
 import hu.modeldriven.astah.traceability.layout.impl.core.TextElementId;
+import hu.modeldriven.astah.traceability.layout.impl.dependencies.AstahElementDependencies;
 import hu.modeldriven.astah.traceability.layout.impl.render.AstahNodeRenderer;
 import hu.modeldriven.astah.traceability.layout.impl.render.AstahTheme;
 
@@ -30,7 +32,7 @@ public class AstahNode implements Node {
         this.repository = repository;
         this.theme = theme;
         this.repository.add(this);
-        this.connections = buildConnections();
+        this.connections = buildConnections(element, repository, theme);
     }
 
     public INamedElement namedElement() {
@@ -53,32 +55,15 @@ public class AstahNode implements Node {
         return connections;
     }
 
-    private List<Connection> buildConnections() {
+    private List<Connection> buildConnections(INamedElement element, Set<Node> repository, AstahTheme theme) {
 
         List<Connection> results = new ArrayList<>();
 
-        for (IDependency dependency : element.getClientDependencies()) {
-
-            INamedElement targetElement = dependency.getSupplier();
-
-            Node targetNode = null;
-
-            for (Node node : repository) {
-                if (node.id().value().equals(targetElement.getId())) {
-                    targetNode = node;
-                    break;
-                }
-            }
-
-            if (targetNode == null) {
-                targetNode = new AstahNode(targetElement, repository, theme);
-            }
-
-            results.add(new AstahConnection(dependency, this, targetNode, theme));
-        }
+        results.addAll(new AstahElementDependencies().getRelationships(element, this, repository, theme));
 
         return results;
     }
+
 
     @Override
     public NodeRenderer renderer() {
