@@ -6,9 +6,10 @@ Display a traceability diagram for Astah SysML
 
 - [X] Draw arrow direction
 - [X] Selection support / highlight element
-- [ ] Pop-up menu support
-- [ ] Select in model tree 
+- [X] Pop-up menu support
+- [X] Select in model tree 
 - [X] Better colors for types
+- [ ] Render icon for label
 - [ ] Display association type label
 - [ ] Display all association kinds
 - [ ] Display associated diagrams for elements

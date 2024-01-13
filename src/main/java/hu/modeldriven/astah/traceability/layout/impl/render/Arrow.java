@@ -2,11 +2,17 @@ package hu.modeldriven.astah.traceability.layout.impl.render;
 
 import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
+import java.util.List;
 
 public class Arrow {
 
     private final Point2D fromPt;
     private final Point2D toPt;
+
+    public Arrow(List<Point2D> points) {
+        this.fromPt = points.get(0);
+        this.toPt = points.get(1);
+    }
 
     public Arrow(Point2D fromPt, Point2D toPt) {
         this.fromPt = fromPt;

@@ -4,12 +4,15 @@ import hu.modeldriven.astah.traceability.layout.ConnectionRenderer;
 import hu.modeldriven.astah.traceability.layout.Path;
 import hu.modeldriven.astah.traceability.layout.impl.AstahConnection;
 
-import java.awt.Dimension;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.List;
 
 public class AstahConnectionRenderer implements ConnectionRenderer {
+
+    private final static int ICON_LABEL_PADDING = 5;
+
+    private final static int ICON_COORDINATE_FIX = 1;
 
     private final AstahConnection connection;
     private final String name;
@@ -18,33 +21,45 @@ public class AstahConnectionRenderer implements ConnectionRenderer {
 
     public AstahConnectionRenderer(AstahConnection connection, AstahTheme theme) {
         this.connection = connection;
-        this.name = connection.name();
+        this.name = theme.getConnectionName(connection);
         this.theme = theme;
     }
 
     @Override
     public void render(Graphics2D g, Path path) {
 
+        Color edgeColor;
+        Color labelColor;
+
         if (connection.isSelected()) {
-            g.setColor(theme.getSelectedConnectionEdgeColor());
+            edgeColor = theme.getSelectedConnectionEdgeColor();
+            labelColor = theme.getSelectedConnectionLabelColor();
         } else {
-            g.setColor(theme.getConnectionEdgeColor());
+            edgeColor = theme.getConnectionEdgeColor();
+            labelColor = theme.getConnectionLabelColor();
         }
 
+        g.setColor(edgeColor);
         drawPolyLine(g, path.coordinates());
 
-        List<Point2D> lastTwoPoints = lastTwoPoints(path.coordinates());
-        Arrow arrow = new Arrow(lastTwoPoints.get(0), lastTwoPoints.get(1));
+        Arrow arrow = new Arrow(lastTwoPoints(path.coordinates()));
         arrow.draw(g);
 
-        if (connection.isSelected()) {
-            g.setColor(theme.getSelectedConnectionLabelColor());
-        } else {
-            g.setColor(theme.getConnectionLabelColor());
-        }
-
         Point2D labelPosition = path.labelPosition();
-        g.drawString(name, (float) labelPosition.getX(), (float) labelPosition.getY());
+
+        int posX = (int)labelPosition.getY();
+        int posY = (int)labelPosition.getY();
+
+        // Because labels are not drawn by swing to the top left coordinate, this
+        // has to be fixed with ascent calculation
+        FontMetrics metric = g.getFontMetrics(g.getFont());
+
+        //Image image = theme.getLabelIcon(connection);
+        //g.drawImage(image, posX, posY - metric.getAscent() - ICON_COORDINATE_FIX, null);
+
+        g.setColor(labelColor);
+        g.drawString(name, posX, posY);
+        //g.drawString(name, posX + image.getWidth(null) + ICON_LABEL_PADDING, posY);
     }
 
     private List<Point2D> lastTwoPoints(List<Point2D> points) {

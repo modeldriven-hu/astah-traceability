@@ -1,5 +1,8 @@
 package hu.modeldriven.astah.traceability.layout.impl.render;
 
+import com.change_vision.jude.api.inf.model.IDependency;
+import com.change_vision.jude.api.inf.model.INamedElement;
+import hu.modeldriven.astah.traceability.layout.impl.AstahConnection;
 import hu.modeldriven.astah.traceability.layout.impl.AstahNode;
 
 import javax.swing.*;
@@ -10,6 +13,20 @@ public class AstahTheme {
 
     public Image getNodeIcon(AstahNode node) {
         return convertIconToImage(UIManager.getIcon("FileView.fileIcon"));
+    }
+
+    public Image getLabelIcon(AstahConnection connection) {
+        return convertIconToImage(UIManager.getIcon("FileView.fileIcon"));
+    }
+
+    public String getConnectionName(AstahConnection connection) {
+        INamedElement namedElement = connection.namedElement();
+
+        if (namedElement instanceof IDependency){
+            return "Dependency";
+        }
+
+        return namedElement.getClass().toGenericString();
     }
 
     private Image convertIconToImage(Icon icon) {
