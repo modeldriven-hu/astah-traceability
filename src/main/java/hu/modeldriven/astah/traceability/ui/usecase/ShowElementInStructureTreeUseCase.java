@@ -25,7 +25,7 @@ public class ShowElementInStructureTreeUseCase implements EventHandler<ShowInStr
     public void handleEvent(ShowInStructureTreeRequestedEvent event) {
         try {
             astah.selectModelElement(event.id());
-        } catch (AstahException e){
+        } catch (AstahException e) {
             eventBus.publish(new ExceptionOccurredEvent(e));
         }
     }

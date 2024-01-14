@@ -34,7 +34,7 @@ public class DisplayElementSelectorUseCase implements EventHandler<ModelElementS
         try {
             ModelElementSelectorDialog dialog = new ModelElementSelectorDialog(parent, astah.rootPackage(), this);
             dialog.show();
-        } catch (AstahException e){
+        } catch (AstahException e) {
             eventBus.publish(new ExceptionOccurredEvent(e));
         }
     }

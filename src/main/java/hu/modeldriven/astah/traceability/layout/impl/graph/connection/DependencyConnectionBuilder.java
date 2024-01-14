@@ -3,15 +3,16 @@ package hu.modeldriven.astah.traceability.layout.impl.graph.connection;
 import com.change_vision.jude.api.inf.model.IDependency;
 import com.change_vision.jude.api.inf.model.INamedElement;
 import hu.modeldriven.astah.traceability.layout.impl.AstahNode;
+import hu.modeldriven.astah.traceability.layout.impl.render.AstahTheme;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class DependencyConnectionBuilder extends AbstractGraphConnectionBuilder<IDependency> {
+public class DependencyConnectionBuilder extends AbstractConnectionBuilder<IDependency> {
 
-    public DependencyConnectionBuilder(Map<String, AstahNode> nodes) {
-        super(nodes);
+    public DependencyConnectionBuilder(Map<String, AstahNode> nodes, AstahTheme theme) {
+        super(nodes, theme);
     }
 
     @Override

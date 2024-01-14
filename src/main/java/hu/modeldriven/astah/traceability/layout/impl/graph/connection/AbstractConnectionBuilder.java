@@ -9,17 +9,19 @@ import hu.modeldriven.astah.traceability.layout.impl.render.AstahTheme;
 import java.util.List;
 import java.util.Map;
 
-public abstract class AbstractGraphConnectionBuilder<T extends INamedElement> implements GraphConnectionBuilder {
+public abstract class AbstractConnectionBuilder<T extends INamedElement> implements ConnectionBuilder {
 
     protected final Map<String, AstahNode> nodes;
 
-    public AbstractGraphConnectionBuilder(Map<String, AstahNode> nodes) {
+    protected final AstahTheme theme;
+
+    public AbstractConnectionBuilder(Map<String, AstahNode> nodes, AstahTheme theme) {
         this.nodes = nodes;
+        this.theme = theme;
     }
 
-
     @Override
-    public void build(AstahNode node, Map<String, AstahConnection> visitedConnections, AstahTheme theme) {
+    public void build(AstahNode node, Map<String, AstahConnection> visitedConnections) {
 
         INamedElement namedElement = node.namedElement();
 

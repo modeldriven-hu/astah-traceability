@@ -6,7 +6,7 @@ public class ShowInStructureTreeRequestedEvent implements Event {
 
     private final String id;
 
-    public ShowInStructureTreeRequestedEvent(String id){
+    public ShowInStructureTreeRequestedEvent(String id) {
         this.id = id;
     }
 

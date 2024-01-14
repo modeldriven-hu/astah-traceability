@@ -4,15 +4,12 @@ import com.change_vision.jude.api.inf.model.INamedElement;
 import hu.modeldriven.astah.traceability.layout.Connection;
 import hu.modeldriven.astah.traceability.layout.Graph;
 import hu.modeldriven.astah.traceability.layout.Node;
-import hu.modeldriven.astah.traceability.layout.impl.graph.connection.DependencyConnectionBuilder;
-import hu.modeldriven.astah.traceability.layout.impl.graph.connection.GraphConnectionBuilder;
-import hu.modeldriven.astah.traceability.layout.impl.graph.connection.UsageConnectionBuilder;
-import hu.modeldriven.astah.traceability.layout.impl.graph.node.DependencyNodeBuilder;
-import hu.modeldriven.astah.traceability.layout.impl.graph.node.GraphNodeBuilder;
-import hu.modeldriven.astah.traceability.layout.impl.graph.node.UsageNodeBuilder;
+import hu.modeldriven.astah.traceability.layout.impl.graph.connection.AstahConnectionBuilder;
+import hu.modeldriven.astah.traceability.layout.impl.graph.node.AstahNodeBuilder;
 import hu.modeldriven.astah.traceability.layout.impl.render.AstahTheme;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Map;
 
 public class AstahGraph implements Graph {
 
@@ -26,51 +23,13 @@ public class AstahGraph implements Graph {
     }
 
     private Map<String, AstahNode> buildNodes(INamedElement initialElement, AstahTheme theme) {
-
-        // FIXME because it is not recursive, it fails to work properly
-        /*
-
-            for (NodeBuilder builder : builders){
-                AstahNode node = new AstahNode(initialElement);
-
-                List<INamedElement> nextLevelElements = relationshipResolver.nextLevelElements(node/initialElement);
-
-                for (INamedElement nextLevelElement : nextLevelElements){
-                    buildNodes(nextLevelElement, theme);
-                }
-            }
-
-         */
-
-        List<GraphNodeBuilder> builders = Arrays.asList(
-                new DependencyNodeBuilder(),
-                new UsageNodeBuilder());
-
-        Map<String, AstahNode> result = new HashMap<>();
-
-        for (GraphNodeBuilder builder : builders) {
-            builder.build(initialElement, result, theme);
-        }
-
-        return result;
+        AstahNodeBuilder nodeBuilder = new AstahNodeBuilder(theme);
+        return nodeBuilder.build(initialElement);
     }
 
-
     private Map<String, AstahConnection> buildConnections(Map<String, AstahNode> nodes, AstahTheme theme) {
-
-        List<GraphConnectionBuilder> builders = Arrays.asList(
-                new DependencyConnectionBuilder(nodes),
-                new UsageConnectionBuilder(nodes));
-
-        Map<String, AstahConnection> result = new HashMap<>();
-
-        for (AstahNode node : nodes.values()) {
-            for (GraphConnectionBuilder builder : builders) {
-                builder.build(node, result, theme);
-            }
-        }
-
-        return result;
+        AstahConnectionBuilder connectionBuilder = new AstahConnectionBuilder(nodes, theme);
+        return connectionBuilder.build();
     }
 
     @Override

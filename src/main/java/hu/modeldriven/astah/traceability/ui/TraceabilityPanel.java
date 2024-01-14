@@ -2,7 +2,10 @@ package hu.modeldriven.astah.traceability.ui;
 
 import hu.modeldriven.astah.core.AstahRepresentation;
 import hu.modeldriven.astah.traceability.layout.TraceabilityModel;
-import hu.modeldriven.astah.traceability.ui.event.*;
+import hu.modeldriven.astah.traceability.ui.event.DiagramRefreshRequestedEvent;
+import hu.modeldriven.astah.traceability.ui.event.DisplayConfigurationDialogRequestedEvent;
+import hu.modeldriven.astah.traceability.ui.event.ModelElementSelectionRequestedEvent;
+import hu.modeldriven.astah.traceability.ui.event.ShowInStructureTreeRequestedEvent;
 import hu.modeldriven.astah.traceability.ui.usecase.*;
 import hu.modeldriven.core.eventbus.EventBus;
 
@@ -10,7 +13,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 
-public class TraceabilityPanel extends AbstractTraceabilityPanel implements TraceabilityDiagramActionListener{
+public class TraceabilityPanel extends AbstractTraceabilityPanel implements TraceabilityDiagramActionListener {
 
     private final Component parentComponent;
     private final transient EventBus eventBus;

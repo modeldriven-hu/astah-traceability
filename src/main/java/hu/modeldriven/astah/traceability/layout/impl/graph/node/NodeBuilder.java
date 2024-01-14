@@ -2,12 +2,12 @@ package hu.modeldriven.astah.traceability.layout.impl.graph.node;
 
 import com.change_vision.jude.api.inf.model.INamedElement;
 import hu.modeldriven.astah.traceability.layout.impl.AstahNode;
-import hu.modeldriven.astah.traceability.layout.impl.render.AstahTheme;
 
 import java.util.Map;
+import java.util.function.BiConsumer;
 
-public interface GraphNodeBuilder {
+public interface NodeBuilder {
 
-    void build(INamedElement namedElement, Map<String, AstahNode> nodes, AstahTheme theme);
+    void build(INamedElement currentElement, Map<String, AstahNode> store, BiConsumer<INamedElement, Map<String, AstahNode>> callback);
 
 }

@@ -6,25 +6,25 @@ import com.change_vision.jude.api.inf.model.INamedElement;
 import java.util.Arrays;
 import java.util.List;
 
-public class DependencyNodeBuilder extends AbstractGraphNodeBuilder<IDependency> {
+class DependencyNodeBuilder extends AbstractNodeBuilder<IDependency> {
 
     @Override
-    protected List<IDependency> getIncomingRelationships(INamedElement element) {
-        return Arrays.asList(element.getSupplierDependencies());
-    }
-
-    @Override
-    protected List<IDependency> getOutgoingRelationships(INamedElement element) {
+    public List<IDependency> getOutgoingRelationships(INamedElement element) {
         return Arrays.asList(element.getClientDependencies());
     }
 
     @Override
-    protected INamedElement getSupplier(IDependency relationship) {
+    public List<IDependency> getIncomingRelationships(INamedElement element) {
+        return Arrays.asList(element.getSupplierDependencies());
+    }
+
+    @Override
+    public INamedElement getOutgoingSupplier(IDependency relationship) {
         return relationship.getSupplier();
     }
 
     @Override
-    protected INamedElement getClient(IDependency relationship) {
+    public INamedElement getIncomingClient(IDependency relationship) {
         return relationship.getClient();
     }
 }
