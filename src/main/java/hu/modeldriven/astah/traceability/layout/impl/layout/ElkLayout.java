@@ -15,14 +15,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ElkGraphLayout implements Layout {
+public class ElkLayout implements Layout {
 
     private final Map<Node, Rectangle2D> nodeRectangles = new HashMap<>();
     private final Map<Connection, Path> connectionPaths = new HashMap<>();
 
     private final Rectangle2D bounds = new Rectangle2D.Double();
 
-    public ElkGraphLayout(ElkNode rootElkNode, Graph graph) {
+    public ElkLayout(ElkNode rootElkNode, Graph graph) {
         calculateFromRootNode(rootElkNode, graph);
     }
 

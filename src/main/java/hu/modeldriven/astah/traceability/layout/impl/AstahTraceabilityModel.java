@@ -3,7 +3,7 @@ package hu.modeldriven.astah.traceability.layout.impl;
 import com.change_vision.jude.api.inf.model.INamedElement;
 import hu.modeldriven.astah.traceability.layout.*;
 import hu.modeldriven.astah.traceability.layout.impl.layout.CachedLayoutAlgorithm;
-import hu.modeldriven.astah.traceability.layout.impl.layout.ElkLayoutGraphAlgorithm;
+import hu.modeldriven.astah.traceability.layout.impl.layout.ElkLayoutAlgorithm;
 import hu.modeldriven.astah.traceability.layout.impl.render.AstahTheme;
 import hu.modeldriven.astah.traceability.layout.impl.render.GraphDiagramRenderer;
 
@@ -16,7 +16,7 @@ public class AstahTraceabilityModel implements TraceabilityModel {
     public AstahTraceabilityModel(INamedElement element) {
         AstahTheme theme = new AstahTheme();
         this.graph = new AstahGraph(element, theme);
-        this.layoutAlgorithm = new CachedLayoutAlgorithm(new ElkLayoutGraphAlgorithm());
+        this.layoutAlgorithm = new CachedLayoutAlgorithm(new ElkLayoutAlgorithm());
     }
 
     @Override

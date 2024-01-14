@@ -16,13 +16,13 @@ import java.awt.Dimension;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ElkLayoutGraphAlgorithm implements LayoutAlgorithm {
+public class ElkLayoutAlgorithm implements LayoutAlgorithm {
 
     @Override
     public Layout layout(Graph graph) {
         ElkNode elkGraph = createElkGraph(graph);
         ElkNode newNode = layout(elkGraph);
-        return new ElkGraphLayout(newNode, graph);
+        return new ElkLayout(newNode, graph);
     }
 
     private ElkNode layout(ElkNode graph) {
