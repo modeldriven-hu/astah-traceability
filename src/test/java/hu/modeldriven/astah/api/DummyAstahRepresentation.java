@@ -24,7 +24,7 @@ public class DummyAstahRepresentation implements AstahRepresentation {
         element2.addSupplierDependency(dependency);
 
         element3.addClientDependency(new DummyDependency("element3->element4", element3, element4));
-        element4.addClientUsage(new DummyUsage("element4->element5", element4, element5));
+        element4.addClientDependency(new DummyDependency("element4->element5", element4, element5));
         element5.addClientDependency(new DummyDependency("element5->element3", element5, element3));
 
         rootPackage.addElement(element1);
