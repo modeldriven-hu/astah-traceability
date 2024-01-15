@@ -2,6 +2,7 @@ package hu.modeldriven.astah.traceability.layout.impl.render;
 
 import com.change_vision.jude.api.inf.model.*;
 import hu.modeldriven.astah.core.IDiagramRelationship;
+import hu.modeldriven.astah.core.ImageLoader;
 import hu.modeldriven.astah.traceability.layout.impl.AstahConnection;
 import hu.modeldriven.astah.traceability.layout.impl.AstahNode;
 
@@ -11,11 +12,22 @@ import java.awt.image.BufferedImage;
 
 public class AstahTheme {
 
+    private final Image generalizationImage;
+
+    public AstahTheme() {
+        this.generalizationImage = ImageLoader.loadImage("/icons/generalization.png");
+    }
+
     public Image getNodeIcon(AstahNode node) {
         return convertIconToImage(UIManager.getIcon("FileView.fileIcon"));
     }
 
     public Image getLabelIcon(AstahConnection connection) {
+
+        if (connection instanceof IGeneralization){
+            return generalizationImage;
+        }
+
         return convertIconToImage(UIManager.getIcon("FileView.fileIcon"));
     }
 

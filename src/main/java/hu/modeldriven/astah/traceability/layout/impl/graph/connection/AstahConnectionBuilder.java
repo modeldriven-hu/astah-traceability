@@ -23,7 +23,8 @@ public class AstahConnectionBuilder {
         builders = Arrays.asList(
                 new DependencyConnectionBuilder(nodes, theme),
                 new UsageConnectionBuilder(nodes, theme),
-                new DiagramConnectionBuilder(nodes, theme));
+                new DiagramConnectionBuilder(nodes, theme),
+                new GeneralizationConnectionBuilder(nodes, theme));
     }
 
     public Map<String, AstahConnection> build() {

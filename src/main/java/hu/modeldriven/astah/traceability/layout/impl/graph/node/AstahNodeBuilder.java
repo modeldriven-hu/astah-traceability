@@ -20,7 +20,8 @@ public class AstahNodeBuilder {
         builders = Arrays.asList(
                 new DependencyNodeBuilder(),
                 new UsageNodeBuilder(),
-                new DiagramNodeBuilder());
+                new DiagramNodeBuilder(),
+                new GeneralizationNodeBuilder());
     }
 
     public Map<String, AstahNode> build(INamedElement initialElement) {
