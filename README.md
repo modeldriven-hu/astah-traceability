@@ -8,17 +8,12 @@ Display a traceability diagram for Astah SysML
 
 - [ ] Package
 - [ ] Model
-- [ ] Subsystem
 - [X] Class
 - [ ] UseCase
-- [ ] Component
-- [ ] Artifact
-- [ ] Node
-- [ ] External Entity
 - [ ] Data Store
-- [ ] ER Entity
 - [ ] Requirement
 - [ ] TestCase
+- [ ] Block
 
 ## Relationships
 
@@ -30,10 +25,6 @@ Display a traceability diagram for Astah SysML
 - [ ] Usage 
 - [ ] Extend
 - [ ] Include 
-- [ ] Identifying Relationship
-- [ ] Non-Identifying Relationship 
-- [ ] Many-to-Many Relationship 
-- [ ] Subtype
 - [ ] SysML relationships
 
 ## References
@@ -47,8 +38,7 @@ Display a traceability diagram for Astah SysML
   - [ ] Component Instance
   - [ ] Node Instance
 - [ ] Dependencies of Requirements and TestCases
-- [ ] Diagram that the selected model is depicted
-
+- [X] Diagram that the selected model is depicted
 
 # Tasks
 
@@ -60,5 +50,9 @@ Display a traceability diagram for Astah SysML
 - [X] Render icon for label
 - [X] Display association type label
 - [X] Display associated diagrams for elements
+- [ ] Display icons for types
+- [ ] Display icons for relationships
+- [ ] Render stereotypes
+- [ ] Navigate across elements
 - [ ] Configuration dialog support
 - [ ] Ability to save configuration
