@@ -1,56 +1,38 @@
-package hu.modeldriven.astah.api;
+package hu.modeldriven.astah.core;
 
 import com.change_vision.jude.api.inf.exception.InvalidEditingException;
 import com.change_vision.jude.api.inf.exception.InvalidUsingException;
 import com.change_vision.jude.api.inf.model.*;
 import com.change_vision.jude.api.inf.presentation.IPresentation;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.UUID;
 
-public class DummyNamedElement implements INamedElement {
+public class DiagramRelationshipImpl implements IDiagramRelationship{
 
-    private static int CURRENT_ID = 0;
+    private final IDiagram client;
+    private final INamedElement supplier;
 
     private final String id;
-    private final String name;
-    private final List<IDependency> clientDependencies;
 
-    private final List<IDependency> supplierDependencies;
-
-    private final List<IDiagram> diagrams;
-
-
-    private final List<IUsage> clientUsages;
-
-    public DummyNamedElement(String name) {
-        this.id = "NameElement_"+CURRENT_ID++;
-        this.name = name;
-        this.clientDependencies = new ArrayList<>();
-        this.supplierDependencies = new ArrayList<>();
-        this.clientUsages = new ArrayList<>();
-        this.diagrams = new ArrayList<>();
+    public DiagramRelationshipImpl(IDiagram client, INamedElement supplier){
+        this.client = client;
+        this.supplier = supplier;
+        this.id = UUID.randomUUID().toString();
     }
 
-    public void addClientDependency(IDependency dependency) {
-        this.clientDependencies.add(dependency);
+    @Override
+    public INamedElement getSupplier() {
+        return supplier;
     }
 
-    public void addSupplierDependency(IDependency dependency) {
-        this.supplierDependencies.add(dependency);
-    }
-
-    public void addDiagram(IDiagram diagram) {
-        this.diagrams.add(diagram);
-    }
-
-    public void addClientUsage(IUsage usage) {
-        this.clientUsages.add(usage);
+    @Override
+    public IDiagram getClient() {
+        return client;
     }
 
     @Override
     public String getName() {
-        return name;
+        return "";
     }
 
     @Override
@@ -70,12 +52,12 @@ public class DummyNamedElement implements INamedElement {
 
     @Override
     public IDependency[] getSupplierDependencies() {
-        return supplierDependencies.toArray(new IDependency[0]);
+        return new IDependency[0];
     }
 
     @Override
     public IDependency[] getClientDependencies() {
-        return clientDependencies.toArray(new IDependency[0]);
+        return new IDependency[0];
     }
 
     @Override
@@ -95,7 +77,7 @@ public class DummyNamedElement implements INamedElement {
 
     @Override
     public IUsage[] getClientUsages() {
-        return clientUsages.toArray(new IUsage[0]);
+        return new IUsage[0];
     }
 
     @Override
@@ -125,7 +107,7 @@ public class DummyNamedElement implements INamedElement {
 
     @Override
     public IDiagram[] getDiagrams() {
-        return diagrams.toArray(new IDiagram[0]);
+        return new IDiagram[0];
     }
 
     @Override
