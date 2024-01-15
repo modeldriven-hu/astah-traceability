@@ -17,8 +17,8 @@ public class DummyDiagram implements IDiagram {
     private final String id;
     private final String name;
 
-    public DummyDiagram(String name){
-        this.id = "Diagram_"+CURRENT_ID++;
+    public DummyDiagram(String name) {
+        this.id = "Diagram_" + CURRENT_ID++;
         this.name = name;
     }
 

@@ -29,12 +29,12 @@ abstract class AbstractNodeBuilder<T extends INamedElement> implements NodeBuild
         }
     }
 
-    public abstract List<T> getOutgoingRelationships(INamedElement element);
+    protected abstract List<T> getOutgoingRelationships(INamedElement element);
 
-    public abstract List<T> getIncomingRelationships(INamedElement element);
+    protected abstract List<T> getIncomingRelationships(INamedElement element);
 
-    public abstract INamedElement getOutgoingSupplier(T relationship);
+    protected abstract INamedElement getOutgoingSupplier(T relationship);
 
-    public abstract INamedElement getIncomingClient(T relationship);
+    protected abstract INamedElement getIncomingClient(T relationship);
 }
 

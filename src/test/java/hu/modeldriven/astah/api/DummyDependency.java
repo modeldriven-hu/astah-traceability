@@ -17,7 +17,7 @@ public class DummyDependency implements IDependency {
 
     private final String id;
 
-    public DummyDependency(String name, INamedElement client, INamedElement supplier){
+    public DummyDependency(String name, INamedElement client, INamedElement supplier) {
         this.name = name;
         this.client = client;
         this.supplier = supplier;

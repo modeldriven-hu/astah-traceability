@@ -24,7 +24,7 @@ public class AstahTheme {
 
     public Image getLabelIcon(AstahConnection connection) {
 
-        if (connection instanceof IGeneralization){
+        if (connection.namedElement() instanceof IGeneralization){
             return generalizationImage;
         }
 

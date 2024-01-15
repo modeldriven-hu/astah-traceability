@@ -24,7 +24,7 @@ public class DummyNamedElement implements INamedElement {
     private final List<IUsage> clientUsages;
 
     public DummyNamedElement(String name) {
-        this.id = "NameElement_"+CURRENT_ID++;
+        this.id = "NameElement_" + CURRENT_ID++;
         this.name = name;
         this.clientDependencies = new ArrayList<>();
         this.supplierDependencies = new ArrayList<>();

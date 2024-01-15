@@ -18,7 +18,7 @@ public class DummyUsage implements IUsage {
 
     private final String id;
 
-    public DummyUsage(String name, INamedElement client, INamedElement supplier){
+    public DummyUsage(String name, INamedElement client, INamedElement supplier) {
         this.name = name;
         this.client = client;
         this.supplier = supplier;
