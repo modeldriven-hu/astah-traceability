@@ -1,6 +1,7 @@
 package hu.modeldriven.astah.traceability.layout.impl.render;
 
 import com.change_vision.jude.api.inf.model.*;
+import hu.modeldriven.astah.core.IDiagramRelationship;
 import hu.modeldriven.astah.traceability.layout.impl.AstahConnection;
 import hu.modeldriven.astah.traceability.layout.impl.AstahNode;
 
@@ -47,6 +48,10 @@ public class AstahTheme {
 
         if (namedElement instanceof IUsage) {
             return "Usage";
+        }
+
+        if (namedElement instanceof IDiagramRelationship){
+            return "Diagram";
         }
 
         return namedElement.getClass().toGenericString();

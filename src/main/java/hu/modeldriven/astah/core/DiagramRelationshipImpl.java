@@ -32,7 +32,7 @@ public class DiagramRelationshipImpl implements IDiagramRelationship{
 
     @Override
     public String getName() {
-        return "";
+        return "Diagram";
     }
 
     @Override
