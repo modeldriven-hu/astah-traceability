@@ -5,6 +5,7 @@ import hu.modeldriven.astah.traceability.layout.Path;
 import hu.modeldriven.astah.traceability.layout.impl.AstahConnection;
 
 import java.awt.*;
+import java.awt.geom.Dimension2D;
 import java.awt.geom.Point2D;
 import java.util.List;
 
@@ -19,10 +20,13 @@ public class AstahConnectionRenderer implements ConnectionRenderer {
 
     private final AstahTheme theme;
 
+    private final Image image;
+
     public AstahConnectionRenderer(AstahConnection connection, AstahTheme theme) {
         this.connection = connection;
-        this.name = theme.getConnectionName(connection);
         this.theme = theme;
+        this.name = theme.getConnectionName(connection);
+        this.image = theme.getLabelIcon(connection);
     }
 
     @Override
@@ -53,8 +57,6 @@ public class AstahConnectionRenderer implements ConnectionRenderer {
         // Because labels are not drawn by swing to the top left coordinate, this
         // has to be fixed with ascent calculation
         FontMetrics metric = g.getFontMetrics(g.getFont());
-
-        Image image = theme.getLabelIcon(connection);
         g.drawImage(image, posX, posY - metric.getAscent() - ICON_COORDINATE_FIX, null);
 
         g.setColor(labelColor);
@@ -90,6 +92,15 @@ public class AstahConnectionRenderer implements ConnectionRenderer {
 
     @Override
     public Dimension labelSize() {
-        return new TextLabel(name).size();
+
+        Dimension textSize = new TextLabel(name).size();
+
+        double width = textSize.getWidth() + image.getWidth(null) + ICON_LABEL_PADDING;
+        double height = textSize.getHeight();
+
+        Dimension result = new Dimension();
+        result.setSize(width, height);
+
+        return result;
     }
 }

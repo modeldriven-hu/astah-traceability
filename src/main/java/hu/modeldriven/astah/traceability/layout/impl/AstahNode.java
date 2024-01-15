@@ -38,7 +38,7 @@ public class AstahNode implements Node {
     public String name() {
         return element.getName();
     }
-    
+
     @Override
     public NodeRenderer renderer() {
         return new AstahNodeRenderer(this, theme);
