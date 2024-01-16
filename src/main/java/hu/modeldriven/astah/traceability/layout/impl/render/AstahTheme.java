@@ -7,8 +7,9 @@ import hu.modeldriven.astah.traceability.layout.impl.AstahConnection;
 import hu.modeldriven.astah.traceability.layout.impl.AstahNode;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
+import java.awt.Color;
+import java.awt.Image;
+import java.util.Arrays;
 
 public class AstahTheme {
 
@@ -19,16 +20,16 @@ public class AstahTheme {
     }
 
     public Image getNodeIcon(AstahNode node) {
-        return convertIconToImage(UIManager.getIcon("FileView.fileIcon"));
+        return new Picture(UIManager.getIcon("FileView.fileIcon")).asImage();
     }
 
     public Image getLabelIcon(AstahConnection connection) {
 
-        if (connection.namedElement() instanceof IGeneralization){
+        if (connection.namedElement() instanceof IGeneralization) {
             return generalizationImage;
         }
 
-        return convertIconToImage(UIManager.getIcon("FileView.fileIcon"));
+        return new Picture(UIManager.getIcon("FileView.fileIcon")).asImage();
     }
 
     public String getNodeName(AstahNode node) {
@@ -39,6 +40,37 @@ public class AstahTheme {
         INamedElement namedElement = connection.namedElement();
 
         if (namedElement instanceof IDependency) {
+
+            IDependency dependency = (IDependency) namedElement;
+
+            if (hasStereotype(dependency, "Allocate")) {
+                return "Allocate";
+            }
+
+            if (hasStereotype(dependency, "DeriveRqt")) {
+                return "Derived requirement";
+            }
+
+            if (hasStereotype(dependency, "Copy")) {
+                return "Copy";
+            }
+
+            if (hasStereotype(dependency, "Satisfy")) {
+                return "Satisfy";
+            }
+
+            if (hasStereotype(dependency, "Verify")) {
+                return "Verify";
+            }
+
+            if (hasStereotype(dependency, "Refine")) {
+                return "Refine";
+            }
+
+            if (hasStereotype(dependency, "Trace")) {
+                return "Trace";
+            }
+
             return "Dependency";
         }
 
@@ -62,30 +94,17 @@ public class AstahTheme {
             return "Usage";
         }
 
-        if (namedElement instanceof IDiagramRelationship){
+        if (namedElement instanceof IDiagramRelationship) {
             return "Diagram";
         }
 
         return namedElement.getClass().toGenericString();
     }
 
-    private Image convertIconToImage(Icon icon) {
-        if (icon instanceof ImageIcon) {
-            return ((ImageIcon) icon).getImage();
-        } else {
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            GraphicsDevice gd = ge.getDefaultScreenDevice();
-            GraphicsConfiguration gc = gd.getDefaultConfiguration();
-
-            BufferedImage image = gc.createCompatibleImage(icon.getIconWidth(), icon.getIconHeight());
-
-            Graphics2D g = image.createGraphics();
-            icon.paintIcon(null, g, 0, 0);
-            g.dispose();
-
-            return image;
-        }
+    private boolean hasStereotype(INamedElement namedElement, String stereotype) {
+        return Arrays.asList(namedElement.getStereotypes()).contains(stereotype);
     }
+
 
     public Color getSelectedNodeBackgroundColor(AstahNode node) {
         return Color.YELLOW;
@@ -126,4 +145,6 @@ public class AstahTheme {
     public Color getNodeBorderColor(AstahNode node) {
         return Color.BLACK;
     }
+
+
 }

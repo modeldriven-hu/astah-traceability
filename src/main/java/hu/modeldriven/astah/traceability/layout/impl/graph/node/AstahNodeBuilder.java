@@ -45,7 +45,7 @@ public class AstahNodeBuilder {
     }
 
     // FIXME maybe the builder shall tell that it is a final one, so after the creation we shall stop
-    boolean skipBuild(INamedElement currentElement){
+    boolean skipBuild(INamedElement currentElement) {
         return currentElement instanceof IDiagram;
     }
 

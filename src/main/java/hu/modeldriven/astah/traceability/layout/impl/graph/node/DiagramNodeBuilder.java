@@ -1,11 +1,9 @@
 package hu.modeldriven.astah.traceability.layout.impl.graph.node;
 
-import com.change_vision.jude.api.inf.model.IDiagram;
 import com.change_vision.jude.api.inf.model.INamedElement;
 import hu.modeldriven.astah.core.DiagramRelationshipImpl;
 import hu.modeldriven.astah.core.IDiagramRelationship;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;

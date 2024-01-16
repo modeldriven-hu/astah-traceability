@@ -1,6 +1,5 @@
 package hu.modeldriven.astah.traceability.layout.impl.graph.node;
 
-import com.change_vision.jude.api.inf.model.IDependency;
 import com.change_vision.jude.api.inf.model.INamedElement;
 import com.change_vision.jude.api.inf.model.IRealization;
 

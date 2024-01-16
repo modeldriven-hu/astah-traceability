@@ -12,8 +12,8 @@ public class GeneralizationNodeBuilder extends AbstractNodeBuilder<IGeneralizati
 
     @Override
     public List<IGeneralization> getIncomingRelationships(INamedElement element) {
-        if (element instanceof IClass){
-            return Arrays.asList(((IClass)element).getSpecializations());
+        if (element instanceof IClass) {
+            return Arrays.asList(((IClass) element).getSpecializations());
         }
 
         return Collections.emptyList();
@@ -31,8 +31,8 @@ public class GeneralizationNodeBuilder extends AbstractNodeBuilder<IGeneralizati
 
     @Override
     public List<IGeneralization> getOutgoingRelationships(INamedElement element) {
-        if (element instanceof IClass){
-            return Arrays.asList(((IClass)element).getGeneralizations());
+        if (element instanceof IClass) {
+            return Arrays.asList(((IClass) element).getGeneralizations());
         }
 
         return Collections.emptyList();

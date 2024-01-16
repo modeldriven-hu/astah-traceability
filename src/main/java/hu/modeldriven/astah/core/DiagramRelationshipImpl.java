@@ -7,14 +7,14 @@ import com.change_vision.jude.api.inf.presentation.IPresentation;
 
 import java.util.UUID;
 
-public class DiagramRelationshipImpl implements IDiagramRelationship{
+public class DiagramRelationshipImpl implements IDiagramRelationship {
 
     private final IDiagram client;
     private final INamedElement supplier;
 
     private final String id;
 
-    public DiagramRelationshipImpl(IDiagram client, INamedElement supplier){
+    public DiagramRelationshipImpl(IDiagram client, INamedElement supplier) {
         this.client = client;
         this.supplier = supplier;
         this.id = UUID.randomUUID().toString();

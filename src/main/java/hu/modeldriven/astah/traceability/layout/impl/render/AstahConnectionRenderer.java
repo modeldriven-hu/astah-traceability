@@ -5,7 +5,6 @@ import hu.modeldriven.astah.traceability.layout.Path;
 import hu.modeldriven.astah.traceability.layout.impl.AstahConnection;
 
 import java.awt.*;
-import java.awt.geom.Dimension2D;
 import java.awt.geom.Point2D;
 import java.util.List;
 
