@@ -22,7 +22,9 @@ public class AstahNodeBuilder {
                 new UsageNodeBuilder(),
                 new DiagramNodeBuilder(),
                 new GeneralizationNodeBuilder(),
-                new RealizationNodeBuilder());
+                new RealizationNodeBuilder(),
+                new IncludeNodeBuilder()
+        );
     }
 
     public Map<String, AstahNode> build(INamedElement initialElement) {

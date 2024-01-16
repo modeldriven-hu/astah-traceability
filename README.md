@@ -17,14 +17,14 @@ Display a traceability diagram for Astah SysML
 
 ## Relationships
 
-- [ ] Association
-- [ ] AssociationClass
+- [?] Association
+- [?] AssociationClass
 - [X] Generalization 
 - [X] Realization
 - [X] Dependency
 - [X] Usage 
 - [ ] Extend
-- [ ] Include 
+- [X] Include 
 - [ ] SysML relationships
 
 ## References

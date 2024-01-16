@@ -98,6 +98,14 @@ public class AstahTheme {
             return "Diagram";
         }
 
+        if (namedElement instanceof IInclude){
+            return "Include";
+        }
+
+        if (namedElement instanceof IExtend){
+            return "Extend";
+        }
+
         return namedElement.getClass().toGenericString();
     }
 
