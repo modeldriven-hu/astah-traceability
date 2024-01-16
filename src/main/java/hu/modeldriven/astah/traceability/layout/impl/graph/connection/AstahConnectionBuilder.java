@@ -24,7 +24,8 @@ public class AstahConnectionBuilder {
                 new DependencyConnectionBuilder(nodes, theme),
                 new UsageConnectionBuilder(nodes, theme),
                 new DiagramConnectionBuilder(nodes, theme),
-                new GeneralizationConnectionBuilder(nodes, theme));
+                new GeneralizationConnectionBuilder(nodes, theme),
+                new RealizationConnectionBuilder(nodes, theme));
     }
 
     public Map<String, AstahConnection> build() {

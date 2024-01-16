@@ -19,10 +19,10 @@ Display a traceability diagram for Astah SysML
 
 - [ ] Association
 - [ ] AssociationClass
-- [ ] Generalization 
-- [ ] Realization
-- [ ] Dependency
-- [ ] Usage 
+- [X] Generalization 
+- [X] Realization
+- [X] Dependency
+- [X] Usage 
 - [ ] Extend
 - [ ] Include 
 - [ ] SysML relationships

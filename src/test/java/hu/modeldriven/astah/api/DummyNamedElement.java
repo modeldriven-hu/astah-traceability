@@ -20,16 +20,22 @@ public class DummyNamedElement implements INamedElement {
 
     private final List<IDiagram> diagrams;
 
+    private final List<IRealization> clientRealizations;
+
+    private final List<IRealization> supplierRealizations;
+
 
     private final List<IUsage> clientUsages;
 
     public DummyNamedElement(String name) {
-        this.id = "NameElement_" + CURRENT_ID++;
+        this.id = getClass().getCanonicalName() + CURRENT_ID++;
         this.name = name;
         this.clientDependencies = new ArrayList<>();
         this.supplierDependencies = new ArrayList<>();
         this.clientUsages = new ArrayList<>();
         this.diagrams = new ArrayList<>();
+        this.clientRealizations = new ArrayList<>();
+        this.supplierRealizations = new ArrayList<>();
     }
 
     public void addClientDependency(IDependency dependency) {
@@ -39,6 +45,15 @@ public class DummyNamedElement implements INamedElement {
     public void addSupplierDependency(IDependency dependency) {
         this.supplierDependencies.add(dependency);
     }
+
+    public void addClientRealization(IRealization realization) {
+        this.clientRealizations.add(realization);
+    }
+
+    public void addSupplierRealization(IRealization realization) {
+        this.supplierRealizations.add(realization);
+    }
+
 
     public void addDiagram(IDiagram diagram) {
         this.diagrams.add(diagram);
@@ -80,12 +95,12 @@ public class DummyNamedElement implements INamedElement {
 
     @Override
     public IRealization[] getSupplierRealizations() {
-        return new IRealization[0];
+        return supplierRealizations.toArray(new IRealization[0]);
     }
 
     @Override
     public IRealization[] getClientRealizations() {
-        return new IRealization[0];
+        return clientRealizations.toArray(new IRealization[0]);
     }
 
     @Override

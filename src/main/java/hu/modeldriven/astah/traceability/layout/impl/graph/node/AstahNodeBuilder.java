@@ -21,7 +21,8 @@ public class AstahNodeBuilder {
                 new DependencyNodeBuilder(),
                 new UsageNodeBuilder(),
                 new DiagramNodeBuilder(),
-                new GeneralizationNodeBuilder());
+                new GeneralizationNodeBuilder(),
+                new RealizationNodeBuilder());
     }
 
     public Map<String, AstahNode> build(INamedElement initialElement) {

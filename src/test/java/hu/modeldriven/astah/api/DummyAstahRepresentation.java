@@ -23,9 +23,9 @@ public class DummyAstahRepresentation implements AstahRepresentation {
         animal.addSpecialization(generalization);
         dog.addGeneralization(generalization);
 
-        //DummyDependency dependency = new DummyDependency("element1->element2", element1, element2);
-        //element1.addClientDependency(dependency);
-        //element2.addSupplierDependency(dependency);
+        DummyRealization realization = new DummyRealization("element1->element2", dog, animal);
+        dog.addClientRealization(realization);
+        animal.addSupplierRealization(realization);
 
         dog.addDiagram(diagram);
 
