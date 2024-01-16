@@ -36,7 +36,14 @@ public class DefaultPath implements Path {
 
     private static Rectangle2D calculateBounds(List<Point2D> points, Rectangle2D labelBounds) {
 
-        Rectangle2D initialBounds = new Rectangle2D.Double(points.get(0).getX(), points.get(0).getY(), 0, 0);
+        Rectangle2D initialBounds;
+
+        if (points.size() == 0){
+            System.err.println("No points in DefaultPath.calculateBounds()!");
+            initialBounds = new Rectangle2D.Double(0,0,0,0);
+        } else {
+            initialBounds = new Rectangle2D.Double(points.get(0).getX(), points.get(0).getY(), 0, 0);
+        }
 
         for (Point2D point : points) {
             initialBounds.add(point);

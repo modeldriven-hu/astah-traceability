@@ -1,8 +1,11 @@
 package hu.modeldriven.astah.traceability.layout.impl.layout;
 
 import hu.modeldriven.astah.traceability.layout.*;
+import org.eclipse.elk.alg.layered.LayeredLayoutProvider;
 import org.eclipse.elk.alg.layered.options.LayeredMetaDataProvider;
 import org.eclipse.elk.core.RecursiveGraphLayoutEngine;
+import org.eclipse.elk.core.data.LayoutAlgorithmData;
+import org.eclipse.elk.core.data.LayoutMetaDataService;
 import org.eclipse.elk.core.options.CoreOptions;
 import org.eclipse.elk.core.options.Direction;
 import org.eclipse.elk.core.options.EdgeRouting;
@@ -26,6 +29,18 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
     }
 
     private ElkNode layout(ElkNode graph) {
+
+        LayoutAlgorithmData data = LayoutMetaDataService.getInstance()
+                .getAlgorithmDataBySuffixOrDefault(
+                        "org.eclipse.elk.layered",
+                "org.eclipse.elk.layered");
+
+        graph.setProperty(CoreOptions.RESOLVED_ALGORITHM, data);
+        graph.setProperty(CoreOptions.EDGE_ROUTING, EdgeRouting.ORTHOGONAL);
+        graph.setProperty(CoreOptions.DIRECTION, Direction.DOWN);
+        graph.setProperty(CoreOptions.SPACING_EDGE_EDGE, 50.0);
+
+        /*
         graph.setProperty(CoreOptions.SEPARATE_CONNECTED_COMPONENTS, true);
         graph.setProperty(CoreOptions.SPACING_COMPONENT_COMPONENT, 50.0);
         graph.setProperty(CoreOptions.SPACING_NODE_NODE, 50.0);
@@ -33,13 +48,19 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
         graph.setProperty(CoreOptions.SPACING_EDGE_EDGE, 50.0);
         graph.setProperty(CoreOptions.SPACING_EDGE_NODE, 50.0);
         graph.setProperty(CoreOptions.EDGE_ROUTING, EdgeRouting.ORTHOGONAL);
-        graph.setProperty(CoreOptions.DIRECTION, Direction.DOWN);
+        graph.setProperty(CoreOptions.DIRECTION, Direction.DOWN);*/
+
+        LayeredLayoutProvider provider = new LayeredLayoutProvider();
 
         try {
             BasicProgressMonitor monitor = new BasicProgressMonitor();
-            new RecursiveGraphLayoutEngine().layout(graph, monitor);
+            provider.initialize(null);
+            provider.layout(graph, monitor);
+            //new RecursiveGraphLayoutEngine().layout(graph, monitor);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            provider.dispose();
         }
 
         return graph;

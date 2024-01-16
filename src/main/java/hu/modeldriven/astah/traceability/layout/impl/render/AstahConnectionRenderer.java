@@ -31,6 +31,11 @@ public class AstahConnectionRenderer implements ConnectionRenderer {
     @Override
     public void render(Graphics2D g, Path path) {
 
+        if (path.coordinates().size() < 2) {
+            System.err.println("Path did not have at least two coordinates, not painting");
+            return;
+        }
+
         Color edgeColor;
         Color labelColor;
 
