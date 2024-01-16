@@ -6,24 +6,28 @@ import com.change_vision.jude.api.inf.exception.ProjectNotFoundException;
 import com.change_vision.jude.api.inf.project.ProjectAccessor;
 import com.change_vision.jude.api.inf.ui.IPluginActionDelegate;
 import com.change_vision.jude.api.inf.ui.IWindow;
+import hu.modeldriven.astah.core.AstahRepresentation;
+import hu.modeldriven.astah.traceability.layout.impl.core.DefaultAstahRepresentation;
+import hu.modeldriven.astah.traceability.ui.TraceabilityPanel;
+import hu.modeldriven.core.eventbus.EventBus;
 
 import javax.swing.*;
+
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class TemplateAction implements IPluginActionDelegate {
 
     public Object run(IWindow window) throws UnExpectedException {
-        try {
-            AstahAPI api = AstahAPI.getAstahAPI();
-            ProjectAccessor projectAccessor = api.getProjectAccessor();
-            projectAccessor.getProject();
-            JOptionPane.showMessageDialog(window.getParent(), "Hello");
-        } catch (ProjectNotFoundException e) {
-            String message = "Project is not opened.Please open the project or create new project.";
-            JOptionPane.showMessageDialog(window.getParent(), message, "Warning", JOptionPane.WARNING_MESSAGE);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(window.getParent(), "Unexpected error has occurred.", "Alert", JOptionPane.ERROR_MESSAGE);
-            throw new UnExpectedException();
-        }
+        JFrame frame = new JFrame();
+
+        EventBus eventBus = new EventBus();
+        AstahRepresentation astahRepresentation = new DefaultAstahRepresentation();
+        TraceabilityPanel panel = new TraceabilityPanel(frame, eventBus, astahRepresentation);
+
+        frame.getContentPane().add(panel);
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        frame.setSize(800, 600);
+        frame.setVisible(true);
         return null;
     }
 

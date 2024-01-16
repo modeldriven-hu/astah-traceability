@@ -29,7 +29,7 @@
                     <updatePolicy>never</updatePolicy>
                 </releases>
             </pluginRepository>
-        </pluginRepositories>-->
+        </pluginRepositories>
 	<repositories>
 		<repository>
 			<id>java.net</id>
@@ -45,7 +45,7 @@
 			<id>uk-central</id>
 			<url>https://uk.maven.org/maven2/</url>
 		</repository>
-	</repositories>
+	</repositories>-->
 	<reporting>
 		<plugins>
 			<plugin>
@@ -278,11 +278,6 @@
 			<artifactId>junit</artifactId>
 			<version>4.13.1</version>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.elk</groupId>
-			<artifactId>org.eclipse.elk.core</artifactId>
-			<version>0.8.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.elk</groupId>
