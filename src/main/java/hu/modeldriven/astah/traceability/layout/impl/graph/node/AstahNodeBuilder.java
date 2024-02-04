@@ -40,7 +40,7 @@ public class AstahNodeBuilder {
 
     void buildNodesRecursively(INamedElement currentElement, Map<String, AstahNode> store) {
 
-        logger.info("Building node: " + new AstahNamedElement(currentElement).asLog());
+        logger.info("Building node: {}", new AstahNamedElement(currentElement).asLog());
 
         AstahNode node = new AstahNode(currentElement, this.theme);
         store.put(currentElement.getId(), node);

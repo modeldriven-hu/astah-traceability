@@ -9,17 +9,10 @@ import org.eclipse.elk.core.options.CoreOptions;
 import org.eclipse.elk.core.options.Direction;
 import org.eclipse.elk.core.options.EdgeRouting;
 import org.eclipse.elk.core.util.BasicProgressMonitor;
-import org.eclipse.elk.core.util.persistence.ElkGraphResourceFactory;
 import org.eclipse.elk.graph.ElkEdge;
-import org.eclipse.elk.graph.ElkGraphPackage;
 import org.eclipse.elk.graph.ElkLabel;
 import org.eclipse.elk.graph.ElkNode;
 import org.eclipse.elk.graph.util.ElkGraphUtil;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.xtext.xbase.lib.DoubleExtensions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,8 +33,7 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
 
     private ElkNode layout(ElkNode graph) {
 
-        logger.info("Running layout algorithm for " + graph);
-        logger.info("" + DoubleExtensions.operator_equals(5, 3));
+        logger.info("Running layout algorithm for {}", graph);
 
         // https://git.eclipse.org/c/sirius/org.eclipse.sirius.git/commit/?id=f7513dac9aa9dacd68354f4cd9bd834ae07b5756
 
@@ -49,9 +41,9 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
         service.registerLayoutMetaDataProviders(new LayeredMetaDataProvider());
 
         for (LayoutAlgorithmData data : service.getAlgorithmData()) {
-            logger.info("Bundle name: " + data.getBundleName());
-            logger.info("Id: " + data.getId());
-            logger.info("Name: " + data.getName());
+            logger.info("Bundle name: {}", data.getBundleName());
+            logger.info("Id: {}", data.getId());
+            logger.info("Name: {}", data.getName());
         }
 
         LayoutAlgorithmData data = service
@@ -59,7 +51,7 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
                         "org.eclipse.elk.layered",
                         "org.eclipse.elk.layered");
 
-        logger.info("Layout algorithm data: " + data);
+        logger.info("Layout algorithm data: {}", data);
 
         graph.setProperty(CoreOptions.RESOLVED_ALGORITHM, data);
         graph.setProperty(CoreOptions.EDGE_ROUTING, EdgeRouting.ORTHOGONAL);
@@ -71,11 +63,9 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
         LayeredLayoutProvider provider = new LayeredLayoutProvider();
 
         try {
-            saveGraphELKG(graph, "/home/zsolt/elk/before.elkg");
             BasicProgressMonitor monitor = new BasicProgressMonitor().withLogging(true).withLogPersistence(true).withExecutionTimeMeasurement(false);
             provider.initialize(null);
             provider.layout(graph, monitor);
-            saveGraphELKG(graph, "/home/zsolt/elk/after.elkg");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -83,26 +73,6 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
         }
 
         return graph;
-    }
-
-    private void saveGraphELKG(ElkNode rootNode, String fileName) {
-        try {
-
-            if (!Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().containsKey("elkg")) {
-                Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("elkg", new ElkGraphResourceFactory());
-                ElkGraphPackage.eINSTANCE.eClass();
-            }
-
-            ResourceSet resourceSet = new ResourceSetImpl();
-            URI uri = URI.createFileURI(fileName);
-
-            Resource resource = resourceSet.createResource(uri);
-            resource.getContents().add(rootNode);
-
-            resource.save(null);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     private ElkNode createElkGraph(Graph graph) {
@@ -114,18 +84,18 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
     private void buildElkGraph(Graph graph, ElkNode elkGraph) {
 
         logger.info("Building elk graph");
-        logger.info("Graph.nodes.size = " + graph.nodes().size());
-        logger.info("Graph.connection.size = " + graph.connections().size());
+        logger.info("Graph.nodes.size = {}", graph.nodes().size());
+        logger.info("Graph.connection.size = {}", graph.connections().size());
 
         Map<Node, ElkNode> elkNodes = new HashMap<>();
 
         for (Node node : graph.nodes()) {
-            logger.info("Building node: " + node);
+            logger.info("Building node: {}", node);
             elkNodes.put(node, createElkNode(node, elkGraph));
         }
 
         for (Connection connection : graph.connections()) {
-            logger.info("Building connection: " + connection);
+            logger.info("Building connection: {}", connection);
             ElkNode sourceNode = elkNodes.get(connection.source());
             ElkNode targetNode = elkNodes.get(connection.target());
             createEdge(connection, sourceNode, targetNode);
@@ -142,7 +112,7 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
         node.setWidth(preferredBounds.getWidth());
         node.setHeight(preferredBounds.getHeight());
 
-        logger.info("Creating ELK node with " + preferredBounds + " for " + modelNode);
+        logger.info("Creating ELK node with {} {}", preferredBounds, modelNode);
 
         return node;
     }
@@ -156,8 +126,8 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
 
         label.setDimensions(labelBounds.getWidth(), labelBounds.getHeight());
 
-        logger.info("Creating ELK edge with label " + labelBounds + " for " + connection +
-                " between elk nodes: " + sourceNode.getIdentifier() + " and " + targetNode.getIdentifier());
+        logger.info("Creating ELK edge with label {} for {} between elk nodes: {} and {}",
+                labelBounds, connection, sourceNode.getIdentifier(), targetNode.getIdentifier());
     }
 
 }

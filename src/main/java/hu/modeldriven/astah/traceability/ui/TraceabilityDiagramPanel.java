@@ -13,10 +13,10 @@ import java.awt.geom.Point2D;
 
 public class TraceabilityDiagramPanel extends JPanel {
 
-    private final TraceabilityDiagramActionListener listener;
+    private final transient TraceabilityDiagramActionListener listener;
     private final JPopupMenu popupMenu;
 
-    private TraceabilityModel model;
+    private transient TraceabilityModel model;
 
     public TraceabilityDiagramPanel(TraceabilityDiagramActionListener listener) {
         super();

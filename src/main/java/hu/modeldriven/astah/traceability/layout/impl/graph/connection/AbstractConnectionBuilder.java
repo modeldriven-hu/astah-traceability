@@ -2,7 +2,6 @@ package hu.modeldriven.astah.traceability.layout.impl.graph.connection;
 
 import com.change_vision.jude.api.inf.model.INamedElement;
 import hu.modeldriven.astah.core.AstahNamedElement;
-import hu.modeldriven.astah.traceability.layout.Node;
 import hu.modeldriven.astah.traceability.layout.impl.AstahConnection;
 import hu.modeldriven.astah.traceability.layout.impl.AstahNode;
 import hu.modeldriven.astah.traceability.layout.impl.render.AstahTheme;
@@ -14,13 +13,11 @@ import java.util.Map;
 
 public abstract class AbstractConnectionBuilder<T extends INamedElement> implements ConnectionBuilder {
 
+    protected final Map<String, AstahNode> nodes;
+    protected final AstahTheme theme;
     private final Logger logger = LoggerFactory.getLogger(AbstractConnectionBuilder.class);
 
-    protected final Map<String, AstahNode> nodes;
-
-    protected final AstahTheme theme;
-
-    public AbstractConnectionBuilder(Map<String, AstahNode> nodes, AstahTheme theme) {
+    protected AbstractConnectionBuilder(Map<String, AstahNode> nodes, AstahTheme theme) {
         this.nodes = nodes;
         this.theme = theme;
     }
@@ -50,9 +47,10 @@ public abstract class AbstractConnectionBuilder<T extends INamedElement> impleme
 
     }
 
-    private AstahConnection buildConnection(T relationship, AstahNode clientNode, AstahNode supplierNode, AstahTheme theme){
-        logger.info("Building connection " + new AstahNamedElement(relationship).asLog() + " between " +
-                new AstahNamedElement(clientNode.namedElement()).asLog() + " and " +
+    private AstahConnection buildConnection(T relationship, AstahNode clientNode, AstahNode supplierNode, AstahTheme theme) {
+        logger.info("Building connection {}  between {} and {}",
+                new AstahNamedElement(relationship).asLog(),
+                new AstahNamedElement(clientNode.namedElement()).asLog(),
                 new AstahNamedElement(supplierNode.namedElement()).asLog());
 
         return new AstahConnection(relationship, clientNode, supplierNode, theme);

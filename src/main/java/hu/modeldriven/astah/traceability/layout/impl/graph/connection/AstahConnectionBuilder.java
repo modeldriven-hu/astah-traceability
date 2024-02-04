@@ -13,13 +13,10 @@ public class AstahConnectionBuilder {
 
     private final Map<String, AstahNode> nodes;
 
-    private final AstahTheme theme;
-
     private final List<ConnectionBuilder> builders;
 
     public AstahConnectionBuilder(Map<String, AstahNode> nodes, AstahTheme theme) {
         this.nodes = nodes;
-        this.theme = theme;
         builders = Arrays.asList(
                 new DependencyConnectionBuilder(nodes, theme),
                 new UsageConnectionBuilder(nodes, theme),

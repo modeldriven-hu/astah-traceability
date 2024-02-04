@@ -49,7 +49,9 @@ public class AstahConnection implements Connection {
     }
 
     @Override
-    public String name() { return element.getName(); }
+    public String name() {
+        return element.getName();
+    }
 
     @Override
     public String labelName() {

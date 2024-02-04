@@ -36,6 +36,11 @@ public class DiagramRelationshipImpl implements IDiagramRelationship {
     }
 
     @Override
+    public void setName(String s) throws InvalidEditingException {
+
+    }
+
+    @Override
     public String getFullName(String s) {
         return null;
     }
@@ -86,6 +91,11 @@ public class DiagramRelationshipImpl implements IDiagramRelationship {
     }
 
     @Override
+    public void setDefinition(String s) throws InvalidEditingException {
+
+    }
+
+    @Override
     public boolean isPublicVisibility() {
         return false;
     }
@@ -111,16 +121,6 @@ public class DiagramRelationshipImpl implements IDiagramRelationship {
     }
 
     @Override
-    public void setName(String s) throws InvalidEditingException {
-
-    }
-
-    @Override
-    public void setDefinition(String s) throws InvalidEditingException {
-
-    }
-
-    @Override
     public void setVisibility(String s) throws InvalidEditingException {
 
     }
@@ -131,13 +131,13 @@ public class DiagramRelationshipImpl implements IDiagramRelationship {
     }
 
     @Override
-    public String getAlias2() {
-        return null;
+    public void setAlias1(String s) throws InvalidEditingException {
+
     }
 
     @Override
-    public void setAlias1(String s) throws InvalidEditingException {
-
+    public String getAlias2() {
+        return null;
     }
 
     @Override
@@ -211,13 +211,13 @@ public class DiagramRelationshipImpl implements IDiagramRelationship {
     }
 
     @Override
-    public IPresentation[] getPresentations() throws InvalidUsingException {
-        return new IPresentation[0];
+    public void setTypeModifier(String s) throws InvalidEditingException {
+
     }
 
     @Override
-    public void setTypeModifier(String s) throws InvalidEditingException {
-
+    public IPresentation[] getPresentations() throws InvalidUsingException {
+        return new IPresentation[0];
     }
 
     @Override

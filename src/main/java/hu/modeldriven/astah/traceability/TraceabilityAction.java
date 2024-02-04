@@ -10,7 +10,7 @@ import hu.modeldriven.core.eventbus.EventBus;
 
 import javax.swing.*;
 
-public class TemplateAction implements IPluginActionDelegate {
+public class TraceabilityAction implements IPluginActionDelegate {
 
     public Object run(IWindow window) throws UnExpectedException {
         JFrame frame = new JFrame();

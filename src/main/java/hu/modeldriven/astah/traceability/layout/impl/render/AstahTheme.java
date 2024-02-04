@@ -82,10 +82,6 @@ public class AstahTheme {
             return "Generalization";
         }
 
-        if (namedElement instanceof IAssociationClass) {
-            return "AssociationClass";
-        }
-
         if (namedElement instanceof IRealization) {
             return "Realization";
         }
@@ -98,11 +94,11 @@ public class AstahTheme {
             return "Diagram";
         }
 
-        if (namedElement instanceof IInclude){
+        if (namedElement instanceof IInclude) {
             return "Include";
         }
 
-        if (namedElement instanceof IExtend){
+        if (namedElement instanceof IExtend) {
             return "Extend";
         }
 

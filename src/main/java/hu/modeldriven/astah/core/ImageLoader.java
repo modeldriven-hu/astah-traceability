@@ -6,15 +6,16 @@ import java.io.InputStream;
 
 public class ImageLoader {
 
+    private ImageLoader(){
+    }
+
     public static Image loadImage(String filename) {
-        try {
+        try (InputStream inputStream = ImageLoader.class.getResourceAsStream(filename)){
             // Use the class loader to get the resource stream
-            InputStream inputStream = ImageLoader.class.getResourceAsStream(filename);
-
-            Image image = ImageIO.read(inputStream);
-            inputStream.close();
-
-            return image;
+            if (inputStream == null){
+                return null;
+            }
+            return ImageIO.read(inputStream);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

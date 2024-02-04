@@ -8,17 +8,12 @@ public class AstahNamedElement {
 
     private final INamedElement namedElement;
 
-    public AstahNamedElement(INamedElement namedElement){
+    public AstahNamedElement(INamedElement namedElement) {
         this.namedElement = namedElement;
     }
 
-    public String asLog(){
-        StringBuilder sb = new StringBuilder();
-
-        sb.append(namedElement.getName());
-        sb.append(Arrays.toString(namedElement.getClass().getInterfaces()));
-
-        return sb.toString();
+    public String asLog() {
+        return namedElement.getName() + Arrays.toString(namedElement.getClass().getInterfaces());
     }
 
 }

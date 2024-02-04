@@ -1,6 +1,8 @@
 package hu.modeldriven.astah.traceability.layout.impl.graph.node;
 
-import com.change_vision.jude.api.inf.model.*;
+import com.change_vision.jude.api.inf.model.IAssociation;
+import com.change_vision.jude.api.inf.model.IClass;
+import com.change_vision.jude.api.inf.model.INamedElement;
 import hu.modeldriven.astah.core.AstahClass;
 
 import java.util.Collections;

@@ -12,12 +12,9 @@ import java.util.List;
 
 public class AstahConnectionRenderer implements ConnectionRenderer {
 
+    private static final int ICON_LABEL_PADDING = 5;
+    private static final int ICON_COORDINATE_FIX = 1;
     private final Logger logger = LoggerFactory.getLogger(AstahConnectionRenderer.class);
-
-    private final static int ICON_LABEL_PADDING = 5;
-
-    private final static int ICON_COORDINATE_FIX = 1;
-
     private final AstahConnection connection;
     private final String name;
 
@@ -35,7 +32,7 @@ public class AstahConnectionRenderer implements ConnectionRenderer {
     @Override
     public void render(Graphics2D g, Path path) {
 
-        logger.info("Trying to render connection: " + name);
+        logger.info("Trying to render connection: {}", name);
 
         if (path.coordinates().size() < 2) {
             logger.error("Path did not have at least two coordinates, not painting");
@@ -64,7 +61,7 @@ public class AstahConnectionRenderer implements ConnectionRenderer {
         int posX = (int) labelPosition.getX();
         int posY = (int) labelPosition.getY();
 
-        logger.info("Label positions for " + name + ": " + posX + " " + posY);
+        logger.info("Label positions for {}: {} {}", name,  posX, posY);
 
         // Because labels are not drawn by swing to the top left coordinate, this
         // has to be fixed with ascent calculation
