@@ -3,12 +3,16 @@ package hu.modeldriven.astah.traceability.layout.impl.render;
 import hu.modeldriven.astah.traceability.layout.ConnectionRenderer;
 import hu.modeldriven.astah.traceability.layout.Path;
 import hu.modeldriven.astah.traceability.layout.impl.AstahConnection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.List;
 
 public class AstahConnectionRenderer implements ConnectionRenderer {
+
+    private final Logger logger = LoggerFactory.getLogger(AstahConnectionRenderer.class);
 
     private final static int ICON_LABEL_PADDING = 5;
 
@@ -31,8 +35,10 @@ public class AstahConnectionRenderer implements ConnectionRenderer {
     @Override
     public void render(Graphics2D g, Path path) {
 
+        logger.info("Trying to render connection: " + name);
+
         if (path.coordinates().size() < 2) {
-            System.err.println("Path did not have at least two coordinates, not painting");
+            logger.error("Path did not have at least two coordinates, not painting");
             return;
         }
 
@@ -57,6 +63,8 @@ public class AstahConnectionRenderer implements ConnectionRenderer {
 
         int posX = (int) labelPosition.getX();
         int posY = (int) labelPosition.getY();
+
+        logger.info("Label positions for " + name + ": " + posX + " " + posY);
 
         // Because labels are not drawn by swing to the top left coordinate, this
         // has to be fixed with ascent calculation

@@ -1,9 +1,6 @@
 package hu.modeldriven.astah.traceability;
 
 
-import com.change_vision.jude.api.inf.AstahAPI;
-import com.change_vision.jude.api.inf.exception.ProjectNotFoundException;
-import com.change_vision.jude.api.inf.project.ProjectAccessor;
 import com.change_vision.jude.api.inf.ui.IPluginActionDelegate;
 import com.change_vision.jude.api.inf.ui.IWindow;
 import hu.modeldriven.astah.core.AstahRepresentation;
@@ -12,8 +9,6 @@ import hu.modeldriven.astah.traceability.ui.TraceabilityPanel;
 import hu.modeldriven.core.eventbus.EventBus;
 
 import javax.swing.*;
-
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class TemplateAction implements IPluginActionDelegate {
 

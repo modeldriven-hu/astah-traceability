@@ -3,23 +3,33 @@ package hu.modeldriven.astah.traceability.layout.impl.layout;
 import hu.modeldriven.astah.traceability.layout.*;
 import org.eclipse.elk.alg.layered.LayeredLayoutProvider;
 import org.eclipse.elk.alg.layered.options.LayeredMetaDataProvider;
-import org.eclipse.elk.core.RecursiveGraphLayoutEngine;
 import org.eclipse.elk.core.data.LayoutAlgorithmData;
 import org.eclipse.elk.core.data.LayoutMetaDataService;
 import org.eclipse.elk.core.options.CoreOptions;
 import org.eclipse.elk.core.options.Direction;
 import org.eclipse.elk.core.options.EdgeRouting;
 import org.eclipse.elk.core.util.BasicProgressMonitor;
+import org.eclipse.elk.core.util.persistence.ElkGraphResourceFactory;
 import org.eclipse.elk.graph.ElkEdge;
+import org.eclipse.elk.graph.ElkGraphPackage;
 import org.eclipse.elk.graph.ElkLabel;
 import org.eclipse.elk.graph.ElkNode;
 import org.eclipse.elk.graph.util.ElkGraphUtil;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.xtext.xbase.lib.DoubleExtensions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.Dimension;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ElkLayoutAlgorithm implements LayoutAlgorithm {
+
+    private final Logger logger = LoggerFactory.getLogger(ElkLayoutAlgorithm.class);
 
     @Override
     public Layout layout(Graph graph) {
@@ -30,33 +40,42 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
 
     private ElkNode layout(ElkNode graph) {
 
-        LayoutAlgorithmData data = LayoutMetaDataService.getInstance()
+        logger.info("Running layout algorithm for " + graph);
+        logger.info("" + DoubleExtensions.operator_equals(5, 3));
+
+        // https://git.eclipse.org/c/sirius/org.eclipse.sirius.git/commit/?id=f7513dac9aa9dacd68354f4cd9bd834ae07b5756
+
+        LayoutMetaDataService service = LayoutMetaDataService.getInstance();
+        service.registerLayoutMetaDataProviders(new LayeredMetaDataProvider());
+
+        for (LayoutAlgorithmData data : service.getAlgorithmData()) {
+            logger.info("Bundle name: " + data.getBundleName());
+            logger.info("Id: " + data.getId());
+            logger.info("Name: " + data.getName());
+        }
+
+        LayoutAlgorithmData data = service
                 .getAlgorithmDataBySuffixOrDefault(
                         "org.eclipse.elk.layered",
-                "org.eclipse.elk.layered");
+                        "org.eclipse.elk.layered");
+
+        logger.info("Layout algorithm data: " + data);
 
         graph.setProperty(CoreOptions.RESOLVED_ALGORITHM, data);
         graph.setProperty(CoreOptions.EDGE_ROUTING, EdgeRouting.ORTHOGONAL);
         graph.setProperty(CoreOptions.DIRECTION, Direction.DOWN);
         graph.setProperty(CoreOptions.SPACING_EDGE_EDGE, 50.0);
-
-        /*
-        graph.setProperty(CoreOptions.SEPARATE_CONNECTED_COMPONENTS, true);
-        graph.setProperty(CoreOptions.SPACING_COMPONENT_COMPONENT, 50.0);
         graph.setProperty(CoreOptions.SPACING_NODE_NODE, 50.0);
-        graph.setProperty(LayeredMetaDataProvider.SPACING_NODE_NODE_BETWEEN_LAYERS, 50.0);
-        graph.setProperty(CoreOptions.SPACING_EDGE_EDGE, 50.0);
         graph.setProperty(CoreOptions.SPACING_EDGE_NODE, 50.0);
-        graph.setProperty(CoreOptions.EDGE_ROUTING, EdgeRouting.ORTHOGONAL);
-        graph.setProperty(CoreOptions.DIRECTION, Direction.DOWN);*/
 
         LayeredLayoutProvider provider = new LayeredLayoutProvider();
 
         try {
-            BasicProgressMonitor monitor = new BasicProgressMonitor();
+            saveGraphELKG(graph, "/home/zsolt/elk/before.elkg");
+            BasicProgressMonitor monitor = new BasicProgressMonitor().withLogging(true).withLogPersistence(true).withExecutionTimeMeasurement(false);
             provider.initialize(null);
             provider.layout(graph, monitor);
-            //new RecursiveGraphLayoutEngine().layout(graph, monitor);
+            saveGraphELKG(graph, "/home/zsolt/elk/after.elkg");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -64,6 +83,26 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
         }
 
         return graph;
+    }
+
+    private void saveGraphELKG(ElkNode rootNode, String fileName) {
+        try {
+
+            if (!Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().containsKey("elkg")) {
+                Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("elkg", new ElkGraphResourceFactory());
+                ElkGraphPackage.eINSTANCE.eClass();
+            }
+
+            ResourceSet resourceSet = new ResourceSetImpl();
+            URI uri = URI.createFileURI(fileName);
+
+            Resource resource = resourceSet.createResource(uri);
+            resource.getContents().add(rootNode);
+
+            resource.save(null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private ElkNode createElkGraph(Graph graph) {
@@ -74,13 +113,19 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
 
     private void buildElkGraph(Graph graph, ElkNode elkGraph) {
 
+        logger.info("Building elk graph");
+        logger.info("Graph.nodes.size = " + graph.nodes().size());
+        logger.info("Graph.connection.size = " + graph.connections().size());
+
         Map<Node, ElkNode> elkNodes = new HashMap<>();
 
         for (Node node : graph.nodes()) {
+            logger.info("Building node: " + node);
             elkNodes.put(node, createElkNode(node, elkGraph));
         }
 
         for (Connection connection : graph.connections()) {
+            logger.info("Building connection: " + connection);
             ElkNode sourceNode = elkNodes.get(connection.source());
             ElkNode targetNode = elkNodes.get(connection.target());
             createEdge(connection, sourceNode, targetNode);
@@ -97,15 +142,22 @@ public class ElkLayoutAlgorithm implements LayoutAlgorithm {
         node.setWidth(preferredBounds.getWidth());
         node.setHeight(preferredBounds.getHeight());
 
+        logger.info("Creating ELK node with " + preferredBounds + " for " + modelNode);
+
         return node;
     }
 
     private void createEdge(Connection connection, ElkNode sourceNode, ElkNode targetNode) {
         ElkEdge edge = ElkGraphUtil.createSimpleEdge(sourceNode, targetNode);
         edge.setIdentifier(connection.id().value());
-        ElkLabel label = ElkGraphUtil.createLabel(connection.name(), edge);
+
+        ElkLabel label = ElkGraphUtil.createLabel(connection.labelName(), edge);
         Dimension labelBounds = connection.renderer().labelSize();
+
         label.setDimensions(labelBounds.getWidth(), labelBounds.getHeight());
+
+        logger.info("Creating ELK edge with label " + labelBounds + " for " + connection +
+                " between elk nodes: " + sourceNode.getIdentifier() + " and " + targetNode.getIdentifier());
     }
 
 }

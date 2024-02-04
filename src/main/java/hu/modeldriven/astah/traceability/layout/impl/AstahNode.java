@@ -1,6 +1,7 @@
 package hu.modeldriven.astah.traceability.layout.impl;
 
 import com.change_vision.jude.api.inf.model.INamedElement;
+import hu.modeldriven.astah.core.AstahNamedElement;
 import hu.modeldriven.astah.traceability.layout.ElementId;
 import hu.modeldriven.astah.traceability.layout.Node;
 import hu.modeldriven.astah.traceability.layout.NodeRenderer;
@@ -53,5 +54,10 @@ public class AstahNode implements Node {
     @Override
     public boolean isSelected() {
         return this.selected;
+    }
+
+    @Override
+    public String toString() {
+        return "Astah node made from " + new AstahNamedElement(namedElement()).asLog();
     }
 }

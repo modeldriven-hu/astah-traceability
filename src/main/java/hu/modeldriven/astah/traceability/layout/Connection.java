@@ -8,6 +8,8 @@ public interface Connection extends Selectable, Identifiable {
 
     String name();
 
+    String labelName();
+
     ConnectionRenderer renderer();
 
 }

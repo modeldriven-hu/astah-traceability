@@ -13,6 +13,13 @@ public class DummyAstahRepresentation implements AstahRepresentation {
 
         DummyClass animal = new DummyClass("Animal");
         DummyClass dog = new DummyClass("Dog");
+
+        rootPackage.addElement(animal);
+        rootPackage.addElement(dog);
+
+        animal.addClientDependency(new DummyDependency("dep", animal, dog));
+
+        /*
         DummyClass element3 = new DummyClass("Element3");
         DummyClass element4 = new DummyClass("Element4");
         DummyClass element5 = new DummyClass("Element5");
@@ -46,6 +53,7 @@ public class DummyAstahRepresentation implements AstahRepresentation {
         childPackage.addElement(subChildPackage);
 
         subChildPackage.addElement(element5);
+        */
 
         return rootPackage;
     }
