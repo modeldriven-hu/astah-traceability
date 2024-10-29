@@ -15,7 +15,8 @@ public class DummyAstahRepresentation implements AstahRepresentation {
         DummyClass dog = new DummyClass("Dog");
 
         DummyClass myType = new DummyClass("MyType");
-        animal.addAttribute(new DummyAttribute(animal, "name", myType));
+        animal.addAttribute(new DummyAttribute(animal, "animalType", myType));
+        dog.addAttribute(new DummyAttribute(dog, "dogType", myType));
 
         rootPackage.addElement(animal);
         rootPackage.addElement(dog);

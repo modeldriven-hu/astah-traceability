@@ -5,13 +5,17 @@ import com.change_vision.jude.api.inf.exception.InvalidUsingException;
 import com.change_vision.jude.api.inf.model.*;
 import com.change_vision.jude.api.inf.presentation.IPresentation;
 
+import java.util.UUID;
+
 public class DummyAttribute implements IAttribute {
 
+    private final UUID id;
     private final IClass owner;
     private final String name;
     private final IClass type;
 
     public DummyAttribute(IClass owner, String name, IClass type){
+        this.id = UUID.randomUUID();
         this.owner = owner;
         this.name = name;
         this.type = type;
@@ -279,7 +283,7 @@ public class DummyAttribute implements IAttribute {
 
     @Override
     public String getId() {
-        return "";
+        return id.toString();
     }
 
     @Override

@@ -25,7 +25,7 @@ public class AstahConnectionBuilder {
                 new GeneralizationConnectionBuilder(nodes, theme),
                 new RealizationConnectionBuilder(nodes, theme),
                 new IncludeConnectionBuilder(nodes, theme)
-        );
+                );
     }
 
     public Map<String, AstahConnection> build() {
