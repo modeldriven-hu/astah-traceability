@@ -7,10 +7,12 @@ import com.change_vision.jude.api.inf.presentation.IPresentation;
 
 public class DummyAttribute implements IAttribute {
 
+    private final IClass owner;
     private final String name;
     private final IClass type;
 
-    public DummyAttribute(String name, IClass type){
+    public DummyAttribute(IClass owner, String name, IClass type){
+        this.owner = owner;
         this.name = name;
         this.type = type;
     }
@@ -282,7 +284,7 @@ public class DummyAttribute implements IAttribute {
 
     @Override
     public IElement getOwner() {
-        return null;
+        return this.owner;
     }
 
     @Override

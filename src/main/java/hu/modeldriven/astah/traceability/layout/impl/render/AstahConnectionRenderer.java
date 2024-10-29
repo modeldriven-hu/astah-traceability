@@ -19,7 +19,6 @@ public class AstahConnectionRenderer implements ConnectionRenderer {
     private final String name;
 
     private final AstahTheme theme;
-
     private final Image image;
 
     public AstahConnectionRenderer(AstahConnection connection, AstahTheme theme) {

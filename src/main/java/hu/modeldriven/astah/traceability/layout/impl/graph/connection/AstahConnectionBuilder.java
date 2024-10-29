@@ -18,6 +18,7 @@ public class AstahConnectionBuilder {
     public AstahConnectionBuilder(Map<String, AstahNode> nodes, AstahTheme theme) {
         this.nodes = nodes;
         builders = Arrays.asList(
+                new AttributeConnectionBuilder(nodes, theme),
                 new DependencyConnectionBuilder(nodes, theme),
                 new UsageConnectionBuilder(nodes, theme),
                 new DiagramConnectionBuilder(nodes, theme),

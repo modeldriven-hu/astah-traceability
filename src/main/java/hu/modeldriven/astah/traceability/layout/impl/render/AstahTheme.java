@@ -39,9 +39,7 @@ public class AstahTheme {
     public String getConnectionName(AstahConnection connection) {
         INamedElement namedElement = connection.namedElement();
 
-        if (namedElement instanceof IDependency) {
-
-            IDependency dependency = (IDependency) namedElement;
+        if (namedElement instanceof IDependency dependency) {
 
             if (hasStereotype(dependency, "Allocate")) {
                 return "Allocate";
@@ -100,6 +98,10 @@ public class AstahTheme {
 
         if (namedElement instanceof IExtend) {
             return "Extend";
+        }
+
+        if (namedElement instanceof IAttribute iAttribute) {
+            return "Attribute: " + iAttribute.getName();
         }
 
         return namedElement.getClass().toGenericString();
