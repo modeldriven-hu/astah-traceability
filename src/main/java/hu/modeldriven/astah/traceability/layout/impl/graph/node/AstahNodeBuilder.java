@@ -23,6 +23,7 @@ public class AstahNodeBuilder {
     public AstahNodeBuilder(AstahTheme theme) {
         this.theme = theme;
         builders = Arrays.asList(
+                new AttributeNodeBuilder(),
                 new DependencyNodeBuilder(),
                 new UsageNodeBuilder(),
                 new DiagramNodeBuilder(),

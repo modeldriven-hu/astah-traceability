@@ -123,8 +123,8 @@
 				<version>2.3.2</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>21</source>
+					<target>21</target>
 				</configuration>
 			</plugin>
 			<plugin>

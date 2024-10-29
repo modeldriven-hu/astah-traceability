@@ -4,8 +4,8 @@ import com.change_vision.jude.api.inf.model.IPackage;
 
 public interface AstahRepresentation {
 
-    IPackage rootPackage() throws AstahException;
+    IPackage rootPackage();
 
-    void selectModelElement(String id) throws AstahException;
+    void selectModelElement(String id);
 
 }

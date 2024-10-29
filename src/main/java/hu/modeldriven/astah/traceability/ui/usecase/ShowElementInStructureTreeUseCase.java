@@ -1,6 +1,5 @@
 package hu.modeldriven.astah.traceability.ui.usecase;
 
-import hu.modeldriven.astah.core.AstahException;
 import hu.modeldriven.astah.core.AstahRepresentation;
 import hu.modeldriven.astah.traceability.ui.event.ExceptionOccurredEvent;
 import hu.modeldriven.astah.traceability.ui.event.ShowInStructureTreeRequestedEvent;
@@ -25,7 +24,7 @@ public class ShowElementInStructureTreeUseCase implements EventHandler<ShowInStr
     public void handleEvent(ShowInStructureTreeRequestedEvent event) {
         try {
             astah.selectModelElement(event.id());
-        } catch (AstahException e) {
+        } catch (Exception e) {
             eventBus.publish(new ExceptionOccurredEvent(e));
         }
     }
