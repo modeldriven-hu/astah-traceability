@@ -19,20 +19,12 @@ public class GeneralizationConnectionBuilder extends AbstractConnectionBuilder<I
 
     @Override
     protected List<IGeneralization> getIncomingRelationships(INamedElement element) {
-        if (element instanceof IClass) {
-            return Arrays.asList(((IClass) element).getSpecializations());
-        }
-
-        return Collections.emptyList();
+        return (element instanceof IClass iClass) ? Arrays.asList(iClass.getSpecializations()) : Collections.emptyList();
     }
 
     @Override
     protected List<IGeneralization> getOutgoingRelationships(INamedElement element) {
-        if (element instanceof IClass) {
-            return Arrays.asList(((IClass) element).getGeneralizations());
-        }
-
-        return Collections.emptyList();
+        return (element instanceof IClass iClass) ? Arrays.asList(iClass.getGeneralizations()) : Collections.emptyList();
     }
 
     @Override

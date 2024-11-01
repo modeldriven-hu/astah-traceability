@@ -5,7 +5,6 @@ import com.change_vision.jude.api.inf.model.INamedElement;
 import hu.modeldriven.astah.traceability.layout.impl.AstahNode;
 import hu.modeldriven.astah.traceability.layout.impl.render.AstahTheme;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 

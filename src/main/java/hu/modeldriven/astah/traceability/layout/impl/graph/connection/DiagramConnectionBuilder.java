@@ -20,8 +20,7 @@ public class DiagramConnectionBuilder extends AbstractConnectionBuilder<IDiagram
 
     @Override
     public List<IDiagramRelationship> getIncomingRelationships(INamedElement element) {
-        return Arrays.asList(element.getDiagrams())
-                .stream()
+        return Arrays.stream(element.getDiagrams())
                 .map(diagram -> new DiagramRelationshipImpl(diagram, element))
                 .collect(Collectors.toList());
     }
