@@ -25,22 +25,22 @@ public abstract class AbstractConnectionBuilder<T extends INamedElement> impleme
     @Override
     public void build(AstahNode node, Map<String, AstahConnection> visitedConnections) {
 
-        INamedElement namedElement = node.namedElement();
+        var namedElement = node.namedElement();
 
         for (T relationship : getOutgoingRelationships(namedElement)) {
             if (!visitedConnections.containsKey(relationship.getId())) {
-                AstahNode clientNode = nodes.get(getOutgoingClient(relationship).getId());
-                AstahNode supplierNode = nodes.get(getOutgoingSupplier(relationship).getId());
-                AstahConnection connection = buildConnection(relationship, clientNode, supplierNode, theme);
+                var clientNode = nodes.get(getOutgoingClient(relationship).getId());
+                var supplierNode = nodes.get(getOutgoingSupplier(relationship).getId());
+                var connection = buildConnection(relationship, clientNode, supplierNode, theme);
                 visitedConnections.put(relationship.getId(), connection);
             }
         }
 
         for (T relationship : getIncomingRelationships(namedElement)) {
             if (!visitedConnections.containsKey(relationship.getId())) {
-                AstahNode clientNode = nodes.get(getIncomingClient(relationship).getId());
-                AstahNode supplierNode = nodes.get(getIncomingSupplier(relationship).getId());
-                AstahConnection connection = buildConnection(relationship, clientNode, supplierNode, theme);
+                var clientNode = nodes.get(getIncomingClient(relationship).getId());
+                var supplierNode = nodes.get(getIncomingSupplier(relationship).getId());
+                var connection = buildConnection(relationship, clientNode, supplierNode, theme);
                 visitedConnections.put(relationship.getId(), connection);
             }
         }

@@ -17,12 +17,12 @@ public class DependencyConnectionBuilder extends AbstractConnectionBuilder<IDepe
 
     @Override
     protected List<IDependency> getIncomingRelationships(INamedElement element) {
-        return Arrays.asList(element.getSupplierDependencies());
+        return List.of(element.getSupplierDependencies());
     }
 
     @Override
     protected List<IDependency> getOutgoingRelationships(INamedElement element) {
-        return Arrays.asList(element.getClientDependencies());
+        return List.of(element.getClientDependencies());
     }
 
     @Override
