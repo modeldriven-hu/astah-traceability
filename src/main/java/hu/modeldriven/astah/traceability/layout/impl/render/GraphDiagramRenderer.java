@@ -1,6 +1,8 @@
 package hu.modeldriven.astah.traceability.layout.impl.render;
 
 import hu.modeldriven.astah.traceability.layout.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -8,6 +10,8 @@ import java.awt.RenderingHints;
 import java.awt.geom.Rectangle2D;
 
 public class GraphDiagramRenderer implements DiagramRenderer {
+
+    private static final Logger logger = LoggerFactory.getLogger(GraphDiagramRenderer.class);
 
     private final Graph graph;
     private final Layout layout;
@@ -28,7 +32,7 @@ public class GraphDiagramRenderer implements DiagramRenderer {
                 node.renderer().render(newGraphics, nodePosition);
                 newGraphics.dispose();
             } else {
-                System.err.println("No coordinate for node " + node.id().value());
+                logger.info("No coordinate for node {}", node.id().value());
             }
         }
 
@@ -40,7 +44,7 @@ public class GraphDiagramRenderer implements DiagramRenderer {
                 connection.renderer().render(newGraphics, connectionPosition);
                 newGraphics.dispose();
             } else {
-                System.err.println("No coordinate for connection " + connection.id().value());
+                logger.info("No coordinate for connection {}", connection.id().value());
             }
         }
 

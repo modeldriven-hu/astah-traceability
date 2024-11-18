@@ -10,6 +10,14 @@ package hu.modeldriven.astah.traceability.ui;
  */
 public class AbstractTraceabilityPanel extends javax.swing.JPanel {
 
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    protected javax.swing.JButton configureButton;
+    protected javax.swing.JTextField modelElementTextField;
+    protected javax.swing.JButton refreshButton;
+    protected javax.swing.JScrollPane scrollPanel;
+    protected javax.swing.JButton selectButton;
+    private javax.swing.JLabel modelElementLabel;
+    private javax.swing.JPanel toolbarPanel;
     /**
      * Creates new form AbstractTraceabilityPanel
      */
@@ -85,16 +93,6 @@ public class AbstractTraceabilityPanel extends javax.swing.JPanel {
         scrollPanel.setPreferredSize(new java.awt.Dimension(600, 600));
         add(scrollPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
-
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    protected javax.swing.JButton configureButton;
-    private javax.swing.JLabel modelElementLabel;
-    protected javax.swing.JTextField modelElementTextField;
-    protected javax.swing.JButton refreshButton;
-    protected javax.swing.JScrollPane scrollPanel;
-    protected javax.swing.JButton selectButton;
-    private javax.swing.JPanel toolbarPanel;
     // End of variables declaration//GEN-END:variables
 
 }

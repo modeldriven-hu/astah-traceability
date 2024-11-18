@@ -5,7 +5,6 @@ import com.change_vision.jude.api.inf.model.INamedElement;
 import hu.modeldriven.astah.traceability.layout.impl.AstahNode;
 import hu.modeldriven.astah.traceability.layout.impl.render.AstahTheme;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -17,12 +16,12 @@ public class DependencyConnectionBuilder extends AbstractConnectionBuilder<IDepe
 
     @Override
     protected List<IDependency> getIncomingRelationships(INamedElement element) {
-        return Arrays.asList(element.getSupplierDependencies());
+        return List.of(element.getSupplierDependencies());
     }
 
     @Override
     protected List<IDependency> getOutgoingRelationships(INamedElement element) {
-        return Arrays.asList(element.getClientDependencies());
+        return List.of(element.getClientDependencies());
     }
 
     @Override

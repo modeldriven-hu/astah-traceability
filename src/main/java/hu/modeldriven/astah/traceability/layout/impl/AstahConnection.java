@@ -1,6 +1,7 @@
 package hu.modeldriven.astah.traceability.layout.impl;
 
 import com.change_vision.jude.api.inf.model.INamedElement;
+import hu.modeldriven.astah.core.AstahNamedElement;
 import hu.modeldriven.astah.traceability.layout.Connection;
 import hu.modeldriven.astah.traceability.layout.ConnectionRenderer;
 import hu.modeldriven.astah.traceability.layout.ElementId;
@@ -53,6 +54,11 @@ public class AstahConnection implements Connection {
     }
 
     @Override
+    public String labelName() {
+        return theme.getConnectionName(this);
+    }
+
+    @Override
     public ConnectionRenderer renderer() {
         return new AstahConnectionRenderer(this, theme);
     }
@@ -70,5 +76,10 @@ public class AstahConnection implements Connection {
     @Override
     public boolean isSelected() {
         return this.selected;
+    }
+
+    @Override
+    public String toString() {
+        return "Astah Connection made from: " + new AstahNamedElement(namedElement()).asLog();
     }
 }

@@ -6,24 +6,23 @@ import com.change_vision.jude.api.inf.model.IPackage;
 import com.change_vision.jude.api.inf.project.ProjectAccessor;
 import com.change_vision.jude.api.inf.view.IProjectViewManager;
 import com.change_vision.jude.api.inf.view.IViewManager;
-import hu.modeldriven.astah.core.AstahException;
 import hu.modeldriven.astah.core.AstahRepresentation;
+import hu.modeldriven.astah.core.AstahRuntimeException;
 
 public class DefaultAstahRepresentation implements AstahRepresentation {
 
     @Override
-    public IPackage rootPackage() throws AstahException {
+    public IPackage rootPackage() {
         try {
             ProjectAccessor projectAccessor = AstahAPI.getAstahAPI().getProjectAccessor();
             return projectAccessor.getProject();
         } catch (Exception e) {
-            throw new AstahException(e);
+            throw new AstahRuntimeException(e);
         }
     }
 
-
     @Override
-    public void selectModelElement(String id) throws AstahException {
+    public void selectModelElement(String id) {
         try {
             AstahAPI api = AstahAPI.getAstahAPI();
 
@@ -37,7 +36,7 @@ public class DefaultAstahRepresentation implements AstahRepresentation {
             }
 
         } catch (Exception e) {
-            throw new AstahException(e);
+            throw new AstahRuntimeException(e);
         }
     }
 

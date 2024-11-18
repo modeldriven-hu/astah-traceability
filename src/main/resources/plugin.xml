@@ -13,7 +13,7 @@
             <action
                     label="%menu_label"
                     icon="icons/sample.gif"
-                    class="hu.modeldriven.astah.traceability.TemplateAction"
+                    class="hu.modeldriven.astah.traceability.plugin.TraceabilityAction"
                     tooltip="%menu_tooltip"
                     menubarPath="tool/astah-traceability/"
                     id="astah-traceability">

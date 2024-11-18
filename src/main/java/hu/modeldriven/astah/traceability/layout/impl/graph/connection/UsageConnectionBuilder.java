@@ -5,7 +5,6 @@ import com.change_vision.jude.api.inf.model.IUsage;
 import hu.modeldriven.astah.traceability.layout.impl.AstahNode;
 import hu.modeldriven.astah.traceability.layout.impl.render.AstahTheme;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -17,12 +16,12 @@ public class UsageConnectionBuilder extends AbstractConnectionBuilder<IUsage> {
 
     @Override
     protected List<IUsage> getIncomingRelationships(INamedElement element) {
-        return Arrays.asList(element.getSupplierUsages());
+        return List.of(element.getSupplierUsages());
     }
 
     @Override
     protected List<IUsage> getOutgoingRelationships(INamedElement element) {
-        return Arrays.asList(element.getClientUsages());
+        return List.of(element.getClientUsages());
     }
 
     @Override

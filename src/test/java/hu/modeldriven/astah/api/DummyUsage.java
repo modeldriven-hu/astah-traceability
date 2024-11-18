@@ -1,9 +1,6 @@
 package hu.modeldriven.astah.api;
 
-import com.change_vision.jude.api.inf.exception.InvalidEditingException;
-import com.change_vision.jude.api.inf.exception.InvalidUsingException;
 import com.change_vision.jude.api.inf.model.*;
-import com.change_vision.jude.api.inf.presentation.IPresentation;
 
 public class DummyUsage extends DummyNamedElement implements IUsage {
 

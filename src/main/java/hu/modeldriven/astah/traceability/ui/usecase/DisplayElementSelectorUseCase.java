@@ -2,7 +2,6 @@ package hu.modeldriven.astah.traceability.ui.usecase;
 
 import com.change_vision.jude.api.inf.model.INamedElement;
 import hu.modeldriven.astah.component.modelselector.ModelElementSelectorDialog;
-import hu.modeldriven.astah.core.AstahException;
 import hu.modeldriven.astah.core.AstahRepresentation;
 import hu.modeldriven.astah.traceability.ui.event.ExceptionOccurredEvent;
 import hu.modeldriven.astah.traceability.ui.event.ModelElementSelectedEvent;
@@ -34,7 +33,7 @@ public class DisplayElementSelectorUseCase implements EventHandler<ModelElementS
         try {
             ModelElementSelectorDialog dialog = new ModelElementSelectorDialog(parent, astah.rootPackage(), this);
             dialog.show();
-        } catch (AstahException e) {
+        } catch (Exception e) {
             eventBus.publish(new ExceptionOccurredEvent(e));
         }
     }

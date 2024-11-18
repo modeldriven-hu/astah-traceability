@@ -10,6 +10,7 @@ public class DummyClass extends DummyNamedElement implements IClass {
 
     List<IGeneralization> generalizations = new ArrayList<>();
     List<IGeneralization> specializations = new ArrayList<>();
+    List<IAttribute> attributes = new ArrayList<>();
 
     public DummyClass(String name) {
         super(name);
@@ -21,6 +22,10 @@ public class DummyClass extends DummyNamedElement implements IClass {
 
     public void addSpecialization(IGeneralization generalization) {
         this.specializations.add(generalization);
+    }
+
+    public void addAttribute(IAttribute attribute) {
+        this.attributes.add(attribute);
     }
 
     @Override
@@ -40,7 +45,7 @@ public class DummyClass extends DummyNamedElement implements IClass {
 
     @Override
     public IAttribute[] getAttributes() {
-        return new IAttribute[0];
+        return attributes.toArray(new IAttribute[0]);
     }
 
     @Override

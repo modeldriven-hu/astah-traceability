@@ -19,24 +19,15 @@ public class DefaultPath implements Path {
         this.bounds = calculateBounds(this.coordinates, labelBounds);
     }
 
-    @Override
-    public List<Point2D> coordinates() {
-        return coordinates;
-    }
-
-    @Override
-    public Rectangle2D bounds() {
-        return bounds;
-    }
-
-    @Override
-    public Point2D labelPosition() {
-        return labelBounds.getBounds().getLocation();
-    }
-
     private static Rectangle2D calculateBounds(List<Point2D> points, Rectangle2D labelBounds) {
 
-        Rectangle2D initialBounds = new Rectangle2D.Double(points.get(0).getX(), points.get(0).getY(), 0, 0);
+        Rectangle2D initialBounds;
+
+        if (points.isEmpty()) {
+            initialBounds = new Rectangle2D.Double(0, 0, 0, 0);
+        } else {
+            initialBounds = new Rectangle2D.Double(points.get(0).getX(), points.get(0).getY(), 0, 0);
+        }
 
         for (Point2D point : points) {
             initialBounds.add(point);
@@ -55,5 +46,20 @@ public class DefaultPath implements Path {
         }
 
         return initialBounds;
+    }
+
+    @Override
+    public List<Point2D> coordinates() {
+        return coordinates;
+    }
+
+    @Override
+    public Rectangle2D bounds() {
+        return bounds;
+    }
+
+    @Override
+    public Point2D labelPosition() {
+        return labelBounds.getBounds().getLocation();
     }
 }

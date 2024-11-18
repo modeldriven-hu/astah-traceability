@@ -4,12 +4,24 @@
  */
 package hu.modeldriven.astah.component.modelselector;
 
+import java.awt.Font;
+
 /**
  * @author zsolt
  */
 @SuppressWarnings("java:S1450")
 public class AbstractModelElementSelectorPanel extends javax.swing.JPanel {
 
+    protected javax.swing.JButton cancelButton;
+    protected javax.swing.JButton okButton;
+    protected javax.swing.JTree packageTree;
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel buttonPanel;
+    private javax.swing.JPanel contentPanel;
+    private javax.swing.JLabel descriptionLabel;
+    private javax.swing.JPanel infoPanel;
+    private javax.swing.JScrollPane scrollPane;
+    private javax.swing.JLabel titleLabel;
     /**
      * Creates new form AbstractPackageSelectorPanel
      */
@@ -38,7 +50,7 @@ public class AbstractModelElementSelectorPanel extends javax.swing.JPanel {
 
         infoPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        titleLabel.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
+        titleLabel.setFont(new java.awt.Font("Segoe UI Light", Font.BOLD, 18)); // NOI18N
         titleLabel.setText("Select model element");
 
         descriptionLabel.setText("Select a model element you want to use.");
@@ -113,17 +125,5 @@ public class AbstractModelElementSelectorPanel extends javax.swing.JPanel {
                                 .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel buttonPanel;
-    protected javax.swing.JButton cancelButton;
-    private javax.swing.JPanel contentPanel;
-    private javax.swing.JLabel descriptionLabel;
-    private javax.swing.JPanel infoPanel;
-    protected javax.swing.JButton okButton;
-    protected javax.swing.JTree packageTree;
-    private javax.swing.JScrollPane scrollPane;
-    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

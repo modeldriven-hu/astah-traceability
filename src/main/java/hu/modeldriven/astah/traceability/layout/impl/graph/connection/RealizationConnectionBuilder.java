@@ -5,7 +5,6 @@ import com.change_vision.jude.api.inf.model.IRealization;
 import hu.modeldriven.astah.traceability.layout.impl.AstahNode;
 import hu.modeldriven.astah.traceability.layout.impl.render.AstahTheme;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -17,12 +16,12 @@ public class RealizationConnectionBuilder extends AbstractConnectionBuilder<IRea
 
     @Override
     protected List<IRealization> getIncomingRelationships(INamedElement element) {
-        return Arrays.asList(element.getSupplierRealizations());
+        return List.of(element.getSupplierRealizations());
     }
 
     @Override
     protected List<IRealization> getOutgoingRelationships(INamedElement element) {
-        return Arrays.asList(element.getClientRealizations());
+        return List.of(element.getClientRealizations());
     }
 
     @Override
