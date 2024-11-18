@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.traceability;
+package hu.modeldriven.astah.traceability.plugin;
 
 
 import com.change_vision.jude.api.inf.ui.IPluginActionDelegate;

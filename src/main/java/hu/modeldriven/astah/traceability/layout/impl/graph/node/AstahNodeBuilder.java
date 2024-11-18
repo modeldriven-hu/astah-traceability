@@ -1,6 +1,5 @@
 package hu.modeldriven.astah.traceability.layout.impl.graph.node;
 
-import com.change_vision.jude.api.inf.model.IDiagram;
 import com.change_vision.jude.api.inf.model.INamedElement;
 import hu.modeldriven.astah.core.AstahNamedElement;
 import hu.modeldriven.astah.traceability.layout.impl.AstahNode;
@@ -34,7 +33,7 @@ public class AstahNodeBuilder {
     }
 
     public Map<String, AstahNode> build(INamedElement initialElement) {
-        Map<String, AstahNode> result = new HashMap<>();
+        var result = new HashMap<String, AstahNode>();
         buildNodesRecursively(initialElement, result);
         return result;
     }
@@ -46,18 +45,9 @@ public class AstahNodeBuilder {
         AstahNode node = new AstahNode(currentElement, this.theme);
         store.put(currentElement.getId(), node);
 
-        if (skipBuild(currentElement)) {
-            return;
-        }
-
         for (NodeBuilder builder : this.builders) {
             builder.build(currentElement, store, this::buildNodesRecursively);
         }
-    }
-
-    // FIXME maybe the builder shall tell that it is a final one, so after the creation we shall stop
-    boolean skipBuild(INamedElement currentElement) {
-        return currentElement instanceof IDiagram;
     }
 
 }

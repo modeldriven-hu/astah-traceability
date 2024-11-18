@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.traceability;
+package hu.modeldriven.astah.traceability.plugin;
 
 
 import org.osgi.framework.BundleActivator;

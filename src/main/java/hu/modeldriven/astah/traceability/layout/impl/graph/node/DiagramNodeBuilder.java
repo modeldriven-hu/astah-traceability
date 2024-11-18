@@ -1,6 +1,7 @@
 package hu.modeldriven.astah.traceability.layout.impl.graph.node;
 
 import com.change_vision.jude.api.inf.model.INamedElement;
+import hu.modeldriven.astah.core.AstahNamedElement;
 import hu.modeldriven.astah.core.DiagramRelationshipImpl;
 import hu.modeldriven.astah.core.IDiagramRelationship;
 
@@ -18,7 +19,10 @@ public class DiagramNodeBuilder extends AbstractNodeBuilder<IDiagramRelationship
 
     @Override
     public List<IDiagramRelationship> getIncomingRelationships(INamedElement element) {
-        return Arrays.asList(element.getDiagrams())
+
+        var diagrams = new AstahNamedElement(element).getDiagrams();
+
+        return diagrams
                 .stream()
                 .map(diagram -> new DiagramRelationshipImpl(diagram, element))
                 .collect(Collectors.toList());
